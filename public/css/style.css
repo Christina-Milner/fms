@@ -88,6 +88,10 @@ a {
     text-decoration: none;
 }
 
+h1 a {
+    color:rgb(129, 64, 129)
+}
+
 .notJudged {
     background-color: #d88282;
 }

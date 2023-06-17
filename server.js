@@ -10,10 +10,11 @@ const flash = require('express-flash')
 const logger = require('morgan')
 const connectDB = require('./config/database')
 const mainRoutes = require('./routes/main')
+const path = require('path')
 /* Routes init goes here */
 
 // Config
-require('dotenv').config({path: './config/.env'})
+require('dotenv').config({path: path.resolve('config.env')})
 
 // Passport
 require('./config/passport')(passport)
@@ -35,7 +36,7 @@ app.use(
       secret: process.env.SECRET,
       resave: false,
       saveUninitialized: false,
-      store: MongoStore.create({ mongooseConnection: mongoose.connection }),
+      store: MongoStore.create({ mongoUrl: process.env.DB_STRING }),
     })
   )
   
@@ -49,6 +50,10 @@ app.use(flash())
 app.use('/', mainRoutes)
 
 
-app.listen(process.env.PORT || PORT, ()=>{
-    console.log(`Server running on port ${PORT}`)
-})
+
+app.listen(process.env.PORT, ()=>{
+    console.log(`Server running on port ${process.env.PORT}`)
+}) 
+
+/* Login no longer crashes because of findOne callback, but also doesn't work
+Fix layout of login page */

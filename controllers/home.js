@@ -1,14 +1,24 @@
 const Painter = require('../models/Painter')
+const User = require('../models/User')
 
 module.exports = {
+    errorMes: (req, res) => {
+        res.render('error.ejs')
+    },
     getIndex: (req, res) => {
         res.render('index.ejs')
     },
     getHelp: (req, res) => {
         res.render('help.ejs')
     },
-    getStats: (req, res) => {
-        res.render('stats.ejs')
+    getStats: async (req, res) => {
+        try {
+            let data = await Painter.find()
+            res.render('stats.ejs', {info: data})
+        }
+        catch (err) {
+            console.log(err)
+        }
     },
     getNum: async (req, res) => {
         try {

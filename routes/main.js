@@ -28,6 +28,9 @@ router.post('/addEntryJudge', judgingController.addEntry)
 router.get('/filters', ensureAuth, homeController.getFilters)
 router.get('/filters:prize', ensureAuth, homeController.filterPrize)
 
+// Gotta log in
+router.get('/error', homeController.errorMes)
+
 //Login
 router.get('/login', authController.getLogin)
 router.post('/login', authController.postLogin)
