@@ -20,6 +20,16 @@ ul {
     margin: 0 auto;
 }
 
+.alert {
+    display: flex;
+    justify-content: center;
+    color: rgb(131, 27, 27);
+    padding: 1%;
+    margin: 0 auto;
+}
+
+
+
 header {
     display: flex;
     justify-content: center;
@@ -206,6 +216,15 @@ input[type=submit], .cancel {
 
 .num {
     color: rgb(141, 52, 141);
+}
+
+form.login {
+    width: 40%;
+    margin-top: 3%;
+}
+
+.login > * {
+    padding: 1%;
 }
 
 @media (max-width: 700px) {

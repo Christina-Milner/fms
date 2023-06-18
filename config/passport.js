@@ -6,7 +6,7 @@ module.exports = function(passport) {
     passport.use(new LocalStrategy(
     async function(username, password, done) {
         let user = await User.findOne({ userName: username })
-        if (!user) { return done(null, false, { msg: `User ${user} not found.`})}
+        if (!user) { return done(null, false, { msg: 'Invalid user name or password.'})}
         user.comparePassword(password, (err, isMatch) => {
           if (err) { return done(err)}
           if (isMatch)  {
