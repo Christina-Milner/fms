@@ -8,14 +8,14 @@ module.exports = {
     addEntry: async (req, res) => {
         try {
             await Painter.findOneAndUpdate({id: Number(req.body.entryId)}, {
-                judged: request.body.judged == "notForJudging" ? "N/A" : request.body.judged == "yesJudged",
+                judged: req.body.judged == "notForJudging" ? "N/A" : req.body.judged == "yesJudged",
                 prizes: {
-                    medal: request.body.medals,
-                    bestOfShow: request.body.bestOfShow == "on",
-                    junBestOfShow: request.body.junBestOfShow == "on",
-                    corrr: request.body.corrr == "on",
-                    peoplesChoice: request.body.peoplesChoice == "on",
-                    sponsors: request.body.sponsors.split(',')
+                    medal: req.body.medals,
+                    bestOfShow: req.body.bestOfShow == "on",
+                    junBestOfShow: req.body.junBestOfShow == "on",
+                    corrr: req.body.corrr == "on",
+                    peoplesChoice: req.body.peoplesChoice == "on",
+                    sponsors: req.body.sponsors.split(',')
                 }
             })
             console.log('Entry updated with judging')

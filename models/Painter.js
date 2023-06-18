@@ -5,15 +5,16 @@ const PainterSchema = new mongoose.Schema({
     fullName: String,
     numOfModels: Number,
     inCompetition: Boolean,
+    junior: Boolean,
     judged: mongoose.Schema.Types.Mixed,
-    prizes: [{
+    prizes: {
         medal: String,
         bestOfShow: Boolean,
         junBestOfShow: Boolean,
         corrr: Boolean,
         peoplesChoice: Boolean,
         sponsors: mongoose.Schema.Types.Mixed
-    }]
+    }
   })
 
   module.exports = mongoose.model('Painter', PainterSchema)

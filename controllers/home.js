@@ -31,7 +31,7 @@ module.exports = {
     },
     getEntry: async (req, res) => {
         try {
-            let result = await Painter.find({id: Number(req.params.id)}).lean()
+            let result = await Painter.findOne({id: Number(req.params.id)}).lean()
             res.json(result)
         }
         catch (err) {
@@ -41,9 +41,11 @@ module.exports = {
     checkPrize: async (req, res) => {
         try {
             let prize = req.params.prize
-            let match = await Painter.find({prizes: {prize: true}}).lean()
-            console.log(match)
-            res.json(match)            
+            let all = await Painter.find()
+            let match = all.filter(e => e["prizes"][prize])
+            if (match) {
+                res.json(match)
+            }          
         }
         catch (err) {
             console.log(err)

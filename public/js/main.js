@@ -1,32 +1,3 @@
-/* Tasks:
-Done or done-ish:
-- Add default listing of all elements on page (done)
-- Add "edit entry" button (done)
-- Change add entry functionality so multiple people can't create an entry with the same id at the same time (done)
-- Add CSS for judging page to colour differentiate not in competition / judged/ not judged (done)
-- Add functionality to check for entries with empty name so that IDs don't get incremented if someone clicks "add entry" and then goes to do something else (done)
-- Only prizes available for not in comp are People's Choice and Sponsor prizes (done)
-- Now split up across 3 pages - all entries should always be clickable on judging page, with prizes available (done)
-- Fix Not In Competition - judging form currently reverts judged back to false. Ideally don't have a judged flag at all, or at least need a value other than "false". (done)
-- Add functionality to filter by prizes (done, with human-readable output)
-- BIG ISSUE: Editing entry on the Registration page removes the name and # of models. FIX THIS. - Fixed - caused by an obsolete reference to the prizes section
-- Get rid of "edit this entry" button and make reg entries editable like in judging view if "edit entry" is clicked - done
-- Add People's Choice to filter page - done
-- Add "no medal" option - presumably not everyone gets a medal - done, bronze/silver/gold are now checkboxes that do not allow multiple selections
-- Ensure Junior and Adult categories are either/or and don't both show up in judging and it's clearly visible whether it's a junior - done
-- Add values validation (no negative number of models etc.) - done, name & num of models are required & num of models is min 1
-- Add visual indicator what category is currently being looked at on filter results and for "edit mode" on registration page - done
-- Add validation/error warning that Best in Show, Junior Best in Show and People's Choice can only be awarded once - done, now also brings up entry that has already been awarded that prize
-- Separate juniors from the others in the prizes filter - done!
-- Add CSS to make it look not horrible - would call this mostly done!
-- Fix entries layout in filters view, broken by CSS changes - done, was caused by vertical centering
-- Get rid of double border between entries - done. I still hate CSS.
-- Not in competition is eligible for CORRR after all - done.
-- Add Statistics to the filters - # of participants (adult/junior), # of models total - done
-
-To do:
-*/
-
 // Hack to highlight which category is being filtered by on the Filters page
 
 const filterButtons = document.querySelectorAll('.filterbutton')

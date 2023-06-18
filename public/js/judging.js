@@ -63,10 +63,14 @@ document.addEventListener('DOMContentLoaded', function() {
     [document.querySelector('#bestOfShow'), document.querySelector('#junBestOfShow'), document.querySelector('#corrr'), document.querySelector('#peoplesChoice')].forEach(e => {
         if (json.prizes && json.prizes[e.id]) {
             e.checked = true
+        } else {
+            e.checked = false
         }
     })
     if (json.prizes && json.prizes.sponsors) {
         document.querySelector('#sponsors').value = typeof(json.prizes.sponsors) == "string" ? json.prizes.sponsors : json.prizes.sponsors.join(',')
+    } else {
+        document.querySelector('#sponsors').value = ""
     }
     if (json.junior) {
         document.querySelectorAll('.adultsOnly').forEach(e => e.classList.add('hidden'))

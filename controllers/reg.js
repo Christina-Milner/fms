@@ -8,12 +8,12 @@ module.exports = {
     addEntry: async (req, res) => {
         console.log(req.body)
         try {
-            await Painter.findOneAndUpdate({id: Number(request.body.entryId)},{
-                fullName: request.body.name,
-                numOfModels: Number(request.body.numOfModels),
-                inCompetition: request.body.inComp == "yesInComp",
-                junior: request.body.junior == "yesJunior",
-                judged: request.body.inComp == "yesInComp" ? request.body.judged == "yesJudged" : "N/A"     
+            await Painter.findOneAndUpdate({id: Number(req.body.entryId)},{
+                fullName: req.body.name,
+                numOfModels: Number(req.body.numOfModels),
+                inCompetition: req.body.inComp == "yesInComp",
+                junior: req.body.junior == "yesJunior",
+                judged: req.body.inComp == "yesInComp" ? req.body.judged == "yesJudged" : "N/A"     
                 })
             console.log('Entry Added')
             res.redirect('/registration')
@@ -25,14 +25,17 @@ module.exports = {
     postEntry: async (req, res) => {
         try {
             let num = await Painter.countDocuments()
-            let lastEntry = await Painter.find({id: num})
-            if (!lastEntry.fullName) {
+            console.log("Num: ", num)
+            let lastEntry = await Painter.findOne({id: num})
+            console.log(lastEntry)
+            if (lastEntry && !lastEntry.fullName) {
                 id = lastEntry.id
                 console.log("Empty entry detected!")
                 res.send(String(id))
                 return
             }
             id = num + 1
+            console.log("Id: ", id)
             await Painter.create({id: id, fullName: "", numOfModels: 0, inCompetition: false, prizes: {}})
             console.log('Entry added')
             res.send(String(id))
