@@ -13,7 +13,7 @@ router.get('/stats', homeController.getStats)
 
 // More complicated stuff
 // Registration and multi-use
-router.get('/registration', ensureAuth, regController.getMain)
+router.get('/registration', regController.getMain)
 router.post('/addEntryReg', regController.addEntry)
 router.get('/numOfEntries', homeController.getNum)
 router.get('/ID_:id', ensureAuth, homeController.getEntry)
@@ -21,19 +21,17 @@ router.post('/postEntry', regController.postEntry)
 router.get('/checkFor_:prize', homeController.checkPrize)
 
 //Judging
-router.get('/judging', ensureAuth, judgingController.getMain)
+router.get('/judging', judgingController.getMain)
 router.post('/addEntryJudge', judgingController.addEntry)
 
 // Filters
-router.get('/filters', ensureAuth, homeController.getFilters)
+router.get('/filters', homeController.getFilters)
 router.get('/filters:prize', ensureAuth, homeController.filterPrize)
 
-// Gotta log in
-router.get('/error', homeController.errorMes)
 
 //Login
 router.get('/login', authController.getLogin)
 router.post('/login', authController.postLogin)
-router.get('/logout', authController.logout)
+router.get('/logout', authController.logout) 
 
 module.exports = router

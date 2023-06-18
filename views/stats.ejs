@@ -10,22 +10,28 @@
 </head>
 
 <body>
-    <%- include('partials/nav.ejs') %>
-    <h2>Number of participants</h2>
-    <div class="numOfThings">
-        <div>
-            <p>Total:</p>
-            <p>Juniors:</p>
-            <p>Adults:</p>
+    <nav class="pageNav">
+    <% if (isAuthenticated) { %>
+        <%- include('partials/navAuth.ejs') %>
+    <% } else { %>
+            <%- include('partials/navNoAuth.ejs') %>
+    <% } %>
+    </nav>
+        <h2>Number of participants</h2>
+        <div class="numOfThings">
+            <div>
+                <p>Total:</p>
+                <p>Juniors:</p>
+                <p>Adults:</p>
+            </div>
+            <div>
+                <p class="num"><%= info.length %></p>
+                <p class="num"><%= info.filter(e => e.junior).length %></p>
+                <p class="num"><%= info.filter(e => !e.junior).length %></p>
+            </div>
         </div>
-        <div>
-            <p class="num"><%= info.length %></p>
-            <p class="num"><%= info.filter(e => e.junior).length %></p>
-            <p class="num"><%= info.filter(e => !e.junior).length %></p>
+        <h2>Number of models entered</h2>
+        <div class="numOfThings">
+            <p class="num"><%= info.reduce((a, b) => a + b.numOfModels, 0) %></p>
         </div>
-    </div>
-    <h2>Number of models entered</h2>
-    <div class="numOfThings">
-        <p class="num"><%= info.reduce((a, b) => a + b.numOfModels, 0) %></p>
-    </div>
 </body>

@@ -1,8 +1,9 @@
 const Painter = require('../models/Painter')
 
 module.exports = {
-    getMain: (req, res)=>{
-        res.render('registration.ejs')
+    getMain: async (req, res) => {
+        let data = await Painter.find()
+        res.render('registration.ejs', { isAuthenticated: req.isAuthenticated(), info: data})
     },
     addEntry: async (req, res) => {
         console.log(req.body)
@@ -28,7 +29,7 @@ module.exports = {
             if (!lastEntry.fullName) {
                 id = lastEntry.id
                 console.log("Empty entry detected!")
-                response.send(String(id))
+                res.send(String(id))
                 return
             }
             id = num + 1

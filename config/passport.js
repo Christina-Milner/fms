@@ -5,10 +5,15 @@ const User = require('../models/User')
 module.exports = function(passport) {
     passport.use(new LocalStrategy(
     async function(username, password, done) {
-        let user = await User.findOne({ username: username })
-        if (!user) { return done(null, false); }
-        if (!user.verifyPassword(password)) { return done(null, false); }
-        return done(null, user);
+        let user = await User.findOne({ userName: username })
+        if (!user) { return done(null, false, { msg: `User ${user} not found.`})}
+        user.comparePassword(password, (err, isMatch) => {
+          if (err) { return done(err)}
+          if (isMatch)  {
+            return done(null, user)
+          }
+          return done(null, false, { msg: 'Invalid user name or password.' })
+        })
     }
 ))
 
@@ -16,7 +21,13 @@ passport.serializeUser((user, done) => {
     done(null, user.id)
   })
 
-  passport.deserializeUser((id, done) => {
-    User.findById(id, (err, user) => done(err, user))
-  })
+passport.deserializeUser(async (id, done) => {
+    try {
+      let user = await User.findById(id).exec()  // No longer accepts a @#$%ing callback
+      return done(null, user.id)
+    }
+    catch (err) {
+      return done(err, null)
+    }
+})
 }

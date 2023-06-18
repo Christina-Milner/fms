@@ -1,8 +1,9 @@
 const Painter = require('../models/Painter')
 
 module.exports = {
-    getMain: (req, res) => {
-        res.render('judging.ejs')
+    getMain: async (req, res) => {
+        let data = await Painter.find()
+        res.render('judging.ejs', { isAuthenticated: req.isAuthenticated(), info: data})
     },
     addEntry: async (req, res) => {
         try {

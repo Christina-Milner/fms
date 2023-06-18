@@ -6,15 +6,15 @@ module.exports = {
         res.render('error.ejs')
     },
     getIndex: (req, res) => {
-        res.render('index.ejs')
+        res.render('index.ejs', { isAuthenticated: req.isAuthenticated() })
     },
     getHelp: (req, res) => {
-        res.render('help.ejs')
+        res.render('help.ejs', { isAuthenticated: req.isAuthenticated() })
     },
     getStats: async (req, res) => {
         try {
             let data = await Painter.find()
-            res.render('stats.ejs', {info: data})
+            res.render('stats.ejs', {isAuthenticated: req.isAuthenticated(), info: data})
         }
         catch (err) {
             console.log(err)
@@ -43,7 +43,7 @@ module.exports = {
             let prize = req.params.prize
             let match = await Painter.find({prizes: {prize: true}}).lean()
             console.log(match)
-            response.json(match)            
+            res.json(match)            
         }
         catch (err) {
             console.log(err)
@@ -52,7 +52,7 @@ module.exports = {
     getFilters: async (req, res) => {
         try {
             let data = await Painter.find()
-            res.render('filters.ejs', {info: data})
+            res.render('filters.ejs', {isAuthenticated: req.isAuthenticated(), info: data})
         }
         catch (err) {
             console.log(err)
@@ -70,7 +70,7 @@ module.exports = {
             }
         })
             console.log(data)
-            response.render('filters.ejs', { info: data })
+            res.render('filters.ejs', {isAuthenticated: req.isAuthenticated(), info: data })
         }
         catch (err) {
             console.log(err)
