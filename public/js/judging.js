@@ -37,9 +37,21 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('#forJunBestOfShow').classList.add('hidden')
     }
     else if (json.judged) {
+        document.querySelector('#isJudged').classList.remove('hidden')       // Oh my God so many bugs caused by the ability to click from one entry to another
+        document.querySelector('#forMedals').classList.remove('hidden')
+        document.querySelector('#bestOfShow').classList.remove('hidden')
+        document.querySelector('#forBestOfShow').classList.remove('hidden')
+        document.querySelector('#junBestOfShow').classList.remove('hidden')
+        document.querySelector('#forJunBestOfShow').classList.remove('hidden')
         document.querySelector('#yesJudged').checked = true
         document.querySelector('#notJudged').checked = false
     } else if (!json.judged) {
+        document.querySelector('#isJudged').classList.remove('hidden')       
+        document.querySelector('#forMedals').classList.remove('hidden')
+        document.querySelector('#bestOfShow').classList.remove('hidden')
+        document.querySelector('#forBestOfShow').classList.remove('hidden')
+        document.querySelector('#junBestOfShow').classList.remove('hidden')
+        document.querySelector('#forJunBestOfShow').classList.remove('hidden')
         document.querySelector('#yesJudged').checked = false
         document.querySelector('#notJudged').checked = true
     } 
@@ -83,8 +95,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     if (json.junior) {
         document.querySelectorAll('.adultsOnly').forEach(e => e.classList.add('hidden'))
+        document.querySelectorAll('.kidsOnly').forEach(e => e.classList.remove('hidden'))
     } else {
         document.querySelectorAll('.kidsOnly').forEach(e => e.classList.add('hidden'))
+        document.querySelectorAll('.adultsOnly').forEach(e => e.classList.remove('hidden'))
     }
 }
 
@@ -115,4 +129,23 @@ async function checkIfTaken(checkbox, prize) {
         })
         document.querySelector('#warning').classList.remove('hidden')
     }
+}
+
+// To allow the judges to keep track of how many CORRRs they have given out
+
+async function checkCORRR() {
+    let CORRR = await fetch(`checkFor_corrr`)
+    CORRR = await CORRR.json()
+    document.querySelector('#warning').innerHTML = `CORRR is currently assigned to ${CORRR.length} ${CORRR.length > 0 ? "contestants" : "contestant"}!`
+    if (CORRR.length) {
+        CORRR.forEach(el => {
+            document.querySelector(`[id="${el.id}"]`).classList.remove('hidden')
+        })
+        /*document.querySelectorAll('.entry').forEach(e => {
+            if (!(CORRR.map(f => f.id).includes(e))) {
+                e.classList.add('hidden')
+            }
+        })*/
+    }
+    document.querySelector('#warning').classList.remove('hidden')
 }

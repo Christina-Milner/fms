@@ -57,7 +57,5 @@ app.listen(process.env.PORT, ()=>{
 
 /* TODO:
 - Split sponsor prizes in filters up by sponsor
-- # check on CORRR when giving it
-- Add "Highly Commended" to Gold, Silver, Bronze
 */
  
