@@ -69,10 +69,17 @@ module.exports = {
                     return e.prizes[prize] ? e.prizes[prize].join('') !== "" : false
                 } else {
                 return Object.values(e.prizes).includes(prize) || e.prizes[prize]
+                }
+            })
+            if (prize === "sponsors") {
+                let sponsorPrizes = new Set()
+                data.forEach(el => typeof(el["prizes"]["sponsors"] === "string" ? sponsorPrizes.add(el["prizes"]["sponsors"]) : el["prizes"]["sponsors"].forEach(thing => sponsorPrizes.add(thing))))
+                let newData = {}
+                Array.from(sponsorPrizes).forEach(sponsor => newData[sponsor] = data.filter(el => el["prizes"]["sponsors"].includes(sponsor)))
+                res.render('filterssponsors.ejs', {isAuthenticated: req.isAuthenticated(), info: newData })
+            } else {
+                res.render('filters.ejs', {isAuthenticated: req.isAuthenticated(), info: data })
             }
-        })
-            console.log(data)
-            res.render('filters.ejs', {isAuthenticated: req.isAuthenticated(), info: data })
         }
         catch (err) {
             console.log(err)

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fen Model Show</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js" defer></script>
+</head>
+
+<body>    
+    <% if (isAuthenticated) { %>
+        <nav class="pageNav">
+            <%- include('partials/navAuth.ejs') %>
+        </nav>
+
+        <h1>Miniatures Show Results</h1>
+        <div class="filterbuttons">
+            <div class="iHateCSS argh">
+                <a href="/filters"><p id="all" class="filterbutton small">View all</p></a>
+                <a href="/filterscommended"><p id="gold" class="filterbutton small">Commend</p></a>
+                <a href="/filtersbronze"><p id="bronze" class="filterbutton small">Bronze</p></a>
+                <a href="/filterssilver"><p id="silver" class="filterbutton small">Silver</p></a>
+                <a href="/filtersgold"><p id="gold" class="filterbutton small">Gold</p></a>
+                <a href="/filterscorrr"><p id="corrr" class="filterbutton small">CORRR</p></a>
+            </div>
+            <div class="iHateCSS">
+                <a href="/filtersbestOfShow"><p id="bestOfShow" class="filterbutton big">Best of Show</p></a>
+                <a href="/filtersjunBestOfShow"><p id="junBestOfShow" class="filterbutton big">Junior Best of Show</p></a>
+                <a href="/filterspeoplesChoice"><p id="peoplesChoice" class="filterbutton big">People's Choice</p></a>
+                <a href="/filterssponsors"><p id="sponsors" class="filterbutton big">Sponsor Prizes</p></a>
+            </div>
+        </div>
+            <div class="entries">
+                <%  for (let sponsor in info) {%>
+                    <h2><%= sponsor %></h2>
+                    <% for (let winner of info[sponsor]) {%>
+                        <div class="entry" id=<%= winner.id %>>
+                            <div>
+                                <p><%= winner.junior ? "Junior" : "Adult" %></p>
+                            </div>
+                            <div>
+                                <p>Number:</p>
+                                <p>Name:</p>
+                            </div>
+                            <div>
+                                <p><%= winner.id %></p>
+                                <p><%= winner.fullName %></p>
+                            </div>
+                        </div>
+                    <% } %>                        
+                <% } %>
+    <% } else { %>
+        <nav class="pageNav">
+            <%- include('partials/navNoAuth.ejs') %>
+        </nav>
+        <%- include('partials/error.ejs') %>
+    <% } %>
+
+</body>
