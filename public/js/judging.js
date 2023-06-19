@@ -50,14 +50,23 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelector('#bronze').checked = true
             document.querySelector('#silver').checked = false
             document.querySelector('#gold').checked = false
+            document.querySelector('#commended').checked = false
         } else if (medal == "silver") {
             document.querySelector('#silver').checked = true
             document.querySelector('#bronze').checked = false
             document.querySelector('#gold').checked = false
-        } else {
+            document.querySelector('#commended').checked = false
+        } else if (medal == "gold") {
             document.querySelector('#gold').checked = true
             document.querySelector('#silver').checked = false
             document.querySelector('#bronze').checked = false
+            document.querySelector('#commended').checked = false
+        }
+        else {
+            document.querySelector('#gold').checked = false
+            document.querySelector('#silver').checked = false
+            document.querySelector('#bronze').checked = false
+            document.querySelector('#commended').checked = true
         }
     }
     [document.querySelector('#bestOfShow'), document.querySelector('#junBestOfShow'), document.querySelector('#corrr'), document.querySelector('#peoplesChoice')].forEach(e => {
