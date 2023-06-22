@@ -66,17 +66,19 @@ module.exports = {
             let data = await Painter.find()
             data = data.filter(e => {
                 if (prize == "sponsors") {
-                    return e.prizes[prize] ? e.prizes[prize].join('') !== "" : false
+                    return Boolean(e.prizes[prize].length)
                 } else {
                 return Object.values(e.prizes).includes(prize) || e.prizes[prize]
                 }
             })
             if (prize === "sponsors") {
-                let sponsorPrizes = new Set()
-                data.forEach(el => typeof(el["prizes"]["sponsors"] === "string" ? sponsorPrizes.add(el["prizes"]["sponsors"]) : el["prizes"]["sponsors"].forEach(thing => sponsorPrizes.add(thing))))
-                let newData = {}
-                Array.from(sponsorPrizes).forEach(sponsor => newData[sponsor] = data.filter(el => el["prizes"]["sponsors"].includes(sponsor)))
-                res.render('filterssponsors.ejs', {isAuthenticated: req.isAuthenticated(), info: newData })
+                let sponsorPrizes = {}
+                let sponsors = data.reduce((acc, cur) => acc.concat(cur["prizes"]["sponsors"]), []).sort((a, b) => a.localeCompare(b))
+                sponsors.forEach(el => sponsorPrizes[el] = true)
+                for (let sponsor in sponsorPrizes) {
+                    sponsorPrizes[sponsor] = data.filter(el => el["prizes"]["sponsors"].includes(sponsor))
+                }
+                res.render('filterssponsors.ejs', {isAuthenticated: req.isAuthenticated(), info: sponsorPrizes })
             } else {
                 res.render('filters.ejs', {isAuthenticated: req.isAuthenticated(), info: data })
             }

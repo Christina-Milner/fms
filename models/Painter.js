@@ -13,7 +13,7 @@ const PainterSchema = new mongoose.Schema({
         junBestOfShow: Boolean,
         corrr: Boolean,
         peoplesChoice: Boolean,
-        sponsors: mongoose.Schema.Types.Mixed
+        sponsors: Array
     }
   })
 

@@ -88,8 +88,8 @@ document.addEventListener('DOMContentLoaded', function() {
             e.checked = false
         }
     })
-    if (json.prizes && json.prizes.sponsors) {
-        document.querySelector('#sponsors').value = typeof(json.prizes.sponsors) == "string" ? json.prizes.sponsors : json.prizes.sponsors.join(',')
+    if (json.prizes && json.prizes.sponsors.length) {
+        document.querySelector('#sponsors').value = json.prizes.sponsors.join(',')
     } else {
         document.querySelector('#sponsors').value = ""
     }
@@ -136,7 +136,7 @@ async function checkIfTaken(checkbox, prize) {
 async function checkCORRR() {
     let CORRR = await fetch(`checkFor_corrr`)
     CORRR = await CORRR.json()
-    document.querySelector('#warning').innerHTML = `CORRR is currently assigned to ${CORRR.length} ${CORRR.length > 0 ? "contestants" : "contestant"}!`
+    document.querySelector('#warning').innerHTML = `CORRR is currently assigned to ${CORRR.length} ${CORRR.length === 1 ? "contestant" : "contestants"}!`
     if (CORRR.length) {
         CORRR.forEach(el => {
             document.querySelector(`[id="${el.id}"]`).classList.remove('hidden')
