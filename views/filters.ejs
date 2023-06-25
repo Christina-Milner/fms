@@ -49,10 +49,8 @@
                             <span><%- typeof(infoJuniors[i].prizes[prize]) == "string" ? infoJuniors[i].prizes[prize][0].toUpperCase() + infoJuniors[i].prizes[prize].slice(1) + "<br>" :
                                 prize == "corrr" ? prize.toUpperCase() + "<br>" :
                                 prize in prettyfied ? prettyfied[prize] + "<br>" :
-                                typeof(infoJuniors[i].prizes[prize]) == "object" ?
-                                    infoJuniors[i].prizes[prize].every(e => !e) ? "" :
-                                    "Sponsor: " + infoJuniors[i].prizes[prize] + "<br>" :
-                                    prize + "<br>" %>
+                                prize ===  "sponsors" && infoJuniors[i].prizes[prize].length ? "Sponsor: " + infoJuniors[i].prizes[prize].join(', ') + "<br>" :
+                                "" %>
                             </span>
                             <% } %>
                         </p>
@@ -77,10 +75,8 @@
                         <span><%- typeof(infoAdults[i].prizes[prize]) == "string" ? infoAdults[i].prizes[prize][0].toUpperCase() + infoAdults[i].prizes[prize].slice(1) + "<br>" :
                             prize == "corrr" ? prize.toUpperCase() + "<br>" :
                             prize in prettyfied ? prettyfied[prize] + "<br>" :
-                            typeof(infoAdults[i].prizes[prize]) == "object" ?
-                                infoAdults[i].prizes[prize].every(e => !e) ? "" :
-                                "Sponsor: " + infoAdults[i].prizes[prize] + "<br>" :
-                                prize + "<br>" %>
+                            prize ===  "sponsors" && infoAdults[i].prizes[prize].length ? "Sponsor: " + infoAdults[i].prizes[prize].join(', ') + "<br>" :
+                            "" %>
                         </span>
                         <% } %>
                     </p>

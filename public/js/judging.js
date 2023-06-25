@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     })
     if (json.prizes && json.prizes.sponsors.length) {
-        document.querySelector('#sponsors').value = json.prizes.sponsors.join(',')
+        document.querySelector('#sponsors').value = json.prizes.sponsors.join(', ')
     } else {
         document.querySelector('#sponsors').value = ""
     }

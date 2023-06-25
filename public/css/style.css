@@ -227,6 +227,13 @@ form.login {
     padding: 1%;
 }
 
+@media (max-width: 1200px) {
+    form {
+    width: 90%;
+}
+}
+
+
 @media (max-width: 700px) {
     .titleNav > span, .pageNav > span {
         font-size: 1em;
@@ -241,5 +248,5 @@ form.login {
     width: 90%;
     line-height: 1.25em;
     font-size: 1.25em;
-}
+    }
 }
