@@ -8,6 +8,8 @@ module.exports = {
     addEntry: async (req, res) => {
         try {
             const titleCasify = str => str.split(' ').map(word => word[0].toUpperCase() + word.slice(1).toLowerCase()).join(' ')
+            console.log(req.body.sponsors)
+            console.log()
             await Painter.findOneAndUpdate({id: Number(req.body.entryId)}, {
                 judged: req.body.judged == "notForJudging" ? "N/A" : req.body.judged == "yesJudged",
                 prizes: {
@@ -16,7 +18,7 @@ module.exports = {
                     junBestOfShow: req.body.junBestOfShow == "on",
                     corrr: req.body.corrr == "on",
                     peoplesChoice: req.body.peoplesChoice == "on",
-                    sponsors: req.body.sponsors ? titleCasify(req.body.sponsors).split(',') : []
+                    sponsors: req.body.sponsors ? req.body.sponsors.split(',').map(sponsor => titleCasify(sponsor.trim())) : []
                 }
             })
             console.log('Entry updated with judging')

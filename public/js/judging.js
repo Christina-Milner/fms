@@ -133,19 +133,24 @@ async function checkIfTaken(checkbox, prize) {
 
 // To allow the judges to keep track of how many CORRRs they have given out
 
-async function checkCORRR() {
-    let CORRR = await fetch(`checkFor_corrr`)
-    CORRR = await CORRR.json()
-    document.querySelector('#warning').innerHTML = `CORRR is currently assigned to ${CORRR.length} ${CORRR.length === 1 ? "contestant" : "contestants"}!`
-    if (CORRR.length) {
-        CORRR.forEach(el => {
-            document.querySelector(`[id="${el.id}"]`).classList.remove('hidden')
-        })
-        /*document.querySelectorAll('.entry').forEach(e => {
-            if (!(CORRR.map(f => f.id).includes(e))) {
-                e.classList.add('hidden')
-            }
-        })*/
+async function checkCORRR(checkbox) {
+    if (checkbox.checked) {
+        let CORRR = await fetch(`checkFor_corrr`)
+        CORRR = await CORRR.json()
+        document.querySelector('#warning').innerHTML = `CORRR is currently assigned to ${CORRR.length} ${CORRR.length === 1 ? "contestant" : "contestants"}!`
+        document.querySelectorAll('.entry').forEach(e => {
+                if (!(CORRR.map(f => f.id).includes(Number(e)))) {
+                    e.classList.add('hidden')
+                }
+            })
+        if (CORRR.length) {
+            CORRR.forEach(el => {
+                document.querySelector(`[id="${el.id}"]`).classList.remove('hidden')
+            })
+            
+        }
+        document.querySelector('#warning').classList.remove('hidden')
+    } else {
+        document.querySelector('#warning').classList.add('hidden')
     }
-    document.querySelector('#warning').classList.remove('hidden')
 }
