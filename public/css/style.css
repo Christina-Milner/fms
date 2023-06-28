@@ -28,7 +28,13 @@ ul {
     margin: 0 auto;
 }
 
+.smscreen {
+    display: none;
+}
 
+.lgscreen {
+    display: inline-block;
+}
 
 header {
     display: flex;
@@ -227,6 +233,10 @@ form.login {
     padding: 1%;
 }
 
+.checkboxOption {
+    display: inline-block;
+}
+
 @media (max-width: 1200px) {
     form {
     width: 90%;
@@ -235,6 +245,9 @@ form.login {
 
 
 @media (max-width: 700px) {
+    .titleNav, .pageNav {
+        flex-flow: row wrap;
+    }
     .titleNav > span, .pageNav > span {
         font-size: 1em;
         padding: 0.75em 0.5em;
@@ -243,7 +256,12 @@ form.login {
     ul {
         width: 80%;
     }
-
+    .smscreen {
+        display: inline-block;
+    }
+    .lgscreen {
+        display: none;
+    }
     form {
     width: 90%;
     line-height: 1.25em;
