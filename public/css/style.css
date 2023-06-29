@@ -268,3 +268,9 @@ form.login {
     font-size: 1.25em;
     }
 }
+
+@media (max-width: 375px) {
+    .big {
+        width: 8em;
+    }
+}
