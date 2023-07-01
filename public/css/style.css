@@ -292,8 +292,10 @@ form.login {
 
 @moz-document url-prefix() {
     @media (max-width: 375px) {
+
         .big {
             width: 4em !important;
+            background-color: red; /* See if this even does anything */
         }
     }
 }
