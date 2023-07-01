@@ -290,7 +290,7 @@ form.login {
 }
 /*Should've really used a CSS reset, but it's now too late to restyle everything */
 
-@moz-document url-prefix() {
+@media screen and (min--moz-device-pixel-ratio:0) {
     @media (max-width: 850px) {
 
         .big {
