@@ -285,14 +285,15 @@ form.login {
         gap: 4px;
     }
     .big {
-        width: 5em;
+        width: 5em !important;
     }
 }
+/*Should've really used a CSS reset, but it's now too late to restyle everything */
 
 @moz-document url-prefix() {
     @media (max-width: 375px) {
         .big {
-            width: 4em;
+            width: 4em !important;
         }
     }
 }
