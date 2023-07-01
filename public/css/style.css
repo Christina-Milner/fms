@@ -291,10 +291,10 @@ form.login {
 /*Should've really used a CSS reset, but it's now too late to restyle everything */
 
 @moz-document url-prefix() {
-    @media (max-width: 375px) {
+    @media (max-width: 700px) {
 
         .big {
-            width: 4em !important;
+            width: 5em !important;
             background-color: red; /* See if this even does anything */
         }
     }
