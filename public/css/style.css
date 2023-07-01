@@ -288,3 +288,11 @@ form.login {
         width: 5em;
     }
 }
+
+@moz-document url-prefix() {
+    @media (max-width: 375px) {
+        .big {
+            width: 4em;
+        }
+    }
+}
