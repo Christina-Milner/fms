@@ -47,10 +47,9 @@ app.use(passport.session())
 
 app.use(flash())
 
-/* App use routes go here */
 app.use('/', mainRoutes) 
 
 
 app.listen(process.env.PORT, ()=>{
     console.log(`Server running on port ${process.env.PORT}`)
-}) 
+})

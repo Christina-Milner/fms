@@ -104,6 +104,10 @@ a {
     text-decoration: none;
 }
 
+a > p {
+    margin-top: 5px;
+}
+
 h1 a {
     color:rgb(129, 64, 129)
 }
@@ -270,7 +274,17 @@ form.login {
 }
 
 @media (max-width: 375px) {
+    a > p {
+        margin: 3px;
+    }
+    .filterbutton {
+        padding: 2px;
+    }
+
+    .iHateCSS {
+        gap: 4px;
+    }
     .big {
-        width: 8em;
+        width: 5em;
     }
 }
