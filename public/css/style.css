@@ -273,29 +273,13 @@ form.login {
     }
 }
 
-@media (max-width: 375px) {
-    a > p {
-        margin: 3px;
-    }
-    .filterbutton {
-        padding: 2px;
-    }
-
-    .iHateCSS {
-        gap: 4px;
-    }
-    .big {
-        width: 5em !important;
-    }
-}
 /*Should've really used a CSS reset, but it's now too late to restyle everything */
 
 @media screen and (min--moz-device-pixel-ratio:0) {
     @media (max-width: 850px) {
 
         .big {
-            width: 5em !important;
-            background-color: red; /* See if this even does anything */
+            width: 8em !important;
         }
     }
 }
