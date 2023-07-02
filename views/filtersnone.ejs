@@ -7,6 +7,7 @@
     <title>Fen Model Show</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/main.js" defer></script>
+    <script src="js/filters.js" defer></script>
 </head>
 
 <body>    
@@ -18,7 +19,7 @@
         <h1>Miniatures Show Results</h1>
             <%- include('partials/filterbuttons.ejs') %>
             <h2>In Competition</h2>
-                <h2>Juniors</h2>
+                <h3>Juniors</h3>
                     <div class="entries">
                         <%  let infoJuniorsInComp = info.filter(e => e.junior && e.inCompetition)
                         for (let i = 0; i < infoJuniorsInComp.length; i++) {%>
@@ -34,7 +35,7 @@
                             </div>
                         <% } %>
                     </div>
-                <h2>Adults</h2>
+                <h3>Adults</h3>
                     <div class="entries">
                     <%  let infoAdultsInComp = info.filter(e => !e.junior && e.inCompetition)
                     for (let i = 0; i < infoAdultsInComp.length; i++) {%>
@@ -52,7 +53,7 @@
                     </div>
                     </div>
             <h2>Not in Competition</h2>
-                <h2>Juniors</h2>
+                <h3>Juniors</h3>
                 <div class="entries">
                     <%  let infoJuniors = info.filter(e => e.junior && !e.inCompetition)
                     for (let i = 0; i < infoJuniors.length; i++) {%>
@@ -68,7 +69,7 @@
                         </div>
                     <% } %>
                 </div>
-                <h2>Adults</h2>
+                <h3>Adults</h3>
                 <div class="entries">
                 <%  let infoAdults = info.filter(e => !e.junior && !e.inCompetition)
                 for (let i = 0; i < infoAdults.length; i++) {%>
