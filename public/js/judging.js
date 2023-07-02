@@ -114,6 +114,7 @@ function onlyOne(checkbox) {
 // To ensure People's Choice, Best of Show and Junior Best of Show can only be awarded once
 
 async function checkIfTaken(checkbox, prize) {
+    document.querySelector('#warning').classList.remove('info')
     let taken = await fetch(`checkFor_${prize}`)
     taken = await taken.json()
     console.log(taken)
@@ -135,9 +136,10 @@ async function checkIfTaken(checkbox, prize) {
 
 async function checkCORRR(checkbox) {
     if (checkbox.checked) {
+        document.querySelector('#warning').classList.remove('info')
         let CORRR = await fetch(`checkFor_corrr`)
         CORRR = await CORRR.json()
-        document.querySelector('#warning').innerHTML = `CORRR is currently assigned to ${CORRR.length} ${CORRR.length === 1 ? "contestant" : "contestants"}!`
+        document.querySelector('#warning').innerHTML = `CORRR is ${CORRR.length >= 6 ? "already" : "currently"} assigned to ${CORRR.length} ${CORRR.length === 1 ? "contestant" : "contestants"}${CORRR.length >= 6? "!" : "."}`
         document.querySelectorAll('.entry').forEach(e => {
                 if (!(CORRR.map(f => f.id).includes(Number(e)))) {
                     e.classList.add('hidden')
@@ -148,6 +150,9 @@ async function checkCORRR(checkbox) {
                 document.querySelector(`[id="${el.id}"]`).classList.remove('hidden')
             })
             
+        }
+        if (CORRR.length < 6) {
+            document.querySelector('#warning').classList.add('info')
         }
         document.querySelector('#warning').classList.remove('hidden')
     } else {
