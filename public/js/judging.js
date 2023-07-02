@@ -154,6 +154,7 @@ async function checkCORRR(checkbox) {
         if (CORRR.length < 6) {
             document.querySelector('#warning').classList.add('info')
         }
+        else {checkbox.checked = false}
         document.querySelector('#warning').classList.remove('hidden')
     } else {
         document.querySelector('#warning').classList.add('hidden')
