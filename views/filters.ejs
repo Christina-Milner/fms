@@ -16,75 +16,60 @@
         </nav>
 
         <h1>Miniatures Show Results</h1>
-        <div class="filterbuttons">
-            <div class="iHateCSS argh">
-                <a href="/filters"><p id="all" class="filterbutton small">View all</p></a>
-                <a href="/filterscommended"><p id="commend" class="filterbutton small">Commend</p></a>
-                <a href="/filtersbronze"><p id="bronze" class="filterbutton small">Bronze</p></a>
-                <a href="/filterssilver"><p id="silver" class="filterbutton small">Silver</p></a>
-                <a href="/filtersgold"><p id="gold" class="filterbutton small">Gold</p></a>
-                <a href="/filterscorrr"><p id="corrr" class="filterbutton small">CORRR</p></a>
-            </div>
-            <div class="iHateCSS">
-                <a href="/filtersbestOfShow"><p id="bestOfShow" class="filterbutton big">Best of Show</p></a>
-                <a href="/filtersjunBestOfShow"><p id="junBestOfShow" class="filterbutton big"><span class="lgscreen">Junior Best of Show</span><span class="smscreen">Jr. Best of Show</span></p></a>
-                <a href="/filterspeoplesChoice"><p id="peoplesChoice" class="filterbutton big">People's Choice</p></a>
-                <a href="/filterssponsors"><p id="sponsors" class="filterbutton big">Sponsor Prizes</p></a>
-            </div>
-        </div>
+            <%- include('partials/filterbuttons.ejs') %>
             <h2>Juniors</h2>
-            <div class="entries">
-            <%  let infoJuniors = info.filter(e => e.junior)
-                for(let i = 0; i < infoJuniors.length; i++) {%>
-                <div class="entry" id=<%= infoJuniors[i].id %>>
-                    <div>
-                        <p>Number:</p>
-                        <p>Name:</p>
-                    </div>
-                    <div>
-                        <p><%= infoJuniors[i].id %></p>
-                        <p><%= infoJuniors[i].fullName %></p>
-                        <p><% for (let prize of Object.keys(infoJuniors[i].prizes).filter(e => infoJuniors[i].prizes[e])) {%>
-                            <% let prettyfied = {junBestOfShow: "Junior Best of Show", bestOfShow: "Best of Show", peoplesChoice: "People's Choice"} %>
-                            <span><%- typeof(infoJuniors[i].prizes[prize]) == "string" ? infoJuniors[i].prizes[prize][0].toUpperCase() + infoJuniors[i].prizes[prize].slice(1) + "<br>" :
+                <div class="entries">
+                    <%  let infoJuniors = info.filter(e => e.junior)
+                    for (let i = 0; i < infoJuniors.length; i++) {%>
+                        <div class="entry" id=<%= infoJuniors[i].id %>>
+                            <div>
+                                <p>Number:</p>
+                                <p>Name:</p>
+                            </div>
+                            <div>
+                                <p><%= infoJuniors[i].id %></p>
+                                <p><%= infoJuniors[i].fullName %></p>
+                                <p><% for (let prize of Object.keys(infoJuniors[i].prizes).filter(e => infoJuniors[i].prizes[e])) {%>
+                                <% let prettyfied = {junBestOfShow: "Junior Best of Show", bestOfShow: "Best of Show", peoplesChoice: "People's Choice"} %>
+                                <span><%- typeof(infoJuniors[i].prizes[prize]) == "string" ? infoJuniors[i].prizes[prize][0].toUpperCase() + infoJuniors[i].prizes[prize].slice(1) + "<br>" :
+                                    prize == "corrr" ? prize.toUpperCase() + "<br>" :
+                                    prize in prettyfied ? prettyfied[prize] + "<br>" :
+                                    prize ===  "sponsors" && infoJuniors[i].prizes[prize].length ? "Sponsor: " + infoJuniors[i].prizes[prize].join(', ') + "<br>" :
+                                    "" %>
+                                </span>
+                                <% } %>
+                                </p>
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+            <h2>Adults</h2>
+                <div class="entries">
+                <%  let infoAdults = info.filter(e => !e.junior)
+                for (let i = 0; i < infoAdults.length; i++) {%>
+                    <div class="entry" id=<%= infoAdults[i].id %>>
+                        <div>
+                            <p>Number:</p>
+                            <p>Name:</p>
+                        </div>
+                        <div>
+                            <p><%= infoAdults[i].id %></p>
+                            <p><%= infoAdults[i].fullName %></p>
+                            <p><% for (let prize of Object.keys(infoAdults[i].prizes).filter(e => infoAdults[i].prizes[e])) {%>
+                                <% let prettyfied = {junBestOfShow: "Junior Best of Show", bestOfShow: "Best of Show", peoplesChoice: "People's Choice"} %>
+                                <span><%- typeof(infoAdults[i].prizes[prize]) == "string" ? infoAdults[i].prizes[prize][0].toUpperCase() + infoAdults[i].prizes[prize].slice(1) + "<br>" :
                                 prize == "corrr" ? prize.toUpperCase() + "<br>" :
                                 prize in prettyfied ? prettyfied[prize] + "<br>" :
-                                prize ===  "sponsors" && infoJuniors[i].prizes[prize].length ? "Sponsor: " + infoJuniors[i].prizes[prize].join(', ') + "<br>" :
+                                prize ===  "sponsors" && infoAdults[i].prizes[prize].length ? "Sponsor: " + infoAdults[i].prizes[prize].join(', ') + "<br>" :
                                 "" %>
                             </span>
                             <% } %>
-                        </p>
+                            </p>
+                        </div>
                     </div>
+                <% } %>
                 </div>
-            <% } %>
-            </div>
-            <h2>Adults</h2>
-            <div class="entries">
-            <%  let infoAdults = info.filter(e => !e.junior)
-            for(let i = 0; i < infoAdults.length; i++) {%>
-            <div class="entry" id=<%= infoAdults[i].id %>>
-                <div>
-                    <p>Number:</p>
-                    <p>Name:</p>
                 </div>
-                <div>
-                    <p><%= infoAdults[i].id %></p>
-                    <p><%= infoAdults[i].fullName %></p>
-                    <p><% for (let prize of Object.keys(infoAdults[i].prizes).filter(e => infoAdults[i].prizes[e])) {%>
-                        <% let prettyfied = {junBestOfShow: "Junior Best of Show", bestOfShow: "Best of Show", peoplesChoice: "People's Choice"} %>
-                        <span><%- typeof(infoAdults[i].prizes[prize]) == "string" ? infoAdults[i].prizes[prize][0].toUpperCase() + infoAdults[i].prizes[prize].slice(1) + "<br>" :
-                            prize == "corrr" ? prize.toUpperCase() + "<br>" :
-                            prize in prettyfied ? prettyfied[prize] + "<br>" :
-                            prize ===  "sponsors" && infoAdults[i].prizes[prize].length ? "Sponsor: " + infoAdults[i].prizes[prize].join(', ') + "<br>" :
-                            "" %>
-                        </span>
-                        <% } %>
-                    </p>
-                </div>
-            </div>
-        <% } %>
-        </div>
-        </div>
     <% } else { %>
         <nav class="pageNav">
             <%- include('partials/navNoAuth.ejs') %>

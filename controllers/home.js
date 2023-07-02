@@ -65,12 +65,19 @@ module.exports = {
             let prize = req.params.prize
             let data = await Painter.find()
             data = data.filter(e => {
+                if (prize == "none") {
+                    return Object.values(e.prizes).every(prize => typeof(prize) === "object" ? !prize.length : !prize)
+                }
                 if (prize == "sponsors") {
                     return Boolean(e.prizes[prize].length)
                 } else {
                 return Object.values(e.prizes).includes(prize) || e.prizes[prize]
                 }
             })
+            if (prize === "none") {
+                res.render('filtersnone.ejs', {isAuthenticated: req.isAuthenticated(), info: data })
+                return
+            }
             if (prize === "sponsors") {
                 let sponsorPrizes = {}
                 let sponsors = data.reduce((acc, cur) => acc.concat(cur["prizes"]["sponsors"]), []).sort((a, b) => a.localeCompare(b))
