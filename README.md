@@ -50,6 +50,7 @@ Prototype version (with no authentication, not using MVC or Mongoose, and missin
 * Critical error occurred when a sponsor prize was entered followed by a comma even though it was currently the only one - fix for this (disallowing the empty string in the sponsor prizes array as it would have caused issues even if the attempt to title case it hadn't crashed the server) will be going live with this README update (and issue was resolved quickly on the day)
 * Forms needed to be a bit bigger on tablet-size screen as it was easy to mistap, but this is low prio as the tablet ended up not being the device of choice due to its reliance on (poor) Wi-Fi
 * Next year will likely require some changes such as the introduction of Masters vs Standard categories or a yellow colour flag in Judging to allow for a "first pass" round before finalising an entry as judged
+* Will remove limit on CORRR prizes (keep warning functionality, just not disallow assigning more) as organisers ended up awarding 8 instead of the planned 6
 * All in all, very positive feedback for the app :)
 
 
