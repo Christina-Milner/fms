@@ -36,7 +36,7 @@ Prototype version (with no authentication, not using MVC or Mongoose, and missin
 ### Filters
 * This page is used for the prize-giving ceremony
 * "No prizes" was included as a category at the organisers' request to enable a quick sanity check ensuring no display ended up without any awards despite deserving one
-* "No prizes" is lsited by In Competition and Out of Competition as well as Juniors and Adults
+* "No prizes" is listed by In Competition and Out of Competition as well as Juniors and Adults
 * Most other prizes only distinguish by Juniors and Adults as competition status is either obvious or irrelevant
 * Sponsor prizes are listed by sponsor in alphabetical order
 
