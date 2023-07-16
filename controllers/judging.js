@@ -16,7 +16,7 @@ module.exports = {
                     junBestOfShow: req.body.junBestOfShow == "on",
                     corrr: req.body.corrr == "on",
                     peoplesChoice: req.body.peoplesChoice == "on",
-                    sponsors: req.body.sponsors ? req.body.sponsors.split(',').filter(e => e).map(sponsor => titleCasify(sponsor.trim())) : []
+                    sponsors: req.body.sponsors ? req.body.sponsors.split(',').map(e => e.trim()).filter(e => e).map(sponsor => titleCasify(sponsor)) : []
                 }
             })
             console.log('Entry updated with judging')
