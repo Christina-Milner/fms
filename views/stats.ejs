@@ -34,4 +34,20 @@
         <div class="numOfThings">
             <p class="num"><%= info.reduce((a, b) => a + b.numOfModels, 0) %></p>
         </div>
+        <h2>Prizes awarded</h2>
+        <div class="numOfThings">
+            <div>
+                <p>Highly Commended:</p>
+                <p>Bronze:</p>
+                <p>Silver:</p>
+                <p>Gold:</p>
+                <p>CORRR:</p>
+            </div>
+            <div>
+                <p class="num"><%= info.filter(e => e.prizes.medal === "commended").length %></p>
+                <p class="num"><%= info.filter(e => e.prizes.medal === "bronze").length %></p>
+                <p class="num"><%= info.filter(e => e.prizes.medal === "silver").length %></p>
+                <p class="num"><%= info.filter(e => e.prizes.medal === "gold").length %></p>
+                <p class="num"><%= info.filter(e => e.prizes.corrr).length %></p>
+            </div>
 </body>
