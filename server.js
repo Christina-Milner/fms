@@ -19,8 +19,6 @@ require('dotenv').config({path: path.resolve('config.env')})
 // Passport
 require('./config/passport')(passport)
 
-// Connect the DB
-connectDB() 
 
 // More setup
 
@@ -50,6 +48,8 @@ app.use(flash())
 app.use('/', mainRoutes) 
 
 
+connectDB().then(() => {
 app.listen(process.env.PORT, ()=>{
     console.log(`Server running on port ${process.env.PORT}`)
-}) 
+})
+})
