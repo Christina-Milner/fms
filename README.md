@@ -2,13 +2,7 @@
 
 
 A custom, mobile-friendly app created with Node.js, Express and MongoDB/Mongoose to handle registration, judging and prize awards at the Fen Model Show miniatures exhibition/contest.
-Live here: [https://fms-gjyd.onrender.com](https://fms-gjyd.onrender.com).
-
-Prototype version (with no authentication, not using MVC or Mongoose, and missing various bug fixes and tweaks made for the final version, but allows for playing with the login-gated functionality):
-* [Github](https://github.com/Christina-Milner/my-first-crud-app)
-* [Live site](https://model-show-registration-alpha-prototype.onrender.com/)
-
-(This is hosted on a free plan so expect long initial loading times as the server spins down after 15 minutes of inactivity.)
+Live here: [https://fenmodelshow.cyclic.app/](https://fenmodelshow.cyclic.app/).
 
 ## Features
 ### Registration
