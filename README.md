@@ -2,7 +2,7 @@
 
 
 A custom, mobile-friendly app created with Node.js, Express and MongoDB/Mongoose to handle registration, judging and prize awards at the Fen Model Show miniatures exhibition/contest.
-Live here: [https://fenmodelshow.cyclic.app/](https://fenmodelshow.cyclic.app/).
+Live here: [https://fms.zeabur.app/](https://fms.zeabur.app/).
 
 ## Features
 ### Registration
