@@ -15,44 +15,40 @@ document.addEventListener('DOMContentLoaded', function() {
     const data = await fetch(`ID_${entryID}`, {
         method: 'get',
         headers: {'Content-Type': 'application/json'},
-    })
-    let json = await data.json()
+    })  
+    let json = await data.json() 
+    console.log(json)
     document.querySelector('#inputForm').classList.remove('hidden')
     document.querySelectorAll('.entry').forEach(e => e.classList.add('hidden'))
     document.querySelector('#prizes').classList.remove('hidden')
     document.querySelector('#forID').innerText = `Number: ${json.id}`
     document.querySelector('#secretIdBox').value = json.id
     document.querySelector('#name').innerText = json.fullName
-    document.querySelector('#numOfModels').innerText = json.numOfModels
     const comp = {0: "Out of competition", 1: "Junior", 2: "Standard", 3: "Masters"}
     document.querySelector('#competition').innerText = comp[json.competition]
     if (!json.competition) {
         document.querySelector('#isJudged').classList.add('hidden')
         document.querySelector('#forMedals').classList.add('hidden')
-        document.querySelector('#bestOfShow').classList.add('hidden')
-        document.querySelector('#forBestOfShow').classList.add('hidden')
-        document.querySelector('#junBestOfShow').classList.add('hidden')
-        document.querySelector('#forJunBestOfShow').classList.add('hidden')
+        document.querySelector('#bestOfShowStuff').classList.add('hidden')
     }
-    else if (json.judged) {
-        document.querySelector('#isJudged').classList.remove('hidden')       // Oh my God so many bugs caused by the ability to click from one entry to another
+    else {
+        document.querySelector('#isJudged').classList.remove('hidden')
         document.querySelector('#forMedals').classList.remove('hidden')
-        document.querySelector('#bestOfShow').classList.remove('hidden')
-        document.querySelector('#forBestOfShow').classList.remove('hidden')
-        document.querySelector('#junBestOfShow').classList.remove('hidden')
-        document.querySelector('#forJunBestOfShow').classList.remove('hidden')
-        document.querySelector('#yesJudged').checked = true
-        document.querySelector('#notJudged').checked = false
-    } else if (!json.judged) {
-        document.querySelector('#isJudged').classList.remove('hidden')       
-        document.querySelector('#forMedals').classList.remove('hidden') 
-        document.querySelector('#bestOfShow').classList.remove('hidden')
-        document.querySelector('#forBestOfShow').classList.remove('hidden') 
-        document.querySelector('#junBestOfShow').classList.remove('hidden')
-        document.querySelector('#forJunBestOfShow').classList.remove('hidden')
+        document.querySelector('#bestOfShowStuff').classList.remove('hidden')
+    }
+    if (!json.judged) {
+        document.querySelector('#firstPass').checked = false
         document.querySelector('#yesJudged').checked = false
         document.querySelector('#notJudged').checked = true
-    } 
+    } else if (json.judged == 1) {
+        document.querySelector('#firstPass').checked = true
+        document.querySelector('#yesJudged').checked = false
+        document.querySelector('#notJudged').checked = false
+    } else {
+        document.querySelector('#firstPass').checked = false
+        document.querySelector('#yesJudged').checked = true
+        document.querySelector('#notJudged').checked = false
+    }
 
     if (json.prizes && json.prizes.medal) {
         let medal = json.prizes.medal
@@ -80,18 +76,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     [document.querySelector('#bestOfShow'), document.querySelector('#junBestOfShow'), document.querySelector('#corrr'), document.querySelector('#peoplesChoice')].forEach(e => {
-        if (json.prizes && json.prizes[e.id]) {
+        if (e && json.prizes && json.prizes[e.id]) {
             e.checked = true
-        } else {
+        } else if (e) {
             e.checked = false
         }
     })
-    if (json.prizes && json.prizes.sponsors.length) {
+    if (document.querySelector('#sponsors') && json.prizes && json.prizes.sponsors.length) {
         document.querySelector('#sponsors').value = json.prizes.sponsors.join(', ')
-    } else {
+    } else if (document.querySelector('#sponsors') ) {  // This JS file is now used by 3 separate partials, some of which no longer have these items
         document.querySelector('#sponsors').value = ""
     }
-    if (json.junior) {
+    if (json.competition == 1) {
         document.querySelectorAll('.adultsOnly').forEach(e => e.classList.add('hidden'))
         document.querySelectorAll('.kidsOnly').forEach(e => e.classList.remove('hidden'))
     } else {
@@ -116,7 +112,7 @@ async function checkIfTaken(checkbox, prize) {
     let taken = await fetch(`checkFor_${prize}`)
     taken = await taken.json()
     console.log(taken)
-    let prettyfied = {junBestOfShow: "Junior Best of Show", bestOfShow: "Best of Show", peoplesChoice: "People's Choice"}
+    let prettyfied = {junBestOfShow: "Junior Best of Show", standardBestOfShow: "Standard Best of Show", mastersBestOfShow: "Masters Best of Show", peoplesChoice: "People's Choice"}
     if (taken.length && taken[0].id !== Number(document.querySelector('#secretIdBox').value)) {
         checkbox.checked = false
         document.querySelector('#warning').innerHTML = `${prettyfied[prize]} has already been assigned to Number ${taken[0].id}, ${taken[0].fullName}!`

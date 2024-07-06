@@ -72,24 +72,25 @@ async function editThis(element) {
     document.querySelector('#secretIdBox').value = json.id
     document.querySelector('#name').value = json.fullName
     document.querySelector('#numOfModels').value = json.numOfModels
-    if (json.junior) {
-        document.querySelector('#yesJunior').checked = true
+    if (!json.competition ) {
+        document.querySelector('#outOfComp').checked = true
+        document.querySelector('#junior').checked = false
+        document.querySelector('#standard').checked = false
+        document.querySelector('#masters').checked = false
+    } else if (json.competition === 1) {
+        document.querySelector('#outOfComp').checked = false
+        document.querySelector('#junior').checked = true
+        document.querySelector('#standard').checked = false
+        document.querySelector('#masters').checked = false
+    } else if (json.competition === 2) {
+        document.querySelector('#outOfComp').checked = false
+        document.querySelector('#junior').checked = false
+        document.querySelector('#standard').checked = true
+        document.querySelector('#masters').checked = false
     } else {
-        document.querySelector('#notJunior').checked = true
-    }
-    if (json.inCompetition) {
-        document.querySelector('#yesInComp').checked = true
-        document.querySelector('#notInComp').checked = false
-    } else {
-        document.querySelector('#yesInComp').checked = false
-        document.querySelector('#notInComp').checked = true
-    }
-    if (json.judged && json.judged !== "N/A") {
-        document.querySelector('#yesJudged').checked = true
-    } else if (json.judged == "N/A") {
-        document.querySelector('#notForJudging').checked = true
-    } else if (!json.judged) {
-        document.querySelector('#notJudged').checked = true
+        document.querySelector('#outOfComp').checked = false
+        document.querySelector('#junior').checked = false
+        document.querySelector('#standard').checked = false
+        document.querySelector('#masters').checked = true
     }
 }
-

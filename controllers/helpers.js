@@ -34,7 +34,6 @@ module.exports = {
     seed: async (req, res) => {
         const data = [
             {   
-                fullName: "Person 1",
                 numOfModels: 3,
                 competition: 0,
                 judged: 0,
@@ -49,7 +48,6 @@ module.exports = {
                 }
             },
             {
-                fullName: "Person 2",
                 numOfModels: 5,
                 competition: 0,
                 judged: 0,
@@ -63,7 +61,7 @@ module.exports = {
                     sponsors: []
                 }
             },
-            {fullName: "Person 3",
+            {
                 numOfModels: 6,
                 competition: 0,
                 judged: 0,
@@ -77,7 +75,7 @@ module.exports = {
                     sponsors: ["Taro"]
                 }
             },
-            {fullName: "Person 4",
+            {
                 numOfModels: 2,
                 competition: 1,
                 judged: 0,
@@ -91,7 +89,7 @@ module.exports = {
                     sponsors: []
                 }
             },
-            {fullName: "Person 5",
+            {
                 numOfModels: 4,
                 competition: 1,
                 judged: 1,
@@ -105,7 +103,7 @@ module.exports = {
                     sponsors: []
                 }
             },
-            {fullName: "Person 6",
+            {
                 numOfModels: 2,
                 competition: 1,
                 judged: 1,
@@ -119,7 +117,7 @@ module.exports = {
                     sponsors: ["Blacksun"]
                 }
             },
-            {fullName: "Person 7",
+            {
                 numOfModels: 3,
                 competition: 1,
                 judged: 1,
@@ -133,7 +131,7 @@ module.exports = {
                     sponsors: []
                 }
             },
-            {fullName: "Person 8",
+            {
                 numOfModels: 7,
                 competition: 1,
                 judged: 1,
@@ -147,7 +145,7 @@ module.exports = {
                     sponsors: []
                 }
             },
-            {fullName: "Person 8",
+            {
                 numOfModels: 7,
                 competition: 1,
                 judged: 2,
@@ -161,7 +159,7 @@ module.exports = {
                     sponsors: []
                 }
             },
-            {fullName: "Person 9",
+            {
                 numOfModels: 3,
                 competition: 1,
                 judged: 2,
@@ -175,7 +173,7 @@ module.exports = {
                     sponsors: []
                 }
             },
-            {fullName: "Person 10",
+            {
                 numOfModels: 3,
                 competition: 2,
                 judged: 0,
@@ -189,7 +187,7 @@ module.exports = {
                     sponsors: []
                 }
             },
-            {fullName: "Person 11",
+            {
                 numOfModels: 3,
                 competition: 2,
                 judged: 1,
@@ -203,7 +201,7 @@ module.exports = {
                     sponsors: []
                 }
             },
-            {fullName: "Person 12",
+            {
                 numOfModels: 4,
                 competition: 2,
                 judged: 1,
@@ -217,7 +215,7 @@ module.exports = {
                     sponsors: []
                 }
             },
-            {fullName: "Person 13",
+            {
                 numOfModels: 4,
                 competition: 2,
                 judged: 2,
@@ -231,7 +229,7 @@ module.exports = {
                     sponsors: []
                 }
             },
-            {fullName: "Person 14",
+            {
                 numOfModels: 4,
                 competition: 2,
                 judged: 2,
@@ -245,7 +243,7 @@ module.exports = {
                     sponsors: ["Sphere", "Taro"]
                 }
             },
-            {fullName: "Person 15",
+            {
                 numOfModels: 4,
                 competition: 3,
                 judged: 0,
@@ -259,7 +257,7 @@ module.exports = {
                     sponsors: []
                 }
             },
-            {fullName: "Person 16",
+            {
                 numOfModels: 2,
                 competition: 3,
                 judged: 1,
@@ -273,7 +271,7 @@ module.exports = {
                     sponsors: []
                 }
             },
-            {fullName: "Person 17",
+            {
                 numOfModels: 6,
                 competition: 3,
                 judged: 1,
@@ -287,7 +285,7 @@ module.exports = {
                     sponsors: []
                 }
             },
-            {fullName: "Person 18",
+            {
                 numOfModels: 4,
                 competition: 3,
                 judged: 2,
@@ -301,7 +299,7 @@ module.exports = {
                     sponsors: []
                 }
             },
-            {fullName: "Person 19",
+            {
                 numOfModels: 4,
                 competition: 3,
                 judged: 2,
@@ -315,7 +313,7 @@ module.exports = {
                     sponsors: []
                 }
             },
-            {fullName: "Person 20",
+            {
                 numOfModels: 2,
                 competition: 3,
                 judged: 2,
@@ -333,7 +331,7 @@ module.exports = {
         try {
             let id = 1
             for (let item of data) {
-                await Painter.create({id: id, ...item})
+                await Painter.create({id: id, fullName: `Person ${id}`, ...item})
                 id++
             }
             res.render('errormes.ejs', {error: "DB seeded successfully"})
