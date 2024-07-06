@@ -41,7 +41,8 @@ module.exports = {
             res.send(String(id))
         }
         catch (err) {
-            console.log(err)
+            console.log(err) 
+            res.render(errormes.ejs, {error: error})
         }
     }
 }

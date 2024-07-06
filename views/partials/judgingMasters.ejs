@@ -1,1 +1,69 @@
-<p>MASTERS!</p>
+<form action="/addEntryJudge" method="POST" id="inputForm" class="hidden judgeForm">
+    <input type ="hidden" name="entryId" id="secretIdBox">
+    <div id="forID">
+    </div>
+    <div>
+        <span>Name:</span>
+        <span id="name"></span>
+    </div>
+    <div id="competition"></div>
+    <fieldset id="prizes" class="hidden">
+        <div id="warning" class="hidden"></div>
+        <div id="isJudged">
+            <input type="radio" id="notJudged" name="judged" value=0>
+            <label for="notJudged">Not judged</label>
+            <input type="radio" id="firstPass" name="judged" value=1>
+            <label for="firstPass">First Pass</label>
+            <input type="radio" id="yesJudged" name="judged" value=2>
+            <label for="yesJudged">Judged</label>
+        </div>
+        <legend>Prizes:</legend>
+        <div id="forMedals">
+            <div class="checkboxOption">
+                <input type="checkbox" id="commended" name="medals" value="commended" onclick="onlyOne(this)">
+                <label for="commended"><span class="lgscreen">Highly Commended</span><span class="smscreen">Commend</span></label>
+            </div>
+            <div class="checkboxOption">
+                <input type="checkbox" id="bronze" name="medals" value="bronze" onclick="onlyOne(this)">
+                <label for="bronze">Bronze</label>
+            </div>
+            <div class="checkboxOption">
+                <input type="checkbox" id="silver" name="medals" value="silver" onclick="onlyOne(this)">
+                <label for="silver">Silver</label>
+            </div>
+            <div class="checkboxOption">
+                <input type="checkbox" id="gold" name="medals" value="gold" onclick="onlyOne(this)">
+                <label for="gold">Gold</label>
+            </div>
+        </div>
+        <div id="bestOfShowStuff">
+            <div class="checkboxOption">
+                <input type="checkbox" id="mastersBestOfShow" name="mastersBestOfShow" class="adultsOnly" onclick="checkIfTaken(this, 'mastersBestOfShow')">
+                <label for="mastersBestOfShow" id="forMastersBestOfShow" class="adultsOnly">Masters BoS</label>
+            </div>
+        </div>
+
+        
+    </fieldset>
+    <div>
+        <input type="submit" value="Submit">
+    </div>
+</form>
+<div class="entries">
+    <% for(let i = 0; i < info.length; i++) {%>
+        <div class="entry <%= !info[i].judged ? "notJudged" : info[i].judged == 1 ? "firstPass" : "judged" %>" id=<%= info[i].id %>>
+            <div>
+                <p>Number:</p>
+                <p>Name:</p>
+                <p><%= info[i].competition %></p>
+                <p>Judged:</p>
+            </div>
+            <div>
+                <p><%= info[i].id %></p>
+                <p><%= info[i].fullName ? info[i].fullName : "Empty entry!" %></p>
+                <p>&nbsp;</p>
+                <p><%= !info[i].judged ? "No" : info[i].judged == 1 ? "First Pass" : "Yes" %></p>
+            </div>
+        </div>
+    <% } %>
+</div>

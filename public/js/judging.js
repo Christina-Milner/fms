@@ -24,12 +24,10 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('#secretIdBox').value = json.id
     document.querySelector('#name').innerText = json.fullName
     document.querySelector('#numOfModels').innerText = json.numOfModels
-    document.querySelector('#inComp').innerText = json.inCompetition ? "In competition" : "Not in competition"
-    document.querySelector('#age').innerText = json.junior ? "Junior" : "Adult"
-    document.querySelector('#age').classList.add(json.junior ? "junior" : "adult")
-    if (json.judged == "N/A") {
+    const comp = {0: "Out of competition", 1: "Junior", 2: "Standard", 3: "Masters"}
+    document.querySelector('#competition').innerText = comp[json.competition]
+    if (!json.competition) {
         document.querySelector('#isJudged').classList.add('hidden')
-        document.querySelector('#notForJudging').checked = true
         document.querySelector('#forMedals').classList.add('hidden')
         document.querySelector('#bestOfShow').classList.add('hidden')
         document.querySelector('#forBestOfShow').classList.add('hidden')
@@ -47,9 +45,9 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('#notJudged').checked = false
     } else if (!json.judged) {
         document.querySelector('#isJudged').classList.remove('hidden')       
-        document.querySelector('#forMedals').classList.remove('hidden')
+        document.querySelector('#forMedals').classList.remove('hidden') 
         document.querySelector('#bestOfShow').classList.remove('hidden')
-        document.querySelector('#forBestOfShow').classList.remove('hidden')
+        document.querySelector('#forBestOfShow').classList.remove('hidden') 
         document.querySelector('#junBestOfShow').classList.remove('hidden')
         document.querySelector('#forJunBestOfShow').classList.remove('hidden')
         document.querySelector('#yesJudged').checked = false

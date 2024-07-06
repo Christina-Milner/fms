@@ -11,8 +11,9 @@ const PainterSchema = new mongoose.Schema({
     // 0 = not judged, 1 = first pass (new), 2 = judged
     // Entries that don't need judging won't go on the same screen anymore so don't need a N/A type option
     prizes: {
-        medal: String,
-        bestOfShow: Boolean,
+        medal: String, 
+        standardBestOfShow: Boolean,
+        mastersBestOfShow: Boolean,
         junBestOfShow: Boolean,
         corrr: Boolean,
         peoplesChoice: Boolean,

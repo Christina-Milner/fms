@@ -41,5 +41,6 @@ router.get('/logout', authController.logout)
 // Admin stuff
 
 router.get('/saveStats', ensureAuth, helpersController.saveStats)
+router.get('/seed', ensureAuth, helpersController.seed)
 
 module.exports = router

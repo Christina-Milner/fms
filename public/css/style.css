@@ -139,6 +139,10 @@ h1 a {
     background-color: #79df93;
 }
 
+.firstPass {
+    background-color: rgb(235, 235, 140);
+}
+
 #warning {
     color: #dd1212;
 }
