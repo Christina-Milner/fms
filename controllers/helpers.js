@@ -6,7 +6,7 @@ const Year = require('../models/Year')
 module.exports = {
     // For me to save stats for a given year before I purge the DB. 
     saveStats: async (req, res) => {
-        try {
+        try { 
             let data = await Painter.find().lean()
             const models = data.reduce((acc, cur) => acc + cur.numOfModels, 0)
             const juniors = data.filter(e => e.junior).length

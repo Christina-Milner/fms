@@ -3,7 +3,19 @@ const Painter = require('../models/Painter')
 module.exports = {
     getMain: async (req, res) => {
         let data = await Painter.find()
-        res.render('judging.ejs', { isAuthenticated: req.isAuthenticated(), info: data})
+        res.render('judging.ejs', { isAuthenticated: req.isAuthenticated(), info: data, category: null})
+    },
+    getStandard: async (req, res) => {
+        let data = await Painter.find()
+        res.render('judging.ejs', { isAuthenticated: req.isAuthenticated(), info: data, category: "Standard"})
+    },
+    getMasters: async (req, res) => {
+        let data = await Painter.find()
+        res.render('judging.ejs', { isAuthenticated: req.isAuthenticated(), info: data, category: "Masters"})
+    },
+    getOther: async (req, res) => {
+        let data = await Painter.find()
+        res.render('judging.ejs', { isAuthenticated: req.isAuthenticated(), info: data, category: "Other"})
     },
     addEntry: async (req, res) => {
         try {
@@ -21,10 +33,10 @@ module.exports = {
             })
             console.log('Entry updated with judging')
             res.redirect('/judging')
-        }
+        } 
         catch (err) {
-            console.log(err)
-        }
+            console.log(err)     
+        } 
     }
 
 }

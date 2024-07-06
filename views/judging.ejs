@@ -15,99 +15,22 @@
         <nav class="pageNav">
             <%- include('partials/navAuth.ejs') %>
         </nav>
-        <h1>Miniatures Show Judging</h1>
-        <form action="/addEntryJudge" method="POST" id="inputForm" class="hidden judgeForm">
-            <input type ="hidden" name="entryId" id="secretIdBox">
-            <div id="forID">
-            </div>
-            <div>
-                <span>Name:</span>
-                <span id="name"></span>
-            </div>
-            <div>
-                <span>Models:</span>
-                <span id="numOfModels"></span>
-            </div>
-            <div id="inComp">
-            </div>
-            <div id="age">
-            </div>
 
-            <fieldset id="prizes" class="hidden">
-                <div id="warning" class="hidden"></div>
-                <div id="isJudged">
-                    <input type="radio" id="yesJudged" name="judged" value="yesJudged">
-                    <label for="yesJudged">Judged</label>
-                    <input type="radio" id="notJudged" name="judged" value="notJudged" checked>
-                    <label for="notJudged">Not judged</label>
-                    <input type="radio" id="notForJudging" name="judged" value="notForJudging" class="hidden">
-                </div>
-                <legend>Prizes:</legend>
-                <div id="forMedals">
-                    <div class="checkboxOption">
-                        <input type="checkbox" id="commended" name="medals" value="commended" onclick="onlyOne(this)">
-                        <label for="commended"><span class="lgscreen">Highly Commended</span><span class="smscreen">Commend</span></label>
-                    </div>
-                    <div class="checkboxOption">
-                        <input type="checkbox" id="bronze" name="medals" value="bronze" onclick="onlyOne(this)">
-                        <label for="bronze">Bronze</label>
-                    </div>
-                    <div class="checkboxOption">
-                        <input type="checkbox" id="silver" name="medals" value="silver" onclick="onlyOne(this)">
-                        <label for="silver">Silver</label>
-                    </div>
-                    <div class="checkboxOption">
-                        <input type="checkbox" id="gold" name="medals" value="gold" onclick="onlyOne(this)">
-                        <label for="gold">Gold</label>
-                    </div>
-                </div>
-                <div>
-                    <div class="checkboxOption">
-                        <input type="checkbox" id="bestOfShow" name="bestOfShow" class="adultsOnly" onclick="checkIfTaken(this, 'bestOfShow')">
-                        <label for="bestOfShow" id="forBestOfShow" class="adultsOnly">Best of Show</label>
-                    </div>
-                    <div class="checkboxOption">
-                        <input type="checkbox" id="junBestOfShow" name="junBestOfShow" class="kidsOnly" onclick="checkIfTaken(this, 'junBestOfShow')">
-                        <label for="junBestOfShow" id="forJunBestOfShow" class="kidsOnly"><span class="lgscreen">Junior Best of Show</span><span class="smscreen">Jr. Best of Show</span></label>
-                    </div>
-                    <div class="checkboxOption">
-                        <input type="checkbox" id="corrr" name="corrr" onclick="checkCORRR(this)">
-                        <label for="corrr" id="forCorrr">CORRR</label>
-                    </div>
-                    <div class="checkboxOption">
-                        <input type="checkbox" id="peoplesChoice" name="peoplesChoice" onclick="checkIfTaken(this, 'peoplesChoice')"> 
-                        <label for="peoplesChoice">People's Choice</label>
-                    </div>
-                    <div class="checkboxOption">
-                        <input type="text" id="sponsors" name="sponsors">
-                        <label for="sponsors"><span class="lgscreen">Sponsor Prize</span><span class="smscreen">Sponsors</span></label>
-                    </div>
-                </div>
-                
-            </fieldset>
-            <div>
-                <input type="submit" value="Submit">
+        <div class="filterbuttons">
+            <div class="iHateCSS">
+                <a href="/judgingStandard"><p id="judgingStandard" class="filterbutton big">Standard</p></a>
+                <a href="/judgingMasters"><p id="judgingMasters" class="filterbutton big">Masters</p></a>
+                <a href="/judgingOther"><p id="judgingOther" class="filterbutton big">Other Prizes</p></a>
             </div>
-        </form>
-        <div class="entries">
-            <% for(let i = 0; i < info.length; i++) {%>
-                <div class="entry <%= !info[i].judged ? "notJudged" : info[i].judged == "N/A" ? "notInComp" : "judged" %>" id=<%= info[i].id %>>
-                    <div>
-                        <p>Number:</p>
-                        <p>Name:</p>
-                        <p><%= info[i].junior ? "Junior" : "Adult" %></p>
-                        <p>Judged:</p>
-                    </div>
-                    <div>
-                        <p><%= info[i].id %></p>
-                        <p><%= info[i].fullName ? info[i].fullName : "Empty entry!" %></p>
-                        <p>&nbsp;</p>
-                        <p><%= !info[i].judged ? "No" : info[i].judged == "N/A" ? "N/A" : "Yes" %></p>
-                    </div>
-                </div>
-            <% } %>
         </div>
-    <% } else { %>
+        <% if(category == "Standard") { %>
+            <%- include('partials/judgingStandard.ejs') %>
+        <% } else if (category == "Masters") { %> 
+            <%- include('partials/judgingMasters.ejs') %>
+        <% } else if (category == "Other") { %>
+            <%- include('partials/judgingOther.ejs') %>
+        <% }%>
+    <% } if (!isAuthenticated) { %>
         <nav class="pageNav">
             <%- include('partials/navNoAuth.ejs') %>
         </nav>

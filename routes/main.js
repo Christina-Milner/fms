@@ -23,6 +23,9 @@ router.get('/checkFor_:prize', homeController.checkPrize)
 
 //Judging
 router.get('/judging', judgingController.getMain)
+router.get('/judgingStandard', judgingController.getStandard)
+router.get('/judgingMasters', judgingController.getMasters)
+router.get('/judgingOther', judgingController.getOther)
 router.post('/addEntryJudge', judgingController.addEntry)
 
 // Filters
