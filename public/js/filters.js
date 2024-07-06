@@ -14,11 +14,5 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!window.location.href.includes("none") && !e.nextElementSibling.children.length) {
             e.classList.add('hidden')
         }
-        if (window.location.href.includes("junBestOfShow") && e.innerText === "Adults") {
-            e.classList.add('hidden')
-        }
-        else if (window.location.href.includes("bestOfShow") && e.innerText === "Juniors") {
-            e.classList.add('hidden')
-        }
     })
  }, false);

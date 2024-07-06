@@ -47,6 +47,15 @@ Live here: [https://fenmodelshow.glitch.me/](https://fenmodelshow.glitch.me/).
 * Will remove limit on CORRR prizes (keep warning functionality, just not disallow assigning more) as organisers ended up awarding 8 instead of the planned 6
 * All in all, very positive feedback for the app :)
 
+## Change wishlist for FMS 2024
+* Categories now Out of Competition, Junior, Standard, Masters - replaces previous inCompetition and junior
+* Separate screens for judging Standard+Junior, Masters, and assigning non-judging prizes
+* Prizes on "filters" to all go on same page (as loading times at the venue made the individual categories counterproductive), only separated by:
+    * Standard: All sponsored prizes, Junior commended/bronze/silver/gold/best of show, Standard commended/bronze/silver/gold/best of standard, people's choice, standard corrr
+    * Masters: Masters commended, bronze, silver, gold, corrr, best of show
+* "First pass" option between judged and not judged
+
+
 
 
 

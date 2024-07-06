@@ -32,23 +32,22 @@
             <input type="number" placeholder="1" name="numOfModels" id="numOfModels" required="required" min="1">
         </div>
         <div>
-            <input type="radio" id="yesInComp" name="inComp" value="yesInComp" checked>
-            <label for="yesInComp">In competition</label>
-            <input type="radio" id="notInComp" name="inComp" value="notInComp">
-            <label for="notInComp">Not in competition</label>
-        </div>
-        <div>
-            <input type="radio" id="notJunior" name="junior" value="notJunior" checked>
-            <label for="notJunior">Adult</label>
-            <input type="radio" id="yesJunior" name="junior" value="yesJunior">
-            <label for="yesJunior">Junior</label>
+            <input type="radio" id="outOfComp" name="competition" value=0>
+            <label for="outOfComp">Out of competition</label>
+            <input type="radio" id="junior" name="competition" value=1>
+            <label for="junior">Junior</label>
+            <input type="radio" id="standard" name="competition" value=2>
+            <label for="standard">Standard</label>
+            <input type="radio" id="masters" name="competition" value=3>
+            <label for="masters">Masters</label>
         </div>
         <div id="isJudged" class="hidden">
-            <input type="radio" id="yesJudged" name="judged" value="yesJudged">
-            <label for="yesJudged">Judged</label>
-            <input type="radio" id="notJudged" name="judged" value="notJudged">
+            <input type="radio" id="notJudged" name="judged" value=0>
             <label for="notJudged">Not judged</label>
-            <input type="radio" id="notForJudging" name="judged" value="notForJudging" class="hidden">
+            <input type="radio" id="firstPass" name="judged" value=1>
+            <label for="firstPass">First Pass</label>
+            <input type="radio" id="yesJudged" name="judged" value=2>
+            <label for="yesJudged">Judged</label>
         </div>
         <div>
             <input type="submit" value="Submit">

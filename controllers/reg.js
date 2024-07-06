@@ -11,15 +11,15 @@ module.exports = {
             await Painter.findOneAndUpdate({id: Number(req.body.entryId)},{
                 fullName: req.body.name,
                 numOfModels: Number(req.body.numOfModels),
-                inCompetition: req.body.inComp == "yesInComp",
-                junior: req.body.junior == "yesJunior",
-                judged: req.body.inComp == "yesInComp" ? req.body.judged == "yesJudged" : "N/A"     
+                competition: req.body.competition,
+                judged: req.body.judged     
                 })
             console.log('Entry Added')
             res.redirect('/registration')
         } 
         catch(error) {
             console.log(error)
+            res.render(errormes.ejs, {error: error})
         }
     },
     postEntry: async (req, res) => {
@@ -36,7 +36,7 @@ module.exports = {
             }
             id = num + 1
             console.log("Id: ", id)
-            await Painter.create({id: id, fullName: "", numOfModels: 0, inCompetition: false, prizes: {}})
+            await Painter.create({id: id, fullName: "", numOfModels: 0, competition: 0, prizes: {}})
             console.log('Entry added')
             res.send(String(id))
         }
