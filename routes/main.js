@@ -4,6 +4,7 @@ const authController = require('../controllers/auth')
 const homeController = require('../controllers/home')
 const regController = require('../controllers/reg')
 const judgingController = require('../controllers/judging')
+const helpersController = require('../controllers/helpers')
 const { ensureAuth, ensureGuest } = require('../middleware/auth')
 
 // Simple stuff
@@ -32,6 +33,10 @@ router.get('/filters:prize', ensureAuth, homeController.filterPrize)
 //Login
 router.get('/login', authController.getLogin)
 router.post('/login', authController.postLogin)
-router.get('/logout', authController.logout) 
+router.get('/logout', authController.logout)
+
+// Admin stuff
+
+router.get('/saveStats', ensureAuth, helpersController.saveStats)
 
 module.exports = router
