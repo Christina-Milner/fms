@@ -7,7 +7,6 @@
     <title>Fen Model Show</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/main.js" defer></script>
-    <script src="js/filters.js" defer></script>
 </head>
 
 <body>    
@@ -16,61 +15,12 @@
             <%- include('partials/navAuth.ejs') %>
         </nav>
 
-        <h1>Miniatures Show Results</h1>
             <%- include('partials/filterbuttons.ejs') %>
-            <h2>Juniors</h2>
-                <div class="entries">
-                    <%  let infoJuniors = info.filter(e => e.junior)
-                    for (let i = 0; i < infoJuniors.length; i++) {%>
-                        <div class="entry" id=<%= infoJuniors[i].id %>>
-                            <div>
-                                <p>Number:</p>
-                                <p>Name:</p>
-                            </div>
-                            <div>
-                                <p><%= infoJuniors[i].id %></p>
-                                <p><%= infoJuniors[i].fullName %></p>
-                                <p><% for (let prize of Object.keys(infoJuniors[i].prizes).filter(e => infoJuniors[i].prizes[e])) {%>
-                                <% let prettyfied = {junBestOfShow: "Junior Best of Show", bestOfShow: "Best of Show", peoplesChoice: "People's Choice"} %>
-                                <span><%- typeof(infoJuniors[i].prizes[prize]) == "string" ? infoJuniors[i].prizes[prize][0].toUpperCase() + infoJuniors[i].prizes[prize].slice(1) + "<br>" :
-                                    prize == "corrr" ? prize.toUpperCase() + "<br>" :
-                                    prize in prettyfied ? prettyfied[prize] + "<br>" :
-                                    prize ===  "sponsors" && infoJuniors[i].prizes[prize].length ? "Sponsor: " + infoJuniors[i].prizes[prize].join(', ') + "<br>" :
-                                    "" %>
-                                </span>
-                                <% } %>
-                                </p>
-                            </div>
-                        </div>
-                    <% } %>
-                </div>
-            <h2>Adults</h2>
-                <div class="entries">
-                <%  let infoAdults = info.filter(e => !e.junior)
-                for (let i = 0; i < infoAdults.length; i++) {%>
-                    <div class="entry" id=<%= infoAdults[i].id %>>
-                        <div>
-                            <p>Number:</p>
-                            <p>Name:</p>
-                        </div>
-                        <div>
-                            <p><%= infoAdults[i].id %></p>
-                            <p><%= infoAdults[i].fullName %></p>
-                            <p><% for (let prize of Object.keys(infoAdults[i].prizes).filter(e => infoAdults[i].prizes[e])) {%>
-                                <% let prettyfied = {junBestOfShow: "Junior Best of Show", bestOfShow: "Best of Show", peoplesChoice: "People's Choice"} %>
-                                <span><%- typeof(infoAdults[i].prizes[prize]) == "string" ? infoAdults[i].prizes[prize][0].toUpperCase() + infoAdults[i].prizes[prize].slice(1) + "<br>" :
-                                prize == "corrr" ? prize.toUpperCase() + "<br>" :
-                                prize in prettyfied ? prettyfied[prize] + "<br>" :
-                                prize ===  "sponsors" && infoAdults[i].prizes[prize].length ? "Sponsor: " + infoAdults[i].prizes[prize].join(', ') + "<br>" :
-                                "" %>
-                            </span>
-                            <% } %>
-                            </p>
-                        </div>
-                    </div>
-                <% } %>
-                </div>
-                </div>
+            <% if (prize && prize === "standard") { %>
+                <%- include('partials/standardPrizes.ejs') %>
+            <% } else if (prize && prize === "masters") { %>
+                <%- include('partials/mastersPrizes.ejs') %>
+            <% } %>
     <% } else { %>
         <nav class="pageNav">
             <%- include('partials/navNoAuth.ejs') %>

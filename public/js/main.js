@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
             e.classList.add('active')
         }
     }) 
- }, false);
-
+ }, false); 
+         
 // Other buttons
 
 const addButton = document.querySelector('#addButton')

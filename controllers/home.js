@@ -2,12 +2,9 @@ const Painter = require('../models/Painter')
 const User = require('../models/User')
 
 module.exports = {
-    errorMes: (req, res) => {
-        res.render('error.ejs')
-    },
     getIndex: (req, res) => {
         res.render('index.ejs', { isAuthenticated: req.isAuthenticated() })
-    },
+    }, 
     getHelp: (req, res) => {
         res.render('help.ejs', { isAuthenticated: req.isAuthenticated() })
     },
@@ -17,16 +14,16 @@ module.exports = {
             res.render('stats.ejs', {isAuthenticated: req.isAuthenticated(), info: data})
         }
         catch (err) {
-            console.log(err)
+            res.render('errormes.ejs', {error: err})
         }
     },
     getNum: async (req, res) => {
         try {
-            let num = await Painter.countDocuments()
+            let num = await Painter.countDocuments() 
             res.send(String(num + 1))
         }
         catch(err) {
-            console.log(err)
+            res.render('errormes.ejs', {error: err})
         }
     },
     getEntry: async (req, res) => {
@@ -35,7 +32,7 @@ module.exports = {
             res.json(result)
         }
         catch (err) {
-            console.log(err)
+            res.render('errormes.ejs', {error: err})
         }
     },
     checkPrize: async (req, res) => {
@@ -48,50 +45,40 @@ module.exports = {
             }          
         }
         catch (err) {
-            console.log(err)
+            res.render('errormes.ejs', {error: err})
         }
     },
-    getFilters: async (req, res) => {
+    getFilters: (req, res) => {
         try {
-            let data = await Painter.find()
-            res.render('filters.ejs', {isAuthenticated: req.isAuthenticated(), info: data})
-        }
+            res.render('filters.ejs', {isAuthenticated: req.isAuthenticated(), prize: null})
+        } 
         catch (err) {
-            console.log(err)
+            res.render('errormes.ejs', {error: err})
         }
-    },
+    }, 
     filterPrize: async (req, res) => {
         try {
             let prize = req.params.prize
-            let data = await Painter.find()
-            data = data.filter(e => {
-                if (prize == "none") {
-                    return Object.values(e.prizes).every(prize => typeof(prize) === "object" ? !prize.length : !prize)
-                }
-                if (prize == "sponsors") {
-                    return Boolean(e.prizes[prize].length)
-                } else {
-                return Object.values(e.prizes).includes(prize) || e.prizes[prize]
-                }
-            })
-            if (prize === "none") {
-                res.render('filtersnone.ejs', {isAuthenticated: req.isAuthenticated(), info: data })
-                return
+            let data = await Painter.find().lean()
+            if (prize === "standard") {
+                data = data.filter(entry => { 
+                    return entry.competition < 3 && (entry.prizes.medal || entry.prizes.standardBestOfShow || entry.prizes.corrr || entry.prizes.junBestOfShow) // Junior or standard and has won a prize
+                            || entry.prizes.sponsors.length // All sponsors go here
+                
+                })
             }
-            if (prize === "sponsors") {
-                let sponsorPrizes = {}
-                let sponsors = data.reduce((acc, cur) => acc.concat(cur["prizes"]["sponsors"]), []).sort((a, b) => a.localeCompare(b))
-                sponsors.forEach(el => sponsorPrizes[el] = true)
-                for (let sponsor in sponsorPrizes) {
-                    sponsorPrizes[sponsor] = data.filter(el => el["prizes"]["sponsors"].includes(sponsor))
-                }
-                res.render('filterssponsors.ejs', {isAuthenticated: req.isAuthenticated(), info: sponsorPrizes })
-            } else {
-                res.render('filters.ejs', {isAuthenticated: req.isAuthenticated(), info: data })
+            else if (prize === "masters") {
+                data = data.filter(entry => { 
+                    return entry.competition === 3 && (entry.prizes.medal || entry.prizes.mastersBestOfShow || entry.prizes.corrr) // Masters and has won a prize other than sponsors                
+                })
             }
+            else { 
+                res.render('errormes.ejs', {error: "You managed to trigger an else that shouldn't be a thing."})
+            }
+            res.render('filters.ejs', {isAuthenticated: req.isAuthenticated(), prize: prize, info: data})
         }
         catch (err) {
-            console.log(err)
-        }
-    }
+            res.render('errormes.ejs', {error: err})
+        } 
+    },   
 }

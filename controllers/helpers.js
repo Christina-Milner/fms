@@ -94,7 +94,7 @@ module.exports = {
                 competition: 1,
                 judged: 1,
                 prizes: {
-                    medal: "Commended",
+                    medal: "commended",
                     standardBestOfShow: false,
                     junBestOfShow: false,
                     mastersBestOfShow: false,
@@ -108,7 +108,7 @@ module.exports = {
                 competition: 1,
                 judged: 1,
                 prizes: {
-                    medal: "Bronze",
+                    medal: "bronze",
                     standardBestOfShow: false,
                     junBestOfShow: false,
                     mastersBestOfShow: false,
@@ -122,7 +122,7 @@ module.exports = {
                 competition: 1,
                 judged: 1,
                 prizes: {
-                    medal: "Silver",
+                    medal: "silver",
                     standardBestOfShow: false,
                     junBestOfShow: false,
                     mastersBestOfShow: false,
@@ -136,7 +136,7 @@ module.exports = {
                 competition: 1,
                 judged: 1,
                 prizes: {
-                    medal: "Gold",
+                    medal: "gold",
                     standardBestOfShow: false,
                     junBestOfShow: false,
                     mastersBestOfShow: false,
@@ -150,7 +150,7 @@ module.exports = {
                 competition: 1,
                 judged: 2,
                 prizes: {
-                    medal: "Silver",
+                    medal: "silver",
                     standardBestOfShow: false,
                     junBestOfShow: false,
                     mastersBestOfShow: false,
@@ -164,7 +164,7 @@ module.exports = {
                 competition: 1,
                 judged: 2,
                 prizes: {
-                    medal: "Gold",
+                    medal: "gold",
                     standardBestOfShow: false,
                     junBestOfShow: true,
                     mastersBestOfShow: false,
@@ -192,7 +192,7 @@ module.exports = {
                 competition: 2,
                 judged: 1,
                 prizes: {
-                    medal: "Commended",
+                    medal: "commended",
                     standardBestOfShow: false,
                     junBestOfShow: false,
                     mastersBestOfShow: false,
@@ -206,7 +206,7 @@ module.exports = {
                 competition: 2,
                 judged: 1,
                 prizes: {
-                    medal: "Silver",
+                    medal: "silver",
                     standardBestOfShow: false,
                     junBestOfShow: false,
                     mastersBestOfShow: false,
@@ -220,7 +220,7 @@ module.exports = {
                 competition: 2,
                 judged: 2,
                 prizes: {
-                    medal: "Silver",
+                    medal: "silver",
                     standardBestOfShow: false,
                     junBestOfShow: false,
                     mastersBestOfShow: false,
@@ -234,7 +234,7 @@ module.exports = {
                 competition: 2,
                 judged: 2,
                 prizes: {
-                    medal: "Gold",
+                    medal: "gold",
                     standardBestOfShow: true,
                     junBestOfShow: false,
                     mastersBestOfShow: false,
@@ -262,7 +262,7 @@ module.exports = {
                 competition: 3,
                 judged: 1,
                 prizes: {
-                    medal: "Commended",
+                    medal: "commended",
                     standardBestOfShow: false,
                     junBestOfShow: false,
                     mastersBestOfShow: false,
@@ -276,7 +276,7 @@ module.exports = {
                 competition: 3,
                 judged: 1,
                 prizes: {
-                    medal: "Bronze",
+                    medal: "bronze",
                     standardBestOfShow: false,
                     junBestOfShow: false,
                     mastersBestOfShow: false,
@@ -290,7 +290,7 @@ module.exports = {
                 competition: 3,
                 judged: 2,
                 prizes: {
-                    medal: "Silver",
+                    medal: "silver",
                     standardBestOfShow: false,
                     junBestOfShow: false,
                     mastersBestOfShow: false,
@@ -304,7 +304,7 @@ module.exports = {
                 competition: 3,
                 judged: 2,
                 prizes: {
-                    medal: "Gold",
+                    medal: "gold",
                     standardBestOfShow: false,
                     junBestOfShow: false,
                     mastersBestOfShow: false,
@@ -318,7 +318,7 @@ module.exports = {
                 competition: 3,
                 judged: 2,
                 prizes: {
-                    medal: "Gold",
+                    medal: "gold",
                     standardBestOfShow: false,
                     junBestOfShow: false,
                     mastersBestOfShow: true,

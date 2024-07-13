@@ -38,7 +38,7 @@
         </div>
         <div id="bestOfShowStuff">
             <div class="checkboxOption">
-                <input type="checkbox" id="mastersBestOfShow" name="mastersBestOfShow" class="adultsOnly" onclick="checkIfTaken(this, 'mastersBestOfShow')">
+                <input type="checkbox" id="mastersBestOfShow" name="mastersBestOfShow" onclick="checkIfTaken(this, 'mastersBestOfShow')">
                 <label for="mastersBestOfShow" id="forMastersBestOfShow" class="adultsOnly">Masters BoS</label>
             </div>
         </div>
@@ -60,7 +60,7 @@
             <div>
                 <p><%= info[i].id %></p>
                 <p><%= info[i].fullName ? info[i].fullName : "Empty entry!" %></p>
-                <p>&nbsp;</p>
+                <p><%= Object.keys(info[i].prizes).filter(e => info[i].prizes[e]).map(e => info[i].prizes[e] === true ? e : info[i].prizes[e]).join(" ") %></p>
             </div>
         </div>
     <% } %>

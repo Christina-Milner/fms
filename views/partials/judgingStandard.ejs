@@ -63,7 +63,7 @@
             <div>
                 <p><%= info[i].id %></p>
                 <p><%= info[i].fullName ? info[i].fullName : "Empty entry!" %></p>
-                <p>&nbsp;</p>
+                <p><%= Object.keys(info[i].prizes).filter(e => info[i].prizes[e]).map(e => info[i].prizes[e] === true ? e : info[i].prizes[e]).join(" ") %></p>
             </div>
         </div>
     <% } %>

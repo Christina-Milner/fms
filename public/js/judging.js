@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function() {
         headers: {'Content-Type': 'application/json'},
     })  
     let json = await data.json() 
-    console.log(json)
     document.querySelector('#inputForm').classList.remove('hidden')
     document.querySelectorAll('.entry').forEach(e => e.classList.add('hidden'))
     document.querySelector('#prizes').classList.remove('hidden')
@@ -111,7 +110,6 @@ async function checkIfTaken(checkbox, prize) {
     document.querySelector('#warning').classList.remove('info')
     let taken = await fetch(`checkFor_${prize}`)
     taken = await taken.json()
-    console.log(taken)
     let prettyfied = {junBestOfShow: "Junior Best of Show", standardBestOfShow: "Standard Best of Show", mastersBestOfShow: "Masters Best of Show", peoplesChoice: "People's Choice"}
     if (taken.length && taken[0].id !== Number(document.querySelector('#secretIdBox').value)) {
         checkbox.checked = false

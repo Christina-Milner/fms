@@ -264,6 +264,11 @@ form.login {
     display: inline-block;
 }
 
+.noborder {
+    border: none !important;
+    justify-content: center;
+}
+
 @media (max-width: 1200px) {
     form {
     width: 90%;

@@ -21,6 +21,9 @@ module.exports = {
     addEntry: async (req, res) => {
         try {
             const titleCasify = str => str.split(' ').map(word => word[0].toUpperCase() + word.slice(1).toLowerCase()).join(' ')
+            const query = Painter.where({id: Number(req.body.entryId)})
+            const painter = await query.findOne();
+            const category = painter.competition === 3 ? "Masters" : "Standard"
             await Painter.findOneAndUpdate({id: Number(req.body.entryId)}, {
                 judged: req.body.judged,
                 prizes: {
@@ -34,10 +37,10 @@ module.exports = {
                 }
             })
             console.log('Entry updated with judging')
-            res.redirect('/judging')
+            res.redirect(`/judging${category}`)
         } 
         catch (err) {
-            console.log(err)
+
             res.redirect(errormes.ejs, {error: err})     
         } 
     }
