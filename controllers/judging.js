@@ -17,7 +17,7 @@ module.exports = {
     getOther: async (req, res) => {
         let data = await Painter.find().lean()
         res.render('judging.ejs', { isAuthenticated: req.isAuthenticated(), info: data, category: "Other"})
-    },  
+    },    
     addEntry: async (req, res) => {
         try {
             const titleCasify = str => str.split(' ').map(word => word[0].toUpperCase() + word.slice(1).toLowerCase()).join(' ')

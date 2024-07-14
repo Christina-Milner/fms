@@ -54,16 +54,17 @@
 </form>
 <div class="entries">
     <% for(let i = 0; i < info.length; i++) {%>
-        <div class="entry <%= !info[i].judged ? "notJudged" : info[i].judged == 1 ? "firstPass" : "judged" %>" id=<%= info[i].id %>>
+        <% let cur = info[i] %>
+        <div class="entry <%= !cur.judged ? "notJudged" : cur.judged == 1 ? "firstPass" : "judged" %>" id=<%= cur.id %>>
             <div>
                 <p>Number:</p>
                 <p>Name:</p>
-                <p><%= info[i].competition === 0 ? "Out of competition" : info[i].competition == 1 ? "Junior" : info[i].competition == 2 ? "Standard" : info[i].competition == 3 ? "Masters" : "Invalid category" %></p>
+                <p><%= cur.competition === 0 ? "Out of competition" : cur.competition == 1 ? "Junior" : cur.competition == 2 ? "Standard" : cur.competition == 3 ? "Masters" : "Invalid category" %></p>
             </div>
             <div>
-                <p><%= info[i].id %></p>
-                <p><%= info[i].fullName ? info[i].fullName : "Empty entry!" %></p>
-                <p><%= Object.keys(info[i].prizes).filter(e => info[i].prizes[e]).map(e => info[i].prizes[e] === true ? e : info[i].prizes[e]).join(" ") %></p>
+                <p><%= cur.id %></p>
+                <p><%= cur.fullName ? cur.fullName : "Empty entry!" %></p>
+                <p><%= Object.keys(cur.prizes).filter(e => cur.prizes[e]).map(e => cur.prizes[e] === true ? e : cur.prizes[e]).join(" ") %></p>
             </div>
         </div>
     <% } %>

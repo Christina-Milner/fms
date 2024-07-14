@@ -13,9 +13,9 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('#warning').classList.add('hidden')
     const entryID = element.id
     const data = await fetch(`ID_${entryID}`, {
-        method: 'get',
+        method: 'get', 
         headers: {'Content-Type': 'application/json'},
-    })  
+    })   
     let json = await data.json() 
     document.querySelector('#inputForm').classList.remove('hidden')
     document.querySelectorAll('.entry').forEach(e => e.classList.add('hidden'))
@@ -54,9 +54,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (medal == "bronze") {
             document.querySelector('#bronze').checked = true
             document.querySelector('#silver').checked = false
-            document.querySelector('#gold').checked = false
+            document.querySelector('#gold').checked = false 
             document.querySelector('#commended').checked = false
-        } else if (medal == "silver") {
+        } else if (medal == "silver") { 
             document.querySelector('#silver').checked = true
             document.querySelector('#bronze').checked = false
             document.querySelector('#gold').checked = false
