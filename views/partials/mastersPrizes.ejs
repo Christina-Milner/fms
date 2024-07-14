@@ -7,7 +7,7 @@
             <%  for (let entry of info.filter(e => e.prizes.medal && e.prizes.medal == thing.toLowerCase())) {%>
                 <div class="entry noborder" id=<%= entry.id %>>
                     <div>
-                        <p><%= entry.fullName %></p>
+                        <p class="savespace"><%= entry.fullName %></p>
                     </div>
                 </div>                  
             <% } %>
@@ -18,7 +18,7 @@
         <%  for (let entry of info.filter(e => e.prizes.corrr)) {%>
             <div class="entry noborder" id=<%= entry.id %>>
                 <div>
-                    <p><%= entry.fullName %></p>
+                    <p class="savespace"><%= entry.fullName %></p>
                 </div>
             </div>                  
         <% } %>
@@ -28,7 +28,7 @@
         <%  for (let entry of info.filter(e => e.prizes.mastersBestOfShow)) {%>
             <div class="entry noborder" id=<%= entry.id %>>
                 <div>
-                    <p><%= entry.fullName %></p>
+                    <p class="savespace"><%= entry.fullName %></p>
                 </div>
             </div>                  
         <% } %>

@@ -269,6 +269,10 @@ form.login {
     justify-content: center;
 }
 
+.savespace {
+    margin: 0;
+}
+
 @media (max-width: 1200px) {
     form {
     width: 90%;

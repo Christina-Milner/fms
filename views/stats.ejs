@@ -20,34 +20,36 @@
         <h2>Number of participants</h2>
         <div class="numOfThings">
             <div>
-                <p>Total:</p>
-                <p>Juniors:</p>
-                <p>Adults:</p>
+                <p class="savespace">Total:</p>
+                <p class="savespace">Juniors:</p>
+                <p class="savespace">Standard:</p>
+                <p class="savespace">Masters:</p>
             </div>
             <div>
-                <p class="num"><%= info.length %></p>
-                <p class="num"><%= info.filter(e => e.junior).length %></p>
-                <p class="num"><%= info.filter(e => !e.junior).length %></p>
+                <p class="num savespace"><%= info.length %></p>
+                <p class="num savespace"><%= info.filter(e => e.competition === 1).length %></p>
+                <p class="num savespace"><%= info.filter(e => e.competition === 2).length %></p>
+                <p class="num savespace"><%= info.filter(e => e.competition === 3).length %></p>
             </div>
         </div>
         <h2>Number of models entered</h2>
         <div class="numOfThings">
-            <p class="num"><%= info.reduce((a, b) => a + b.numOfModels, 0) %></p>
+            <p class="num savespace"><%= info.reduce((a, b) => a + b.numOfModels, 0) %></p>
         </div>
         <h2>Prizes awarded</h2>
         <div class="numOfThings">
             <div>
-                <p>Highly Commended:</p>
-                <p>Bronze:</p>
-                <p>Silver:</p>
-                <p>Gold:</p>
-                <p>CORRR:</p>
+                <p class="savespace">Highly Commended:</p>
+                <p class="savespace">Bronze:</p>
+                <p class="savespace">Silver:</p>
+                <p class="savespace">Gold:</p>
+                <p class="savespace">CORRR:</p>
             </div>
             <div>
-                <p class="num"><%= info.filter(e => e.prizes.medal === "commended").length %></p>
-                <p class="num"><%= info.filter(e => e.prizes.medal === "bronze").length %></p>
-                <p class="num"><%= info.filter(e => e.prizes.medal === "silver").length %></p>
-                <p class="num"><%= info.filter(e => e.prizes.medal === "gold").length %></p>
-                <p class="num"><%= info.filter(e => e.prizes.corrr).length %></p>
+                <p class="num savespace"><%= info.filter(e => e.prizes.medal === "commended").length %></p>
+                <p class="num savespace"><%= info.filter(e => e.prizes.medal === "bronze").length %></p>
+                <p class="num savespace"><%= info.filter(e => e.prizes.medal === "silver").length %></p>
+                <p class="num savespace"><%= info.filter(e => e.prizes.medal === "gold").length %></p>
+                <p class="num savespace"><%= info.filter(e => e.prizes.corrr).length %></p>
             </div>
 </body>
