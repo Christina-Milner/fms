@@ -25,11 +25,11 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('#name').innerText = json.fullName
     const comp = {0: "Out of competition", 1: "Junior", 2: "Standard", 3: "Masters"}
     document.querySelector('#competition').innerText = comp[json.competition]
-    if (!json.competition) {
+    if (!json.competition) { 
         document.querySelector('#isJudged').classList.add('hidden')
         document.querySelector('#forMedals').classList.add('hidden')
         document.querySelector('#bestOfShowStuff').classList.add('hidden')
-    }
+    } 
     else {
         document.querySelector('#isJudged').classList.remove('hidden')
         document.querySelector('#forMedals').classList.remove('hidden')

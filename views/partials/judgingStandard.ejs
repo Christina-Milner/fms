@@ -64,7 +64,8 @@
             <div>
                 <p><%= cur.id %></p>
                 <p><%= cur.fullName ? cur.fullName : "Empty entry!" %></p>
-                <p><%= Object.keys(cur.prizes).filter(e => cur.prizes[e]).map(e => cur.prizes[e] === true ? e : cur.prizes[e]).join(" ") %></p>
+                <% let prettify = {commended: "Commended", bronze: "Bronze", silver: "Silver", gold: "Gold", corrr: "CORRR", junBestOfShow: "Jun. Best of Show", standardBestOfShow: "Std. Best of Show", mastersBestOfShow: "Masters Best of Show", peoplesChoice: "People's Choice"} %>
+                <p><%= Object.keys(prettify).filter(e => cur.prizes[e]).map(e => prettify[e]).concat(cur.prizes.sponsors).join(", ") %></p>
             </div>
         </div>
     <% } %>
