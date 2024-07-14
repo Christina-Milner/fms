@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelector('#commended').checked = true
         }
     }
-    [document.querySelector('#bestOfShow'), document.querySelector('#junBestOfShow'), document.querySelector('#corrr'), document.querySelector('#peoplesChoice')].forEach(e => {
+    [document.querySelector('#standardBestOfShow'), document.querySelector('#mastersBestOfShow'), document.querySelector('#junBestOfShow'), document.querySelector('#corrr'), document.querySelector('#peoplesChoice')].forEach(e => {
         if (e && json.prizes && json.prizes[e.id]) {
             e.checked = true
         } else if (e) {
