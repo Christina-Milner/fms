@@ -10,21 +10,21 @@ module.exports = {
     },
     getStats: async (req, res) => {
         try {
-            let data = await Painter.find()
+            let data = await Painter.find().lean()
             res.render('stats.ejs', {isAuthenticated: req.isAuthenticated(), info: data})
         }
         catch (err) {
-            res.render('errormes.ejs', {error: err})
+            res.render('errormes.ejs', {error: "Error in getStats(): " + err, isAuthenticated: req.isAuthenticated() })
         }
     },
     getNum: async (req, res) => {
         try {
             let num = await Painter.countDocuments() 
             res.send(String(num + 1))
-        }
-        catch(err) {
-            res.render('errormes.ejs', {error: err})
-        }
+        } 
+        catch(err) { 
+            res.render('errormes.ejs', {error: "Error in getNum(): " + err, isAuthenticated: req.isAuthenticated()})
+        } 
     },
     getEntry: async (req, res) => {
         try {
@@ -32,20 +32,20 @@ module.exports = {
             res.json(result)
         }
         catch (err) {
-            res.render('errormes.ejs', {error: err})
+            res.render('errormes.ejs', {error: "Error in getEntry(): " + err, isAuthenticated: req.isAuthenticated()})
         }
     },
     checkPrize: async (req, res) => {
         try {
             let prize = req.params.prize
-            let all = await Painter.find()
+            let all = await Painter.find().lean()
             let match = all.filter(e => e["prizes"][prize])
             if (match) {
                 res.json(match)
             }          
         }
         catch (err) {
-            res.render('errormes.ejs', {error: err})
+            res.render('errormes.ejs', {error: "Error in checkPrize(): " + err, isAuthenticated: req.isAuthenticated()})
         }
     },
     getFilters: (req, res) => {
@@ -53,7 +53,7 @@ module.exports = {
             res.render('filters.ejs', {isAuthenticated: req.isAuthenticated(), prize: null})
         } 
         catch (err) {
-            res.render('errormes.ejs', {error: err})
+            res.render('errormes.ejs', {error: "Error in getFilters(): " + err, isAuthenticated: req.isAuthenticated()})
         }
     }, 
     filterPrize: async (req, res) => {
@@ -73,12 +73,12 @@ module.exports = {
                 })
             }
             else { 
-                res.render('errormes.ejs', {error: "You managed to trigger an else that shouldn't be a thing."})
+                res.render('errormes.ejs', {error: "You managed to trigger an else that shouldn't be a thing.", isAuthenticated: req.isAuthenticated()})
             }
             res.render('filters.ejs', {isAuthenticated: req.isAuthenticated(), prize: prize, info: data})
         }
         catch (err) {
-            res.render('errormes.ejs', {error: err})
+            res.render('errormes.ejs', {error: "Error in filterPrize(): " + err, isAuthenticated: req.isAuthenticated()})
         } 
-    },   
+    },    
 }

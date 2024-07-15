@@ -10,5 +10,14 @@
 </head>
 
 <body>
-<%= error %>
+    <nav class = "pageNav">
+        <% if (isAuthenticated) { %>
+            <%- include('partials/navAuth.ejs') %>
+        <% } else { %>
+            <%- include('partials/navNoAuth.ejs') %>
+        <% } %>
+    </nav>
+    <div class="error">
+        <%= error %>
+    </div>
 </body>

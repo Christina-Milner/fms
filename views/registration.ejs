@@ -56,14 +56,17 @@
     </form>
     <div class="entries">
         <% for(let i = 0; i < info.length; i++) {%>
-            <div class="entry" id=<%= info[i].id %>>
+            <% let cur = info[i] %>
+            <div class="entry" id=<%= cur.id %>>
                 <div>
                     <p>Number:</p>
                     <p>Name:</p>
+                    <p><%= cur.competition === 0 ? "OOC" : cur.competition == 1 ? "Junior" : cur.competition == 2 ? "Standard" : cur.competition == 3 ? "Masters" : "Invalid category" %></p>
                 </div>
                 <div>
-                    <p><%= info[i].id %></p>
-                    <p><%= info[i].fullName %></p>
+                    <p><%= cur.id %></p>
+                    <p><%= cur.fullName %></p>
+                    <p>&nbsp;</p>
                 </div>
             </div>
         <% } %>

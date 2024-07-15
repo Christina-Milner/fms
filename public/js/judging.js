@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.entry').forEach(e => e.addEventListener('click', event => {
         let target = event.target.classList.contains('entry') ? event.target : event.target.parentElement.classList.contains('entry') ? event.target.parentElement : event.target.parentElement.parentElement
-        editThis(target)
+        window.location.href.includes("Other") ? editThisOther(target) : editThis(target)
     }))
  }, false);
 
@@ -24,6 +24,8 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('#secretIdBox').value = json.id
     document.querySelector('#name').innerText = json.fullName
     const comp = {0: "Out of competition", 1: "Junior", 2: "Standard", 3: "Masters"}
+    console.log(json.competition)
+    console.log(comp[json.competition])
     document.querySelector('#competition').innerText = comp[json.competition]
     if (!json.competition) { 
         document.querySelector('#isJudged').classList.add('hidden')
@@ -74,24 +76,52 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelector('#commended').checked = true
         }
     }
-    [document.querySelector('#standardBestOfShow'), document.querySelector('#mastersBestOfShow'), document.querySelector('#junBestOfShow'), document.querySelector('#corrr'), document.querySelector('#peoplesChoice')].forEach(e => {
+    [document.querySelector('#standardBestOfShow'), document.querySelector('#mastersBestOfShow'), document.querySelector('#junBestOfShow')].forEach(e => {
         if (e && json.prizes && json.prizes[e.id]) {
             e.checked = true
         } else if (e) {
             e.checked = false
         }
     })
-    if (document.querySelector('#sponsors') && json.prizes && json.prizes.sponsors.length) {
-        document.querySelector('#sponsors').value = json.prizes.sponsors.join(', ')
-    } else if (document.querySelector('#sponsors') ) {  // This JS file is now used by 3 separate partials, some of which no longer have these items
-        document.querySelector('#sponsors').value = ""
-    }
+
     if (json.competition == 1) {
         document.querySelectorAll('.adultsOnly').forEach(e => e.classList.add('hidden'))
         document.querySelectorAll('.kidsOnly').forEach(e => e.classList.remove('hidden'))
     } else {
         document.querySelectorAll('.kidsOnly').forEach(e => e.classList.add('hidden'))
         document.querySelectorAll('.adultsOnly').forEach(e => e.classList.remove('hidden'))
+    }
+}
+
+
+async function editThisOther(element) {
+    document.querySelector('#warning').classList.add('hidden')
+    const entryID = element.id
+    const data = await fetch(`ID_${entryID}`, {
+        method: 'get', 
+        headers: {'Content-Type': 'application/json'},
+    })   
+    let json = await data.json() 
+    document.querySelector('#inputForm').classList.remove('hidden')
+    document.querySelectorAll('.entry').forEach(e => e.classList.add('hidden'))
+    document.querySelector('#prizes').classList.remove('hidden')
+    document.querySelector('#forID').innerText = `Number: ${json.id}`
+    document.querySelector('#secretIdBox').value = json.id
+    document.querySelector('#name').innerText = json.fullName
+    const comp = {0: "Out of competition", 1: "Junior", 2: "Standard", 3: "Masters"}
+    document.querySelector('#competition').innerText = comp[json.competition]; // DO NOT REMOVE THIS SEMICOLON
+
+    [document.querySelector('#corrr'), document.querySelector('#peoplesChoice')].forEach(e => {
+        if (e && json.prizes && json.prizes[e.id]) {
+            e.checked = true
+        } else if (e) {
+            e.checked = false
+        }
+    }) 
+    if (document.querySelector('#sponsors') && json.prizes && json.prizes.sponsors.length) {
+        document.querySelector('#sponsors').value = json.prizes.sponsors.join(', ')
+    } else if (document.querySelector('#sponsors') ) {  // This JS file is now used by 3 separate partials, some of which no longer have these items
+        document.querySelector('#sponsors').value = ""
     }
 }
 
