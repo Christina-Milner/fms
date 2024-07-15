@@ -17,6 +17,7 @@
   "bugs": {
     "url": "https://github.com/Christina-Milner/fms/issues"
   },
+  "engines": {"node": "16.x"},
   "homepage": "https://github.com/Christina-Milner/fms#readme",
   "dependencies": {
     "bcrypt": "^5.1.0",
