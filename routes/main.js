@@ -21,7 +21,7 @@ router.get('/ID_:id', ensureAuth, homeController.getEntry)
 router.post('/postEntry', regController.postEntry)
 router.get('/checkFor_:prize', homeController.checkPrize)
         
-//Judging       
+//Judging        
 router.get('/judging', judgingController.getMain)
 router.get('/judgingStandard', judgingController.getStandard)
 router.get('/judgingMasters', judgingController.getMasters) 
