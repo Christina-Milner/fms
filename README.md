@@ -6,7 +6,7 @@ Live here: [https://fenmodelshow.glitch.me/](https://fenmodelshow.glitch.me/).
 
 ## Features
 ### Registration
-* Participants' names and number of models are entered, as well as whether they are a junior or adult and taking part in the competition or not
+* Participants' names and number of models are entered, as well as their competition category (Out of Competition, Junior, Standard, Master).
 * Participants are assigned a unique sequential ID to put on their display
 * The list of entries on this page is not clickable by default, but becomes clickable if the "Edit" button is selected in case a participant's info needs to be amended
 * Name, number of models and competition category can only be edited here, the Judging page is exclusively for assignment of prizes
