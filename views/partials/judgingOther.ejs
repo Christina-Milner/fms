@@ -39,7 +39,11 @@
             <p><%= cur.id %></p>
             <p><%= cur.fullName ? cur.fullName : "Empty entry!" %></p>
             <% let prettify = {commended: "Commended", bronze: "Bronze", silver: "Silver", gold: "Gold", corrr: "CORRR", junBestOfShow: "Jun. Best of Show", standardBestOfShow: "Std. Best of Show", mastersBestOfShow: "Masters Best of Show", peoplesChoice: "People's Choice"} %>
-            <p><%= Object.keys(prettify).filter(e => cur.prizes[e]).map(e => prettify[e]).concat(cur.prizes.sponsors).join(", ") %></p>
+            <% let arr = [] %>
+            <% if (cur.prizes.medal) {arr.push(cur.prizes.medal[0].toUpperCase() + cur.prizes.medal.slice(1))} %>
+            <% arr = arr.concat(Object.keys(prettify).filter(e => cur.prizes[e]).map(e => prettify[e])) %>
+            <% arr = arr.concat(cur.prizes.sponsors) %>
+            <p><%= arr.join(", ")%></p>
         </div>
     </div>
 <% } %>

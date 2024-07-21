@@ -3,7 +3,7 @@ const Painter = require('../models/Painter')
 module.exports = {
     getMain: (req, res) => {
         res.render('judging.ejs', { isAuthenticated: req.isAuthenticated(), category: null})
-    },
+    }, 
     getStandard: async (req, res) => {
         try {
             let data = await Painter.find().lean()
@@ -13,7 +13,7 @@ module.exports = {
         catch(err) {
             res.render('errormes.ejs', {error: "Error in getStandard: " + err, isAuthenticated: req.isAuthenticated()})
         }
-    },
+    }, 
     getMasters: async (req, res) => {
         try {
             let data = await Painter.find().lean()
