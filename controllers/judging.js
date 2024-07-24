@@ -37,7 +37,7 @@ module.exports = {
             const titleCasify = str => str.split(' ').map(word => word[0].toUpperCase() + word.slice(1).toLowerCase()).join(' ')
             const query = Painter.where({id: Number(req.body.entryId)})
             const painter = await query.findOne();
-            const category = painter.competition === 3 ? "Masters" : "Standard"
+            const category = req.body.category
             await Painter.findOneAndUpdate({id: Number(req.body.entryId)}, {
                 judged: req.body.judged,
                 prizes: {
@@ -50,11 +50,9 @@ module.exports = {
                     sponsors: req.body.sponsors ? req.body.sponsors.split(',').map(e => e.trim()).filter(e => e).map(sponsor => titleCasify(sponsor)) : []
                 }
             })
-            console.log('Entry updated with judging')
             res.redirect(`/judging${category}`)
         } 
         catch (err) {
- 
             res.render('errormes.ejs', {error: "Error in addEntry in judging.js: " + err, isAuthenticated: req.isAuthenticated()})     
         } 
     }
