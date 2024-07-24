@@ -13,7 +13,7 @@ module.exports = {
         catch(err) {
             res.render('errormes.ejs', {error: "Error in getStandard: " + err, isAuthenticated: req.isAuthenticated()})
         }
-    }, 
+    },  
     getMasters: async (req, res) => {
         try {
             let data = await Painter.find().lean()
