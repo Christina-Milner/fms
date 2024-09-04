@@ -38,18 +38,38 @@ module.exports = {
             const query = Painter.where({id: Number(req.body.entryId)})
             const painter = await query.findOne();
             const category = req.body.category
-            await Painter.findOneAndUpdate({id: Number(req.body.entryId)}, {
-                judged: req.body.judged,
-                prizes: {
-                    medal: req.body.medals,
-                    mastersBestOfShow: req.body.mastersBestOfShow == "on",
-                    standardBestOfShow: req.body.standardBestOfShow == "on",
-                    junBestOfShow: req.body.junBestOfShow == "on",
-                    corrr: req.body.corrr == "on",
-                    peoplesChoice: req.body.peoplesChoice == "on",
-                    sponsors: req.body.sponsors ? req.body.sponsors.split(',').map(e => e.trim()).filter(e => e).map(sponsor => titleCasify(sponsor)) : []
-                }
-            })
+            let currentPrizes = painter.prizes
+            if (category === "Standard") {
+                await Painter.findOneAndUpdate({id: Number(req.body.entryId)}, {
+                    judged: req.body.judged,
+                    prizes: {
+                        ...currentPrizes,
+                        medal: req.body.medals,
+                        standardBestOfShow: req.body.standardBestOfShow == "on",
+                        junBestOfShow: req.body.junBestOfShow == "on",
+                    }
+                })
+            } else if (category === "Masters") {
+                await Painter.findOneAndUpdate({id: Number(req.body.entryId)}, {
+                    judged: req.body.judged,
+                    prizes: {
+                        ...currentPrizes,
+                        medal: req.body.medals,
+                        mastersBestOfShow: req.body.mastersBestOfShow == "on",
+                    }
+                })
+
+            } else if (category === "Other") {
+                await Painter.findOneAndUpdate({id: Number(req.body.entryId)}, {
+                    prizes: {
+                        ...currentPrizes,
+                        corrr: req.body.corrr == "on",
+                        peoplesChoice: req.body.peoplesChoice == "on",
+                        sponsors: req.body.sponsors ? req.body.sponsors.split(',').map(e => e.trim()).filter(e => e).map(sponsor => titleCasify(sponsor)) : []
+                    }
+                })
+
+            }
             res.redirect(`/judging${category}`)
         } 
         catch (err) {
