@@ -336,7 +336,7 @@ module.exports = {
             }
             res.render('errormes.ejs', {error: "DB seeded successfully", isAuthenticated: req.isAuthenticated()})
         } catch(err) {
-            res.render('errormes.ejs', {error: err})
+            res.render('errormes.ejs', {error: err, isAuthenticated: req.isAuthenticated()})
         }
     }
 
