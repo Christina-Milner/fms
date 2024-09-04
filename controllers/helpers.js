@@ -334,7 +334,7 @@ module.exports = {
                 await Painter.create({id: id, fullName: `Person ${id}`, ...item})
                 id++
             }
-            res.render('errormes.ejs', {error: "DB seeded successfully"})
+            res.render('errormes.ejs', {error: "DB seeded successfully", isAuthenticated: req.isAuthenticated()})
         } catch(err) {
             res.render('errormes.ejs', {error: err})
         }
