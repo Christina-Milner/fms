@@ -5,7 +5,7 @@ const YearSchema = new mongoose.Schema({
     totalModels: Number,
     juniors: Number,
     adults: Number,
-    bestOfShow: String,
+    bestOfShow: { type: {}},
     peoplesChoice: String,
     sponsors: Array,
     corrr: Number,
