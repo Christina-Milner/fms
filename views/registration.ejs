@@ -20,9 +20,6 @@
         <span id="editEntries" class="regButtons">Edit</span>
     </div>
     <form action="/addEntryReg" method="POST" id="inputForm" class="hidden">
-        <input type ="hidden" name="entryId" id="secretIdBox">
-        <div id="forID">
-        </div>
         <div>
             <label for="name">Name&nbsp;&nbsp;&nbsp;</label>
             <input type="text" placeholder="Full name" name="name" id="name" required="required">
@@ -50,10 +47,11 @@
             <label for="yesJudged">Judged</label>
         </div>
         <div>
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit" id="submit">
             <a href="/registration"><span class="cancel">Cancel</span></a>
         </div>
     </form>
+    <div id="painterIdInfo" class="hidden"> </div>
     <div class="entries">
         <% for(let i = 0; i < info.length; i++) {%>
             <% let cur = info[i] %>

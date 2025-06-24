@@ -18,7 +18,7 @@ router.get('/registration', regController.getMain)
 router.post('/addEntryReg', regController.addEntry)
 router.get('/numOfEntries', homeController.getNum)
 router.get('/ID_:id', ensureAuth, homeController.getEntry)
-router.post('/postEntry', regController.postEntry)
+router.get('/:name__:num', ensureAuth, homeController.getId)
 router.get('/checkFor_:prize', homeController.checkPrize)
         
 //Judging        
@@ -43,4 +43,4 @@ router.get('/logout', authController.logout)
 router.get('/saveStats', ensureAuth, helpersController.saveStats)
 router.get('/seed', ensureAuth, helpersController.seed)
 
-module.exports = router
+module.exports = router 

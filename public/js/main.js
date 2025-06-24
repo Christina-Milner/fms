@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
 const addButton = document.querySelector('#addButton')
 const editButton = document.querySelector('#editEntries')
 
+
 if (addButton) {addButton.addEventListener('click', openAddForm)}
 if (editButton) {editButton.addEventListener('click', editEntries)}
 
@@ -22,26 +23,33 @@ if (editButton) {editButton.addEventListener('click', editEntries)}
 if (editButton) {editButton.addEventListener('click', () => editButton.classList.add('active'))}
 
 
-// Function that retrieves the next ID number when "add entry" is clicked and populates the form with it
+// ID is now assigned after submitting registration, not before, so needs to be shown to user after submitting
+async function getId() {
+    const name = document.querySelector('#name').value
+    const models = document.querySelector('#numOfModels').value
+    alert(name, models)
+    const data = await fetch(`${name}__${models}`, {
+        method: 'get',
+        headers: {'Content-Type': 'application/json'},
+    })    
+    const json = await data.json()
+    alert(json)
+    const infoBox = document.querySelector('#painterIdInfo')
+    infoBox.innerText = `${json.fullName} has the number ${json.id}`
+    infoBox.classList.remove('hidden')
+}
+
+
+// Hide edit buttons and make other entries non-clickable when the form to add an entry is opened
 
 async function openAddForm() {
     document.querySelectorAll('.entry').forEach(e => e.removeEventListener('click', event => editThis(event.target.parentElement)))
     editButton.classList.remove('active')
     document.querySelector('.buttonsGoHere').classList.add('hidden')
-    const res = await fetch('/postEntry', {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json, text/plain, */*',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({})
-    })
-    let id = await res.text()
-    id = Number(id)
+    const form = document.querySelector('#inputForm')
+    form.classList.remove('hidden')
+    form.addEventListener("submit", (event) => { getId()})
 
-    document.querySelector('#forID').innerText = `Number: ${id}`
-    document.querySelector('#inputForm').classList.remove('hidden')
-    document.querySelector('#secretIdBox').value = id
 }
 
 // Function for making entries editable in Registration view
@@ -60,6 +68,7 @@ async function editThis(element) {
     editButton.classList.remove('active')
     document.querySelector('.buttonsGoHere').classList.add('hidden')
     const entryID = element.id
+    console.log("entryID: ", entryID)
     const data = await fetch(`ID_${entryID}`, {
         method: 'get',
         headers: {'Content-Type': 'application/json'},
@@ -68,8 +77,6 @@ async function editThis(element) {
     console.log(json)
     document.querySelector('#inputForm').classList.remove('hidden')
     document.querySelectorAll('.entry').forEach(e => e.classList.add('hidden'))
-    document.querySelector('#forID').innerText = `Number: ${json.id}`
-    document.querySelector('#secretIdBox').value = json.id
     document.querySelector('#name').value = json.fullName
     document.querySelector('#numOfModels').value = json.numOfModels
     if (!json.competition ) {
