@@ -1,0 +1,55 @@
+<form action="/addEntryJudge" method="POST" id="inputForm" class="hidden judgeForm">
+    <input type ="hidden" name="entryId" id="secretIdBox">
+    <div id="forID">
+    </div>
+    <div>
+        <span>Name:</span>
+        <span id="name"></span>
+    </div>
+    <div id="competition"></div>
+    <fieldset id="prizes" class="hidden">
+        <div id="warning" class="hidden"></div>
+        <input type ="hidden" name="category" id="category" value="FigStandard">
+        <div id="isJudged">
+            <input type="radio" id="notJudged" name="judged" value=0>
+            <label for="notJudged">Not judged</label>
+            <input type="radio" id="firstPass" name="judged" value=1>
+            <label for="firstPass">First Pass</label>
+            <input type="radio" id="yesJudged" name="judged" value=2>
+            <label for="yesJudged">Judged</label>
+        </div>
+        <legend>Prizes:</legend>
+        <div id="forMedals">
+            <div class="checkboxOption">
+                <input type="checkbox" id="commended" name="medals" value="commended" onclick="onlyOne(this)">
+                <label for="commended"><span class="lgscreen">Highly Commended</span><span class="smscreen">Commend</span></label>
+            </div>
+            <div class="checkboxOption">
+                <input type="checkbox" id="bronze" name="medals" value="bronze" onclick="onlyOne(this)">
+                <label for="bronze">Bronze</label>
+            </div>
+            <div class="checkboxOption">
+                <input type="checkbox" id="silver" name="medals" value="silver" onclick="onlyOne(this)">
+                <label for="silver">Silver</label>
+            </div>
+            <div class="checkboxOption">
+                <input type="checkbox" id="gold" name="medals" value="gold" onclick="onlyOne(this)">
+                <label for="gold">Gold</label>
+            </div>
+        </div>
+        <div id="bestOfShowStuff">
+            <div class="checkboxOption">
+                <input type="checkbox" id="junBestOfShow" name="junBestOfShow" class="kidsOnly" onclick="checkIfTaken(this, 'junBestOfShow')">
+                <label for="junBestOfShow" id="forJunBestOfShow" class="kidsOnly"><span class="lgscreen">Junior Best of Show</span><span class="smscreen">Junior BoS</span></label>
+            </div><div class="checkboxOption">
+                <input type="checkbox" id="standardBestOfShow" name="standardBestOfShow" class="adultsOnly" onclick="checkIfTaken(this, 'standardBestOfShow')">
+                <label for="standardBestOfShow" id="forStandardBestOfShow" class="adultsOnly">Standard BoS</label>
+            </div>
+        </div>
+        
+    </fieldset>
+    <div>
+        <input type="submit" value="Submit">
+    </div>
+</form>
+<%- include('judgingShared.ejs') %>

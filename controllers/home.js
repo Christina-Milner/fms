@@ -62,14 +62,14 @@ module.exports = {
             let data = await Painter.find().lean()
             if (prize === "standard") {
                 data = data.filter(entry => { 
-                    return entry.competition < 3 && (entry.prizes.medal || entry.prizes.standardBestOfShow || entry.prizes.corrr || entry.prizes.junBestOfShow) // Junior or standard and has won a prize
+                    return (entry.competition == 2 || entry.competition == 4) && (entry.prizes.medal || entry.prizes.standardBestOfShow || entry.prizes.corrr || entry.prizes.junBestOfShow) // Junior or standard and has won a prize
                             || entry.prizes.sponsors.length // All sponsors go here
                 
                 })
             }
             else if (prize === "masters") {
                 data = data.filter(entry => { 
-                    return entry.competition === 3 && (entry.prizes.medal || entry.prizes.mastersBestOfShow || entry.prizes.corrr) // Masters and has won a prize other than sponsors                
+                    return (entry.competition === 3 || entry.competition == 5) && (entry.prizes.medal || entry.prizes.mastersBestOfShow || entry.prizes.corrr) // Masters and has won a prize other than sponsors                
                 })
             }
             else { 
@@ -80,5 +80,5 @@ module.exports = {
         catch (err) {
             res.render('errormes.ejs', {error: "Error in filterPrize(): " + err, isAuthenticated: req.isAuthenticated()})
         } 
-    },    
+    },     
 }

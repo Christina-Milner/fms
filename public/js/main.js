@@ -58,13 +58,12 @@ async function editThis(element) {
         painterInfo.classList.add('hidden')
     }
     const entryID = element.id
-    console.log("entryID: ", entryID)
     const data = await fetch(`ID_${entryID}`, {
         method: 'get',
         headers: {'Content-Type': 'application/json'},
     })
     let json = await data.json()
-    console.log(json)
+    //console.log(json)
     document.querySelector('#inputForm').classList.remove('hidden')
     document.querySelectorAll('.entry').forEach(e => e.classList.add('hidden'))
     document.querySelector('#name').value = json.fullName

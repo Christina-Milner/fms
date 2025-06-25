@@ -18,15 +18,21 @@
 
         <div class="filterbuttons">
             <div class="iHateCSS">
-                <a href="/judgingStandard"><p id="judgingStandard" class="filterbutton big">Standard</p></a>
-                <a href="/judgingMasters"><p id="judgingMasters" class="filterbutton big">Masters</p></a>
+                <a href="/judgingFigStandard"><p id="judgingFigStandard" class="filterbutton big">Figures Standard</p></a>
+                <a href="/judgingFigMasters"><p id="judgingFigMasters" class="filterbutton big">Figures Masters</p></a>
+                <a href="/judgingVroomStandard"><p id="judgingVroomStandard" class="filterbutton big">Vehicles Standard</p></a>
+                <a href="/judgingVroomMasters"><p id="judgingVroomMasters" class="filterbutton big">Vehicles Masters</p></a>
                 <a href="/judgingOther"><p id="judgingOther" class="filterbutton big">Other Prizes</p></a>
             </div>
         </div>
-        <% if(category == "Standard") { %>
-            <%- include('partials/judgingStandard.ejs') %>
-        <% } else if (category == "Masters") { %> 
-            <%- include('partials/judgingMasters.ejs') %>
+        <% if(category == "Figures Standard") { %>
+            <%- include('partials/judgingFigStandard.ejs') %>
+        <% } else if (category == "Figures Masters") { %> 
+            <%- include('partials/judgingFigMasters.ejs') %>
+        <% } else if (category == "Vehicles Standard") { %> 
+            <%- include('partials/judgingVroomStandard.ejs') %>
+        <% } else if (category == "Vehicles Masters") { %> 
+            <%- include('partials/judgingVroomMasters.ejs') %>
         <% } else if (category == "Other") { %>
             <%- include('partials/judgingOther.ejs') %>
         <% }%>

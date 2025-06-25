@@ -9,7 +9,7 @@
     <div id="competition"></div>
     <fieldset id="prizes" class="hidden">
         <div id="warning" class="hidden"></div>
-        <input type ="hidden" name="category" id="category" value="Masters">
+        <input type ="hidden" name="category" id="category" value="Vehicle Standard">
         <div id="isJudged">
             <input type="radio" id="notJudged" name="judged" value=0>
             <label for="notJudged">Not judged</label>
@@ -39,36 +39,17 @@
         </div>
         <div id="bestOfShowStuff">
             <div class="checkboxOption">
-                <input type="checkbox" id="mastersBestOfShow" name="mastersBestOfShow" onclick="checkIfTaken(this, 'mastersBestOfShow')">
-                <label for="mastersBestOfShow" id="forMastersBestOfShow" class="adultsOnly">Masters BoS</label>
+                <input type="checkbox" id="junBestOfShow" name="junBestOfShow" class="kidsOnly" onclick="checkIfTaken(this, 'junBestOfShow')">
+                <label for="junBestOfShow" id="forJunBestOfShow" class="kidsOnly"><span class="lgscreen">Junior Best of Show</span><span class="smscreen">Junior BoS</span></label>
+            </div><div class="checkboxOption">
+                <input type="checkbox" id="standardBestOfShow" name="standardBestOfShow" class="adultsOnly" onclick="checkIfTaken(this, 'standardBestOfShow')">
+                <label for="standardBestOfShow" id="forStandardBestOfShow" class="adultsOnly">Standard BoS</label>
             </div>
         </div>
-
         
     </fieldset>
     <div>
         <input type="submit" value="Submit">
     </div>
 </form>
-<div class="entries">
-    <% for(let i = 0; i < info.length; i++) {%>
-        <% let cur = info[i] %>
-        <div class="entry <%= !cur.judged ? "notJudged" : cur.judged == 1 ? "firstPass" : "judged" %>" id=<%= cur.id %>>
-            <div>
-                <p>Number:</p>
-                <p>Name:</p>
-                <p><%= cur.competition === 0 ? "OOC" : cur.competition == 1 ? "Junior" : cur.competition == 2 ? "Standard" : cur.competition == 3 ? "Masters" : "Invalid category" %></p>
-            </div>
-            <div>
-                <p><%= cur.id %></p>
-                <p><%= cur.fullName ? cur.fullName : "Empty entry!" %></p>
-                <% let prettify = {commended: "Commended", bronze: "Bronze", silver: "Silver", gold: "Gold", corrr: "CORRR", junBestOfShow: "Jun. Best of Show", standardBestOfShow: "Std. Best of Show", mastersBestOfShow: "Masters Best of Show", peoplesChoice: "People's Choice"} %>
-                <% let arr = [] %>
-                <% if (cur.prizes.medal) {arr.push(cur.prizes.medal[0].toUpperCase() + cur.prizes.medal.slice(1))} %>
-                <% arr = arr.concat(Object.keys(prettify).filter(e => cur.prizes[e]).map(e => prettify[e])) %>
-                <% arr = arr.concat(cur.prizes.sponsors) %>
-                <p><%= arr.join(", ")%></p>
-            </div>
-        </div>
-    <% } %>
-</div>
+<%- include('judgingShared.ejs') %>

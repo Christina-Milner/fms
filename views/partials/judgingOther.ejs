@@ -27,25 +27,4 @@
         <input type="submit" value="Submit">
     </div>
 </form>
-<div class="entries">
-<% for(let i = 0; i < info.length; i++) {%>
-    <% let cur = info[i] %>
-    <div class="entry" %>" id=<%= cur.id %>>
-        <div>
-            <p>Number:</p>
-            <p>Name:</p>
-            <p><%= cur.competition === 0 ? "OOC" : cur.competition == 1 ? "Junior" : cur.competition == 2 ? "Standard" : cur.competition == 3 ? "Masters" : "Invalid category" %></p>
-        </div>
-        <div>
-            <p><%= cur.id %></p>
-            <p><%= cur.fullName ? cur.fullName : "Empty entry!" %></p>
-            <% let prettify = {commended: "Commended", bronze: "Bronze", silver: "Silver", gold: "Gold", corrr: "CORRR", junBestOfShow: "Jun. Best of Show", standardBestOfShow: "Std. Best of Show", mastersBestOfShow: "Masters Best of Show", peoplesChoice: "People's Choice"} %>
-            <% let arr = [] %>
-            <% if (cur.prizes.medal) {arr.push(cur.prizes.medal[0].toUpperCase() + cur.prizes.medal.slice(1))} %>
-            <% arr = arr.concat(Object.keys(prettify).filter(e => cur.prizes[e]).map(e => prettify[e])) %>
-            <% arr = arr.concat(cur.prizes.sponsors) %>
-            <p><%= arr.join(", ")%></p>
-        </div>
-    </div>
-<% } %>
-</div>
+<%- include('judgingShared.ejs') %>

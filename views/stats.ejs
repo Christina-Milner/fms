@@ -24,12 +24,16 @@
                 <p class="savespace">Juniors:</p>
                 <p class="savespace">Standard:</p>
                 <p class="savespace">Masters:</p>
+                <p class="savespace">Figures:</p>
+                <p class="savespace">Vehicles:</p>
             </div>
             <div>
                 <p class="num savespace"><%= info.length %></p>
                 <p class="num savespace"><%= info.filter(e => e.competition === 1).length %></p>
-                <p class="num savespace"><%= info.filter(e => e.competition === 2).length %></p>
-                <p class="num savespace"><%= info.filter(e => e.competition === 3).length %></p>
+                <p class="num savespace"><%= info.filter(e => e.competition === 2 || e.competition === 4).length %></p>
+                <p class="num savespace"><%= info.filter(e => e.competition === 3 || e.competition === 5).length %></p>
+                <p class="num savespace"><%= info.filter(e => e.competition === 2 || e.competition === 3).length %></p>
+                <p class="num savespace"><%= info.filter(e => e.competition === 4 || e.competition === 5).length %></p>
             </div>
         </div>
         <h2>Number of models entered</h2>

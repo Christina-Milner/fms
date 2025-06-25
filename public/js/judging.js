@@ -23,9 +23,9 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('#forID').innerText = `Number: ${json.id}`
     document.querySelector('#secretIdBox').value = json.id
     document.querySelector('#name').innerText = json.fullName
-    const comp = {0: "Out of competition", 1: "Junior", 2: "Standard", 3: "Masters"}
-    console.log(json.competition)
-    console.log(comp[json.competition])
+    const comp = {0: "Out of competition", 1: "Junior", 2: "Figures Standard", 3: "Figures Masters", 4: "Vehicles Standard", 5: "Vehicles Masters"}
+    // console.log(json.competition)
+    // console.log(comp[json.competition])
     document.querySelector('#competition').innerText = comp[json.competition]
     if (!json.competition) { 
         document.querySelector('#isJudged').classList.add('hidden')
@@ -108,7 +108,7 @@ async function editThisOther(element) {
     document.querySelector('#forID').innerText = `Number: ${json.id}`
     document.querySelector('#secretIdBox').value = json.id
     document.querySelector('#name').innerText = json.fullName
-    const comp = {0: "Out of competition", 1: "Junior", 2: "Standard", 3: "Masters"}
+    const comp = {0: "Out of competition", 1: "Junior", 2: "Figures Standard", 3: "Figures Masters", 4: "Vehicles Standard", 5: "Vehicles Masters"}
     document.querySelector('#competition').innerText = comp[json.competition]; // DO NOT REMOVE THIS SEMICOLON
 
     [document.querySelector('#corrr'), document.querySelector('#peoplesChoice')].forEach(e => {

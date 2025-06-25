@@ -4,23 +4,43 @@ module.exports = {
     getMain: (req, res) => {
         res.render('judging.ejs', { isAuthenticated: req.isAuthenticated(), category: null})
     }, 
-    getStandard: async (req, res) => {
+    getFigStandard: async (req, res) => {
         try {
             let data = await Painter.find().lean()
-            data = data.filter(e => e.competition == 1 || e.competition == 2)
-            res.render('judging.ejs', { isAuthenticated: req.isAuthenticated(), info: data, category: "Standard"})
+            data = data.filter(e => e.competition == 2)
+            res.render('judging.ejs', { isAuthenticated: req.isAuthenticated(), info: data, category: "Figures Standard"})
         }
         catch(err) {
-            res.render('errormes.ejs', {error: "Error in getStandard: " + err, isAuthenticated: req.isAuthenticated()})
+            res.render('errormes.ejs', {error: "Error in getFigStandard: " + err, isAuthenticated: req.isAuthenticated()})
         }
-    },  
-    getMasters: async (req, res) => {
+    },
+    getFigMasters: async (req, res) => {
         try {
             let data = await Painter.find().lean()
             data = data.filter(e => e.competition == 3)
-            res.render('judging.ejs', { isAuthenticated: req.isAuthenticated(), info: data, category: "Masters"})
+            res.render('judging.ejs', { isAuthenticated: req.isAuthenticated(), info: data, category: "Figures Masters"})
+        }
+        catch(err) {
+            es.render('errormes.ejs', {error: "Error in getFigMasters: " + err, isAuthenticated: req.isAuthenticated()})
+        }
+    }, 
+    getVroomStandard: async (req, res) => {
+        try {
+            let data = await Painter.find().lean()
+            data = data.filter(e => e.competition == 4)
+            res.render('judging.ejs', { isAuthenticated: req.isAuthenticated(), info: data, category: "Vehicles Standard"})
         }  catch(err) {
-            res.render('errormes.ejs', {error: "Error in getMasters: " + err, isAuthenticated: req.isAuthenticated()})
+            res.render('errormes.ejs', {error: "Error in getVroomStandard: " + err, isAuthenticated: req.isAuthenticated()})
+        }
+
+    },
+    getVroomMasters: async (req, res) => {
+        try {
+            let data = await Painter.find().lean()
+            data = data.filter(e => e.competition == 5)
+            res.render('judging.ejs', { isAuthenticated: req.isAuthenticated(), info: data, category: "Vehicles Masters"})
+        }  catch(err) {
+            res.render('errormes.ejs', {error: "Error in getVroomMasters: " + err, isAuthenticated: req.isAuthenticated()})
         }
 
     },
@@ -39,7 +59,7 @@ module.exports = {
             const painter = await query.findOne();
             const category = req.body.category
             let currentPrizes = painter.prizes
-            if (category === "Standard") {
+            if (category === "Figures Standard" || category === "Vehicles Standard") {
                 await Painter.findOneAndUpdate({id: Number(req.body.entryId)}, {
                     judged: req.body.judged,
                     prizes: {
@@ -49,7 +69,7 @@ module.exports = {
                         junBestOfShow: req.body.junBestOfShow == "on",
                     }
                 })
-            } else if (category === "Masters") {
+            } else if (category === "Figures Masters" || category == "Vehicles Masters") {
                 await Painter.findOneAndUpdate({id: Number(req.body.entryId)}, {
                     judged: req.body.judged,
                     prizes: {
@@ -77,4 +97,4 @@ module.exports = {
         } 
     }
 
-}
+} 
