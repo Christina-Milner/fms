@@ -51,7 +51,11 @@
             <a href="/registration"><span class="cancel">Cancel</span></a>
         </div>
     </form>
-    <div id="painterIdInfo" class="hidden"> </div>
+    <% if (lastPainter) { %>
+        <div id="painterIdInfo" >
+            <p><%= lastPainter.name %> has received the ID number <span id="idNumber"><%= lastPainter.id %></span></p>
+         </div>
+    <% } %>
     <div class="entries">
         <% for(let i = 0; i < info.length; i++) {%>
             <% let cur = info[i] %>

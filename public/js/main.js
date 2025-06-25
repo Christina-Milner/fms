@@ -23,32 +23,18 @@ if (editButton) {editButton.addEventListener('click', editEntries)}
 if (editButton) {editButton.addEventListener('click', () => editButton.classList.add('active'))}
 
 
-// ID is now assigned after submitting registration, not before, so needs to be shown to user after submitting
-async function getId() {
-    const name = document.querySelector('#name').value
-    const models = document.querySelector('#numOfModels').value
-    alert(name, models)
-    const data = await fetch(`${name}__${models}`, {
-        method: 'get',
-        headers: {'Content-Type': 'application/json'},
-    })    
-    const json = await data.json()
-    alert(json)
-    const infoBox = document.querySelector('#painterIdInfo')
-    infoBox.innerText = `${json.fullName} has the number ${json.id}`
-    infoBox.classList.remove('hidden')
-}
-
-
 // Hide edit buttons and make other entries non-clickable when the form to add an entry is opened
 
 async function openAddForm() {
     document.querySelectorAll('.entry').forEach(e => e.removeEventListener('click', event => editThis(event.target.parentElement)))
     editButton.classList.remove('active')
     document.querySelector('.buttonsGoHere').classList.add('hidden')
+    const painterInfo = document.querySelector('#painterIdInfo')
+    if (painterInfo) { 
+        painterInfo.classList.add('hidden')
+    }
     const form = document.querySelector('#inputForm')
     form.classList.remove('hidden')
-    form.addEventListener("submit", (event) => { getId()})
 
 }
 
@@ -67,6 +53,10 @@ function editEntries() {
 async function editThis(element) {
     editButton.classList.remove('active')
     document.querySelector('.buttonsGoHere').classList.add('hidden')
+    const painterInfo = document.querySelector('#painterIdInfo')
+    if (painterInfo) { 
+        painterInfo.classList.add('hidden')
+    }
     const entryID = element.id
     console.log("entryID: ", entryID)
     const data = await fetch(`ID_${entryID}`, {

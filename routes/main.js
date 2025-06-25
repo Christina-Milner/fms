@@ -18,7 +18,6 @@ router.get('/registration', regController.getMain)
 router.post('/addEntryReg', regController.addEntry)
 router.get('/numOfEntries', homeController.getNum)
 router.get('/ID_:id', ensureAuth, homeController.getEntry)
-router.get('/:name__:num', ensureAuth, homeController.getId)
 router.get('/checkFor_:prize', homeController.checkPrize)
         
 //Judging        

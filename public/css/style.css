@@ -231,6 +231,22 @@ input[type=submit], .cancel {
     color: #fff;
 }
 
+#painterIdInfo {
+    display: flex;
+    width: 70%;
+    margin: 5px auto;
+    line-height: 1.5em;
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+#idNumber
+
+{
+    color:rgb(190, 38, 127);
+}
+
+
 .adult {
     background-color: rgb(129, 64, 129);
 }

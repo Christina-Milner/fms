@@ -35,15 +35,6 @@ module.exports = {
             res.render('errormes.ejs', {error: "Error in getEntry(): " + err, isAuthenticated: req.isAuthenticated()})
         }
     },
-    getId: async (req, res) => {
-        try {
-            let result = await Painter.findOne({fullName: req.params.name, numOfModels: req.params.num}).lean()
-            res.json(result)
-        }
-        catch (err) {
-            res.render('errormes.ejs', {error: "Error in getId(): " + err, isAuthenticated: req.isAuthenticated()})
-        }
-    },
     checkPrize: async (req, res) => {
         try {
             let prize = req.params.prize
