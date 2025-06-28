@@ -13,10 +13,10 @@ module.exports = {
                 { $inc: { current: 1 } },
                 { upsert: true, new: true }
             )
-            return result.value
+            return result.current
         }
         try {
-            const nextId = await getNextPainterId()
+            let nextId = await getNextPainterId()
             const painter = await Painter.create({id: nextId, fullName: req.body.name, numOfModels: Number(req.body.numOfModels), competition: req.body.competition, prizes: {}, judged: req.body.judged})
             console.log('Entry added')
             const data = await Painter.find()
