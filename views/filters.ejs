@@ -16,10 +16,11 @@
         </nav>
 
             <%- include('partials/filterbuttons.ejs') %>
-            <% if (prize && prize === "standard") { %>
-                <%- include('partials/standardPrizes.ejs') %>
-            <% } else if (prize && prize === "masters") { %>
-                <%- include('partials/mastersPrizes.ejs') %>
+            <% const page = { Special: 'partials/specialPrizes.ejs', Juniors: 'partials/juniorPrizes.ejs', FigStandard: 'partials/standardFigPrizes.ejs', VroomStandard: 'partials/standardVroomPrizes.ejs', FigMasters: 'partials/mastersFigPrizes.ejs', VroomMasters: 'partials/mastersVroomPrizes.ejs'} %>
+            <% if (prize && !page[prize]) { %>
+                <div>You broke something.</div>
+            <% } else if (page[prize] && prize) { %>
+                 <%- include(page[prize]) %>
             <% } %>
     <% } else { %>
         <nav class="pageNav">

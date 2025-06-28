@@ -4,6 +4,16 @@ module.exports = {
     getMain: (req, res) => {
         res.render('judging.ejs', { isAuthenticated: req.isAuthenticated(), category: null})
     }, 
+    getJuniors: async (req, res) => {
+        try {
+            let data = await Painter.find().lean()
+            data = data.filter(e => e.competition == 1)
+            res.render('judging.ejs', { isAuthenticated: req.isAuthenticated(), info: data, category: "Juniors"})
+        }
+        catch(err) {
+            res.render('errormes.ejs', {error: "Error in getJuniors: " + err, isAuthenticated: req.isAuthenticated()})
+        }
+    }, 
     getFigStandard: async (req, res) => {
         try {
             let data = await Painter.find().lean()
@@ -59,17 +69,25 @@ module.exports = {
             const painter = await query.findOne();
             const category = req.body.category
             let currentPrizes = painter.prizes
-            if (category === "Figures Standard" || category === "Vehicles Standard") {
+            if (category === "FigStandard" || category === "VroomStandard") {
                 await Painter.findOneAndUpdate({id: Number(req.body.entryId)}, {
                     judged: req.body.judged,
                     prizes: {
                         ...currentPrizes,
                         medal: req.body.medals,
                         standardBestOfShow: req.body.standardBestOfShow == "on",
+                    }
+                })
+            } else if (category === "Juniors") {
+                await Painter.findOneAndUpdate({id: Number(req.body.entryId)}, {
+                    judged: req.body.judged,
+                    prizes: {
+                        ...currentPrizes,
+                        medal: req.body.medals,
                         junBestOfShow: req.body.junBestOfShow == "on",
                     }
                 })
-            } else if (category === "Figures Masters" || category == "Vehicles Masters") {
+            } else if (category === "FigMasters" || category == "VroomMasters") {
                 await Painter.findOneAndUpdate({id: Number(req.body.entryId)}, {
                     judged: req.body.judged,
                     prizes: {
@@ -78,7 +96,6 @@ module.exports = {
                         mastersBestOfShow: req.body.mastersBestOfShow == "on",
                     }
                 })
-
             } else if (category === "Other") {
                 await Painter.findOneAndUpdate({id: Number(req.body.entryId)}, {
                     prizes: {

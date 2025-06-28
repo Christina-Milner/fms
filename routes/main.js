@@ -22,6 +22,7 @@ router.get('/checkFor_:prize', homeController.checkPrize)
         
 //Judging        
 router.get('/judging', judgingController.getMain)
+router.get('/judgingJuniors', judgingController.getJuniors)
 router.get('/judgingFigStandard', judgingController.getFigStandard)
 router.get('/judgingFigMasters', judgingController.getFigMasters)
 router.get('/judgingVroomStandard', judgingController.getVroomStandard) 
@@ -32,7 +33,6 @@ router.post('/addEntryJudge', judgingController.addEntry)
 // Filters
 router.get('/filters', ensureAuth, homeController.getFilters)
 router.get('/filters:prize', ensureAuth, homeController.filterPrize)
- 
 
 //Login
 router.get('/login', authController.getLogin)

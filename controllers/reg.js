@@ -26,7 +26,7 @@ module.exports = {
             console.log(error)
             res.render('errormes.ejs', {error: error, isAuthenticated: req.isAuthenticated()})
         }
-    },
+    }, 
 }   
 
-// FIX UGLY LAYOUT CAUSED BY LONG CATEGORY NAMES, REMEMBER TO ADD JUNIORS FOR JUDGING
+// FIX UGLY LAYOUT CAUSED BY LONG CATEGORY NAMES

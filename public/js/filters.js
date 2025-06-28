@@ -1,7 +1,8 @@
 // Get rid of any headers that don't actually have entries below them
 // Separate JS file because I don't want this messing with other pages
+// Not sure if this is needed anymore after splitting up the prizes - TBD
 
-
+/*
 document.addEventListener('DOMContentLoaded', function() {
     const hThree = document.querySelectorAll('h3')
     const hTwo = document.querySelectorAll('h2')
@@ -16,3 +17,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     })
  }, false);
+
+ */

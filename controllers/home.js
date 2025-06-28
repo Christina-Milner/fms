@@ -59,21 +59,15 @@ module.exports = {
     filterPrize: async (req, res) => {
         try {
             let prize = req.params.prize
+            console.log(prize)
             let data = await Painter.find().lean()
-            if (prize === "standard") {
-                data = data.filter(entry => { 
-                    return (entry.competition == 2 || entry.competition == 4) && (entry.prizes.medal || entry.prizes.standardBestOfShow || entry.prizes.corrr || entry.prizes.junBestOfShow) // Junior or standard and has won a prize
-                            || entry.prizes.sponsors.length // All sponsors go here
-                
-                })
-            }
-            else if (prize === "masters") {
-                data = data.filter(entry => { 
-                    return (entry.competition === 3 || entry.competition == 5) && (entry.prizes.medal || entry.prizes.mastersBestOfShow || entry.prizes.corrr) // Masters and has won a prize other than sponsors                
-                })
-            }
-            else { 
-                res.render('errormes.ejs', {error: "You managed to trigger an else that shouldn't be a thing.", isAuthenticated: req.isAuthenticated()})
+            if (prize == "Special") {
+                data = data.filter(entry => entry.prizes.corrr || entry.prizes.sponsors.length || entry.prizes.peoplesChoice)
+            } 
+            else {
+                const categories = {Juniors: 1, FigStandard: 2, FigMasters: 3, VroomStandard: 4, VroomMasters: 5}
+                const num = categories[prize]
+                data = data.filter(entry => (entry.competition == num) && (entry.prizes.medal || entry.prizes.standardBestOfShow || entry.prizes.junBestOfShow || entry.prizes.mastersBestOfShow ))
             }
             res.render('filters.ejs', {isAuthenticated: req.isAuthenticated(), prize: prize, info: data})
         }
@@ -81,4 +75,4 @@ module.exports = {
             res.render('errormes.ejs', {error: "Error in filterPrize(): " + err, isAuthenticated: req.isAuthenticated()})
         } 
     },     
-}
+}  

@@ -18,6 +18,7 @@
 
         <div class="filterbuttons">
             <div class="iHateCSS">
+                <a href="/judgingJuniors"><p id="judgingFigJuniors" class="filterbutton big">Juniors</p></a>
                 <a href="/judgingFigStandard"><p id="judgingFigStandard" class="filterbutton big">Figures Standard</p></a>
                 <a href="/judgingFigMasters"><p id="judgingFigMasters" class="filterbutton big">Figures Masters</p></a>
                 <a href="/judgingVroomStandard"><p id="judgingVroomStandard" class="filterbutton big">Vehicles Standard</p></a>
@@ -25,7 +26,9 @@
                 <a href="/judgingOther"><p id="judgingOther" class="filterbutton big">Other Prizes</p></a>
             </div>
         </div>
-        <% if(category == "Figures Standard") { %>
+        <% if(category == "Juniors") { %>
+            <%- include('partials/judgingJuniors.ejs') %>
+        <% } else if(category == "Figures Standard") { %>
             <%- include('partials/judgingFigStandard.ejs') %>
         <% } else if (category == "Figures Masters") { %> 
             <%- include('partials/judgingFigMasters.ejs') %>

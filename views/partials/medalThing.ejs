@@ -1,0 +1,12 @@
+<% for (let thing of ["Commended", "Bronze", "Silver", "Gold"]) { %> 
+    <h3><%= thing %></h3>
+    <div class="entries noborder">
+        <%  for (let entry of info.filter(e => e.prizes.medal && e.prizes.medal == thing.toLowerCase())) {%>
+            <div class="entry noborder" id=<%= entry.id %>>
+                <div>
+                    <p class="savespace"><%= entry.fullName %></p>
+                </div>
+            </div>                  
+        <% } %>
+    </div>
+<% } %>

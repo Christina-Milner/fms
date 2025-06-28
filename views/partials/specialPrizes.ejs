@@ -1,0 +1,31 @@
+<h1><blockquote>FMS Results - Special Prizes</blockquote></h1>
+<h2>Sponsor Prizes</h2>
+    <% for (let thing of Array.from(new Set(info.reduce((acc, cur) => acc.concat(cur.prizes.sponsors), [])))) { %> 
+        <h3><%= thing %></h3>
+        <div class="entries noborder">
+            <%  for (let entry of info.filter(e => e.prizes.sponsors.length && e.prizes.sponsors.includes(thing))) {%>
+                <div class="entry noborder" id=<%= entry.id %>>
+                    <div>
+                        <p class="savespace"><%= entry.fullName %></p>
+                    </div>
+                </div>                  
+            <% } %>
+        </div>
+    <% } %>
+
+<h2>CORRR</h2>
+<div class="entries noborder">
+    <%  for (let entry of info.filter(e => e.prizes.corrr)) {%>
+        <div class="entry noborder" id=<%= entry.id %>>
+            <div>
+                <p class="savespace"><%= entry.fullName %></p>
+            </div>
+        </div>                  
+    <% } %>
+</div>
+
+<h2>People's Choice</h2>
+
+<!-- Add it-->
+
+
