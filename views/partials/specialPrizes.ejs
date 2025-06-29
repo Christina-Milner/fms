@@ -26,6 +26,14 @@
 
 <h2>People's Choice</h2>
 
-<!-- Add it-->
+<div class="entries noborder">
+    <%  for (let entry of info.filter(e => e.prizes.peoplesChoice)) {%>
+        <div class="entry noborder" id=<%= entry.id %>>
+            <div>
+                <p class="savespace"><%= entry.fullName %></p>
+            </div>
+        </div>                  
+    <% } %>
+</div>
 
 

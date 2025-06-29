@@ -5,8 +5,8 @@
             <div>
                 <p>Number:</p>
                 <p>Name:</p>
-                <p><%= cur.competition === 0 ? "OOC" : cur.competition == 1 ? "Junior" : cur.competition == 2 ? "Figures Standard" : cur.competition == 3 ? "Figures Masters" :
-                     cur.competition == 4 ? "Vehicles Standard" : cur.competition == 5 ? "Vehicles Masters" : "Invalid category" %></p>
+                <% const competition = {0: "OOC", 1: "Junior", 2: "Fig. Standard", 3: "Fig. Masters", 4: "Veh. Standard", 5: "Veh. Masters"} %>
+                <p><%= competition[cur.competition] %></p>
             </div>
             <div>
                 <p><%= cur.id %></p>

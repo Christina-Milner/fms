@@ -11,7 +11,6 @@ const logger = require('morgan')
 const connectDB = require('./config/database')
 const mainRoutes = require('./routes/main')
 const path = require('path')
-/* Routes init goes here */
 
 // Config
 require('dotenv').config({path: path.resolve('config.env')})
