@@ -25,6 +25,10 @@
                 <a href="/judgingVroomMasters"><p id="judgingVroomMasters" class="filterbutton big">Masters Vehicles</p></a>
                 <a href="/judgingOther"><p id="judgingOther" class="filterbutton big">Special Prizes</p></a>
             </div>
+            <div class="iHateCSS">
+                    <label for="searchBox"><span>Search:</span></label>
+                    <input type="text" id="searchBox" name="searchBox">
+            </div>
         </div>
         <% if(category == "Juniors") { %>
             <%- include('partials/judgingJuniors.ejs') %>

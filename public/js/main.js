@@ -107,3 +107,25 @@ async function editThis(element) {
         document.querySelector('#masters').checked = true
     }
 }
+
+// Search box
+
+const box = document.querySelector('#searchBox')
+box.addEventListener('input', runSearch)
+
+function runSearch(e) {
+    let entries = document.querySelectorAll('.entry')
+    const input = box.value
+    if (!box.value) {
+        entries.forEach(entry => entry.classList.remove('hidden'))
+    }
+    else if (entries.length) {
+        for (let entry of entries) {
+            if (!entry.childNodes[3].innerText.includes(input)) {
+                entry.classList.add('hidden')
+            } else {
+                entry.classList.remove('hidden')
+            }
+        }
+    }
+}
