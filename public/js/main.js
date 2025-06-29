@@ -68,21 +68,38 @@ async function editThis(element) {
     document.querySelectorAll('.entry').forEach(e => e.classList.add('hidden'))
     document.querySelector('#name').value = json.fullName
     document.querySelector('#numOfModels').value = json.numOfModels
+    const [ooc, junior, standardFig, standardVroom, mastersFig, mastersVroom] = [document.querySelector('#outOfComp'), document.querySelector('#junior'),
+         document.querySelector('#standardFig'), document.querySelector('#standardVroom'), document.querySelector('#mastersFig'), , document.querySelector('#mastersVroom')]
     if (!json.competition ) {
-        document.querySelector('#outOfComp').checked = true
-        document.querySelector('#junior').checked = false
-        document.querySelector('#standard').checked = false
-        document.querySelector('#masters').checked = false
+        ooc.checked = true
+        for (let thing of [junior, standardFig, standardVroom, mastersFig, mastersVroom]) {
+            thing.checked = false
+        }
     } else if (json.competition === 1) {
-        document.querySelector('#outOfComp').checked = false
-        document.querySelector('#junior').checked = true
-        document.querySelector('#standard').checked = false
-        document.querySelector('#masters').checked = false
+        junior.checked = true
+        for (let thing of [ooc, standardFig, standardVroom, mastersFig, mastersVroom]) {
+            thing.checked = false
+        }
     } else if (json.competition === 2) {
-        document.querySelector('#outOfComp').checked = false
-        document.querySelector('#junior').checked = false
-        document.querySelector('#standard').checked = true
-        document.querySelector('#masters').checked = false
+        standardFig.checked = true
+        for (let thing of [junior, ooc, standardVroom, mastersFig, mastersVroom]) {
+            thing.checked = false
+        }
+     } else if (json.competition === 3) {
+        mastersFig.checked = true
+        for (let thing of [junior, ooc, standardVroom, standardFig, mastersVroom]) {
+            thing.checked = false
+        }
+    }  else if (json.competition === 4) {
+        standardVroom.checked = true
+        for (let thing of [junior, ooc, standardFig, mastersFig, mastersVroom]) {
+            thing.checked = false
+        }
+    }  else if (json.competition === 5) {
+        mastersVroom.checked = true
+        for (let thing of [junior, ooc, standardVroom, mastersFig, standardFig]) {
+            thing.checked = false
+        }
     } else {
         document.querySelector('#outOfComp').checked = false
         document.querySelector('#junior').checked = false
