@@ -115,13 +115,13 @@ box.addEventListener('input', runSearch)
 
 function runSearch(e) {
     let entries = document.querySelectorAll('.entry')
-    const input = box.value
+    const input = box.value.toLowerCase()
     if (!box.value) {
         entries.forEach(entry => entry.classList.remove('hidden'))
     }
     else if (entries.length) {
         for (let entry of entries) {
-            if (!entry.childNodes[3].innerText.includes(input)) {
+            if (!entry.childNodes[3].innerText.toLowerCase().includes(input)) {
                 entry.classList.add('hidden')
             } else {
                 entry.classList.remove('hidden')
