@@ -68,6 +68,7 @@ async function editThis(element) {
     document.querySelectorAll('.entry').forEach(e => e.classList.add('hidden'))
     document.querySelector('#name').value = json.fullName
     document.querySelector('#numOfModels').value = json.numOfModels
+    document.querySelector('#secretIdBox').value = element.id
     const [ooc, junior, standardFig, standardVroom, mastersFig, mastersVroom] = [document.querySelector('#outOfComp'), document.querySelector('#junior'),
          document.querySelector('#standardFig'), document.querySelector('#standardVroom'), document.querySelector('#mastersFig'), , document.querySelector('#mastersVroom')]
     if (!json.competition ) {
