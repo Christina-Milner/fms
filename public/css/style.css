@@ -100,6 +100,10 @@ form {
     border-bottom: 2px solid grey;
 }
 
+.biggerBox {
+    min-width: 10em;
+}
+
 .titleNav, .pageNav {
     display: flex;
     justify-content: center;
