@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // This opens the editing form and populates it with the database info for the relevant entry
 
  async function editThis(element) {
+    document.querySelector('.searchBoxJudging').classList.add('hidden')
     document.querySelector('#warning').classList.add('hidden')
     const entryID = element.id
     const data = await fetch(`ID_${entryID}`, {
