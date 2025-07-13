@@ -52,7 +52,7 @@ function editEntries() {
 
 async function editThis(element) {
     editButton.classList.remove('active')
-    document.querySelector('.buttonsGoHere').classList.add('hidden')
+    document.querySelectorAll('.buttonsGoHere').forEach(e => e.classList.add('hidden'))
     const painterInfo = document.querySelector('#painterIdInfo')
     if (painterInfo) { 
         painterInfo.classList.add('hidden')
