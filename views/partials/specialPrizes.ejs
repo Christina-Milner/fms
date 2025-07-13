@@ -36,4 +36,28 @@
     <% } %>
 </div>
 
+<h2>Standard Best of Show</h2>
+
+<div class="entries noborder">
+    <%  for (let entry of info.filter(e => e.prizes.standardBestOfShow)) {%>
+        <div class="entry noborder" id=<%= entry.id %>>
+            <div>
+                <p class="savespace"><%= entry.fullName %></p>
+            </div>
+        </div>                  
+    <% } %>
+</div>
+
+<h2>Masters Best of Show</h2>
+
+<div class="entries noborder">
+    <%  for (let entry of info.filter(e => e.prizes.mastersBestOfShow)) {%>
+        <div class="entry noborder" id=<%= entry.id %>>
+            <div>
+                <p class="savespace"><%= entry.fullName %></p>
+            </div>
+        </div>                  
+    <% } %>
+</div>
+
 
