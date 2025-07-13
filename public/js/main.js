@@ -28,7 +28,7 @@ if (editButton) {editButton.addEventListener('click', () => editButton.classList
 async function openAddForm() {
     document.querySelectorAll('.entry').forEach(e => e.removeEventListener('click', event => editThis(event.target.parentElement)))
     editButton.classList.remove('active')
-    document.querySelectorAll('.buttonsGoHere').classList.add('hidden')
+    document.querySelectorAll('.buttonsGoHere').forEach(e => e.classList.add('hidden'))
     const painterInfo = document.querySelector('#painterIdInfo')
     if (painterInfo) { 
         painterInfo.classList.add('hidden')
