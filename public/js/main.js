@@ -37,7 +37,7 @@ async function openAddForm() {
     form.classList.remove('hidden')
 
 }
-
+  
 // Function for making entries editable in Registration view
 
 function editEntries() {
@@ -130,3 +130,4 @@ function runSearch(e) {
         }
     }
 }
+   

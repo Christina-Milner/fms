@@ -33,19 +33,13 @@
             <label for="numOfModels">Models</label>
             <input type="number" placeholder="0" name="numOfModels" id="numOfModels" required="required" min="0">
         </div>
-        <div>
-            <input type="radio" id="outOfComp" name="competition" value=0 required>
-            <label for="outOfComp">Out of competition</label>
-            <input type="radio" id="junior" name="competition" value=1 required>
-            <label for="junior">Junior</label>
-            <input type="radio" id="standardFig" name="competition" value=2 required>
-            <label for="standard">Figures (Std.)</label>
-            <input type="radio" id="mastersFig" name="competition" value=3 required>
-            <label for="standard">Figures (M)</label>
-            <input type="radio" id="standardVroom" name="competition" value=4 required>
-            <label for="standard">Vehicles (Std.)</label>
-            <input type="radio" id="mastersVroom" name="competition" value=5 required>
-            <label for="masters">Vehicles M.</label>
+        <div>   
+            <label for="outOfComp"><input type="radio" id="outOfComp" name="competition" value=0 required>&nbsp;<span class="lgscreen">Out of Competition</span><span class="smscreen">OOC</span></label>           
+            <label for="junior"><input type="radio" id="junior" name="competition" value=1 required>&nbsp;Junior</label>            
+            <label for="standardFig"><input type="radio" id="standardFig" name="competition" value=2 required>&nbsp;Figures&nbsp;(Std.)</label>
+            <label for="mastersFig"><input type="radio" id="mastersFig" name="competition" value=3 required>&nbsp;Figures&nbsp;(M.)</label>
+            <label for="standardVroom"><input type="radio" id="standardVroom" name="competition" value=4 required>&nbsp;Vehicles&nbsp;(Std.)</label>
+            <label for="mastersVroom"><input type="radio" id="mastersVroom" name="competition" value=5 required>&nbsp;Vehicles&nbsp;(M.)</label>
         </div>
         <div id="isJudged" class="hidden">
             <input type="radio" id="notJudged" name="judged" value=0>

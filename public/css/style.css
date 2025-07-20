@@ -69,7 +69,10 @@ form {
     font-weight: 500;
     margin-bottom: 2%;
 }
-
+form div label {
+    white-space: nowrap;
+    /* labels stay next to the @#$%ing radio buttons!!! */
+}
 
 .hidden {
     display: none !important;

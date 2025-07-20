@@ -1,27 +1,21 @@
         <div id="isJudged">
-            <input type="radio" id="notJudged" name="judged" value=0>
-            <label for="notJudged">Not judged</label>
-            <input type="radio" id="firstPass" name="judged" value=1>
-            <label for="firstPass">First Pass</label>
-            <input type="radio" id="yesJudged" name="judged" value=2>
-            <label for="yesJudged">Judged</label>
+            <label for="notJudged"><input type="radio" id="notJudged" name="judged" value=0> Not judged</label>
+            <label for="firstPass"><input type="radio" id="firstPass" name="judged" value=1> First Pass</label>
+           <label for="yesJudged"><input type="radio" id="yesJudged" name="judged" value=2> Judged</label>
+            
         </div>
         <legend>Prizes:</legend>
         <div id="forMedals">
             <div class="checkboxOption">
-                <input type="checkbox" id="commended" name="medals" value="commended" onclick="onlyOne(this)">
-                <label for="commended"><span class="lgscreen">Highly Commended</span><span class="smscreen">Commend</span></label>
+                <label for="commended"><input type="checkbox" id="commended" name="medals" value="commended" onclick="onlyOne(this)">&nbsp;<span class="lgscreen">Highly Commended</span><span class="smscreen">Commend</span></label>                
             </div>
             <div class="checkboxOption">
-                <input type="checkbox" id="bronze" name="medals" value="bronze" onclick="onlyOne(this)">
-                <label for="bronze">Bronze</label>
+                 <label for="bronze"><input type="checkbox" id="bronze" name="medals" value="bronze" onclick="onlyOne(this)">&nbsp;Bronze</label>
             </div>
             <div class="checkboxOption">
-                <input type="checkbox" id="silver" name="medals" value="silver" onclick="onlyOne(this)">
-                <label for="silver">Silver</label>
+                <label for="silver"><input type="checkbox" id="silver" name="medals" value="silver" onclick="onlyOne(this)">&nbsp;Silver</label>
             </div>
             <div class="checkboxOption">
-                <input type="checkbox" id="gold" name="medals" value="gold" onclick="onlyOne(this)">
-                <label for="gold">Gold</label>
+                <label for="gold"><input type="checkbox" id="gold" name="medals" value="gold" onclick="onlyOne(this)">&nbsp;Gold</label>
             </div>
         </div>
