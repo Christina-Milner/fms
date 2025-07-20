@@ -42,7 +42,7 @@ module.exports = {
         }  catch(err) {
             res.render('errormes.ejs', {error: "Error in getVroomStandard: " + err, isAuthenticated: req.isAuthenticated()})
         }
-
+ 
     },
     getVroomMasters: async (req, res) => {
         try {
