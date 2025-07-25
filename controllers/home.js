@@ -62,12 +62,12 @@ module.exports = {
             console.log(prize)
             let data = await Painter.find().lean()
             if (prize == "Special") {
-                data = data.filter(entry => entry.prizes.corrr || entry.prizes.sponsors.length || entry.prizes.peoplesChoice)
+                data = data.filter(entry => entry.prizes.corrr || entry.prizes.sponsors.length || entry.prizes.peoplesChoice || entry.prizes.standardBestOfShow || entry.prizes.mastersBestOfShow )
             } 
             else {
                 const categories = {Juniors: 1, FigStandard: 2, FigMasters: 3, VroomStandard: 4, VroomMasters: 5}
                 const num = categories[prize]
-                data = data.filter(entry => (entry.competition == num) && (entry.prizes.medal || entry.prizes.standardBestOfShow || entry.prizes.junBestOfShow || entry.prizes.mastersBestOfShow ))
+                data = data.filter(entry => (entry.competition == num) && ((entry.prizes.medal) || entry.prizes.junBestOfShow))
             }
             res.render('filters.ejs', {isAuthenticated: req.isAuthenticated(), prize: prize, info: data})
         }
