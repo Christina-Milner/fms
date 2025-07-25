@@ -97,6 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 async function editThisOther(element) {
     document.querySelector('#warning').classList.add('hidden')
+    document.querySelector('.searchBoxJudging').classList.add('hidden')
     const entryID = element.id
     const data = await fetch(`ID_${entryID}`, {
         method: 'get', 
