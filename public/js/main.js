@@ -70,7 +70,7 @@ async function editThis(element) {
     document.querySelector('#numOfModels').value = json.numOfModels
     document.querySelector('#secretIdBox').value = element.id
     const [ooc, junior, standardFig, standardVroom, mastersFig, mastersVroom] = [document.querySelector('#outOfComp'), document.querySelector('#junior'),
-         document.querySelector('#standardFig'), document.querySelector('#standardVroom'), document.querySelector('#mastersFig'), , document.querySelector('#mastersVroom')]
+         document.querySelector('#standardFig'), document.querySelector('#standardVroom'), document.querySelector('#mastersFig'), document.querySelector('#mastersVroom')]
     if (!json.competition ) {
         ooc.checked = true
         for (let thing of [junior, standardFig, standardVroom, mastersFig, mastersVroom]) {
@@ -101,12 +101,7 @@ async function editThis(element) {
         for (let thing of [junior, ooc, standardVroom, mastersFig, standardFig]) {
             thing.checked = false
         }
-    } else {
-        document.querySelector('#outOfComp').checked = false
-        document.querySelector('#junior').checked = false
-        document.querySelector('#standard').checked = false
-        document.querySelector('#masters').checked = true
-    }
+    } 
 }
 
 // Search box
