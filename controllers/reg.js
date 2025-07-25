@@ -14,7 +14,7 @@ module.exports = {
                 { upsert: true, new: true }
             )
             return result.current
-        }
+        } 
 
         const existingId = req.body.entryId
         // This is where the POST/PUT split now happens

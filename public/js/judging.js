@@ -141,16 +141,21 @@ async function checkIfTaken(checkbox, prize) {
     document.querySelector('#warning').classList.remove('info')
     let taken = await fetch(`checkFor_${prize}`)
     taken = await taken.json()
-    let prettyfied = {junBestOfShow: "Junior Best of Show", standardBestOfShow: "Standard Best of Show", mastersBestOfShow: "Masters Best of Show", peoplesChoice: "People's Choice"}
-    if (taken.length && taken[0].id !== Number(document.querySelector('#secretIdBox').value)) {
+    const cur = Number(document.querySelector('#secretIdBox').value)
+    let curData = await fetch(`ID_${cur}`)
+    curData = await curData.json()
+    const prettyfied = {junBestOfShow: "Junior Best of Show", standardBestOfShow: "Standard Best of Show", mastersBestOfShow: "Masters Best of Show", peoplesChoice: "People's Choice"}
+    if (taken.length && taken[0].id !== curData.id) {
         checkbox.checked = false
         document.querySelector('#warning').innerHTML = `${prettyfied[prize]} has already been assigned to Number ${taken[0].id}, ${taken[0].fullName}!`
-        document.querySelector(`[id="${taken[0].id}"]`).classList.remove('hidden')
-        document.querySelectorAll('.entry').forEach(e => {
+        if (taken[0].competition === curData.competition) {
+            document.querySelector(`[id="${taken[0].id}"]`).classList.remove('hidden')
+                    document.querySelectorAll('.entry').forEach(e => {
             if (e.id !== String(taken[0].id)) {
                 e.classList.add('hidden') // Make the irrelevant one go away if switching between prizes that are already taken
             }
         })
+        }
         document.querySelector('#warning').classList.remove('hidden')
     }
 }
