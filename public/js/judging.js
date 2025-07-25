@@ -149,7 +149,7 @@ async function checkIfTaken(checkbox, prize) {
     if (taken.length && taken[0].id !== curData.id) {
         checkbox.checked = false
         document.querySelector('#warning').innerHTML = `${prettyfied[prize]} has already been assigned to Number ${taken[0].id}, ${taken[0].fullName}!`
-        if (taken[0].competition === curData.competition) {
+        if (taken[0].competition === curData.competition || prize == "peoplesChoice") {
             document.querySelector(`[id="${taken[0].id}"]`).classList.remove('hidden')
                     document.querySelectorAll('.entry').forEach(e => {
             if (e.id !== String(taken[0].id)) {
