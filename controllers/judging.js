@@ -87,7 +87,7 @@ module.exports = {
             const painter = await query.findOne();
             const category = req.body.category
             let currentPrizes = painter.prizes
-            if (category === "FigStandard" || category === "VroomStandard" || category == "Story") {
+            if (category === "FigStandard" || category === "VroomStandard" || category == "StoryStandard") {
                 await Painter.findOneAndUpdate({id: Number(req.body.entryId)}, {
                     judged: req.body.judged,
                     prizes: {
