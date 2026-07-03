@@ -34,6 +34,9 @@ Live here: [https://fen.up.railway.app](https://fen.up.railway.app).
 ### Stats
 * Just shows interesting statistics about the number of entrants and models
 
+## Updated for FMS 2026:
+* FMS 2025 brought a split into Figures and Vehcles with it, which is now joined by Storytelling
+
 ## Updated for FMS 2024:
 * There's now Out of Competition, Juniors, Standard, Masters as distinct categories as opposed to an in competition/out of competition + adult/junior.
 * Judging is split up into 3 tabs for Standard (incl. Junior) judging, Masters judging and prizes not awarded by judging (Sponsors, CORRR, People's Choice).
