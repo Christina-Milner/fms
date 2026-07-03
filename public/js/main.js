@@ -69,36 +69,46 @@ async function editThis(element) {
     document.querySelector('#name').value = json.fullName
     document.querySelector('#numOfModels').value = json.numOfModels
     document.querySelector('#secretIdBox').value = element.id
-    const [ooc, junior, standardFig, standardVroom, mastersFig, mastersVroom] = [document.querySelector('#outOfComp'), document.querySelector('#junior'),
-         document.querySelector('#standardFig'), document.querySelector('#standardVroom'), document.querySelector('#mastersFig'), document.querySelector('#mastersVroom')]
+    const [ooc, junior, standardFig, standardVroom, standardStory, mastersFig, mastersVroom, mastersStory] = [document.querySelector('#outOfComp'), document.querySelector('#junior'),
+         document.querySelector('#standardFig'), document.querySelector('#standardVroom'), document.querySelector('#standardStory'), document.querySelector('#mastersFig'), document.querySelector('#mastersVroom'), document.querySelector('#mastersStory')]
     if (!json.competition ) {
         ooc.checked = true
-        for (let thing of [junior, standardFig, standardVroom, mastersFig, mastersVroom]) {
+        for (let thing of [junior, standardFig, standardVroom, standardStory, mastersFig, mastersVroom, mastersStory]) {
             thing.checked = false
         }
     } else if (json.competition === 1) {
         junior.checked = true
-        for (let thing of [ooc, standardFig, standardVroom, mastersFig, mastersVroom]) {
+        for (let thing of [ooc, standardFig, standardVroom, standardStory, mastersFig, mastersVroom, mastersStory]) {
             thing.checked = false
         }
     } else if (json.competition === 2) {
         standardFig.checked = true
-        for (let thing of [junior, ooc, standardVroom, mastersFig, mastersVroom]) {
+        for (let thing of [junior, ooc, standardVroom, standardStory, mastersFig, mastersVroom, mastersStory]) {
             thing.checked = false
         }
      } else if (json.competition === 3) {
         mastersFig.checked = true
-        for (let thing of [junior, ooc, standardVroom, standardFig, mastersVroom]) {
+        for (let thing of [junior, ooc, standardVroom, standardFig, standardStory, mastersVroom, mastersStory]) {
             thing.checked = false
         }
     }  else if (json.competition === 4) {
         standardVroom.checked = true
-        for (let thing of [junior, ooc, standardFig, mastersFig, mastersVroom]) {
+        for (let thing of [junior, ooc, standardFig, standardStory, mastersFig, mastersVroom, mastersStory]) {
             thing.checked = false
         }
     }  else if (json.competition === 5) {
         mastersVroom.checked = true
-        for (let thing of [junior, ooc, standardVroom, mastersFig, standardFig]) {
+        for (let thing of [junior, ooc, standardVroom, standardStory, mastersFig, standardFig, mastersStory]) {
+            thing.checked = false
+        }
+    }  else if (json.competition === 6) {
+        standardStory.checked = true
+        for (let thing of [junior, ooc, standardVroom, standardFig, mastersFig, mastersVroom, mastersStory]) {
+            thing.checked = false
+        }
+    }  else if (json.competition === 7) {
+        mastersStory.checked = true
+        for (let thing of [junior, ooc, standardVroom, standardFig, standardStory, mastersFig, mastersVroom]) {
             thing.checked = false
         }
     } 

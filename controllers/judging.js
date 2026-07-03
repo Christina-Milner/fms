@@ -54,6 +54,24 @@ module.exports = {
         }
 
     },
+    getStoryStandard: async (req, res) => {
+        try {
+            let data = await Painter.find().lean()
+            data = data.filter(e => e.competition == 6)
+            res.render('judging.ejs', { isAuthenticated: req.isAuthenticated(), info: data, category: "Storytelling Standard"})
+        }  catch(err) {
+            res.render('errormes.ejs', {error: "Error in getStoryStandard: " + err, isAuthenticated: req.isAuthenticated()})
+        }
+    },
+    getStoryMasters: async (req, res) => {
+        try {
+            let data = await Painter.find().lean()
+            data = data.filter(e => e.competition == 7)
+            res.render('judging.ejs', { isAuthenticated: req.isAuthenticated(), info: data, category: "Storytelling Masters"})
+        }  catch(err) {
+            res.render('errormes.ejs', {error: "Error in getStoryMasters: " + err, isAuthenticated: req.isAuthenticated()})
+        }
+    },
     getOther: async (req, res) => {
         try {
             let data = await Painter.find().lean()
@@ -69,7 +87,7 @@ module.exports = {
             const painter = await query.findOne();
             const category = req.body.category
             let currentPrizes = painter.prizes
-            if (category === "FigStandard" || category === "VroomStandard") {
+            if (category === "FigStandard" || category === "VroomStandard" || category == "Story") {
                 await Painter.findOneAndUpdate({id: Number(req.body.entryId)}, {
                     judged: req.body.judged,
                     prizes: {
@@ -87,7 +105,7 @@ module.exports = {
                         junBestOfShow: req.body.junBestOfShow == "on",
                     }
                 })
-            } else if (category === "FigMasters" || category == "VroomMasters") {
+            } else if (category === "FigMasters" || category == "VroomMasters" || category == "StoryMasters") {
                 await Painter.findOneAndUpdate({id: Number(req.body.entryId)}, {
                     judged: req.body.judged,
                     prizes: {

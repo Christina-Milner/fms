@@ -16,7 +16,8 @@
         </nav>
 
             <%- include('partials/filterbuttons.ejs') %>
-            <% const page = { Special: 'partials/specialPrizes.ejs', Juniors: 'partials/juniorPrizes.ejs', FigStandard: 'partials/standardFigPrizes.ejs', VroomStandard: 'partials/standardVroomPrizes.ejs', FigMasters: 'partials/mastersFigPrizes.ejs', VroomMasters: 'partials/mastersVroomPrizes.ejs'} %>
+            <% const page = { Special: 'partials/specialPrizes.ejs', Juniors: 'partials/juniorPrizes.ejs', FigStandard: 'partials/standardFigPrizes.ejs', VroomStandard: 'partials/standardVroomPrizes.ejs',
+              FigMasters: 'partials/mastersFigPrizes.ejs', VroomMasters: 'partials/mastersVroomPrizes.ejs', StoryStandard: 'partials/standardStoryPrizes.ejs', StoryMasters: 'partials/mastersStoryPrizes.ejs'} %>
             <% if (prize && !page[prize]) { %>
                 <div>You broke something.</div>
             <% } else if (page[prize] && prize) { %>

@@ -12,13 +12,12 @@ module.exports = {
             const juniors = data.filter(e => e.competition === 1).length
             const adults = data.length - juniors
             const bestOfShow = [data.find(e => e.prizes.standardBestOfShow).fullName, data.find(e => e.prizes.mastersBestOfShow).fullName]
-            /* For next year, this needs to accommodate Standard and Master best of show. RIP my schema */
             const peoplesChoice = data.find(e => e.prizes.peoplesChoice).fullName
             const sponsors = Array.from(new Set(data.reduce((acc, cur) => cur.prizes.sponsors ? acc.concat(cur.prizes.sponsors) : acc, [])))
             const corrr = data.filter(e => e.prizes.corrr).length
 
-            const year = 2024
-
+            const year = 2025
+            
             await Year.create({year: year, totalModels: models, juniors: juniors, adults: adults, bestOfShow: bestOfShow, peoplesChoice: peoplesChoice, sponsors: sponsors, corrr: corrr})
             res.render('errormes.ejs',{isAuthenticated: req.isAuthenticated(), error: `Year ${year} added successfully.`}) // Sue me
 

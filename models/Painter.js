@@ -5,7 +5,7 @@ const PainterSchema = new mongoose.Schema({
     fullName: String,
     numOfModels: Number,
     competition: Number,
-    // 0 = Out of competition, 1 = junior, 2 = figures standard, 3 = figures master, 4 = vehicles standard, 5 = vehicles master
+    // 0 = Out of competition, 1 = junior, 2 = figures standard, 3 = figures master, 4 = vehicles standard, 5 = vehicles master, 6 = storytelling standard, 7 = storytelling master
     judged: Number,
     // 0 = not judged, 1 = first pass (new), 2 = judged
     // Entries that don't need judging won't go on the same screen anymore so don't need a N/A type option

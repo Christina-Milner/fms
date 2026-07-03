@@ -40,6 +40,8 @@
             <label for="mastersFig"><input type="radio" id="mastersFig" name="competition" value=3 required>&nbsp;Figures&nbsp;(M.)</label>
             <label for="standardVroom"><input type="radio" id="standardVroom" name="competition" value=4 required>&nbsp;Vehicles&nbsp;(Std.)</label>
             <label for="mastersVroom"><input type="radio" id="mastersVroom" name="competition" value=5 required>&nbsp;Vehicles&nbsp;(M.)</label>
+            <label for="standardStory"><input type="radio" id="standardStory" name="competition" value=6 required>&nbsp;Storyt.&nbsp;(Std.)</label>
+            <label for="mastersStory"><input type="radio" id="mastersStory" name="competition" value=7 required>&nbsp;Storyt.&nbsp;(M.)</label>
         </div>
         <div id="isJudged" class="hidden">
             <input type="radio" id="notJudged" name="judged" value=0>
@@ -66,7 +68,7 @@
                 <div class="biggerBox">
                     <p>Number:</p>
                     <p>Name:</p>
-                    <% const competition = {0: "OOC", 1: "Junior", 2: "Fig. Standard", 3: "Fig. Masters", 4: "Veh. Standard", 5: "Veh. Masters"} %>
+                    <% const competition = {0: "OOC", 1: "Junior", 2: "Fig. Standard", 3: "Fig. Masters", 4: "Veh. Standard", 5: "Veh. Masters", 6: "Story Std.", 7: "Story Ma."} %>
                     <p><%= competition[cur.competition] %></p>
                 </div>
                 <div>

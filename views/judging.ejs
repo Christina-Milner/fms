@@ -23,6 +23,8 @@
                 <a href="/judgingVroomStandard"><p id="judgingVroomStandard" class="filterbutton big">Std. Vehicles</p></a>
                 <a href="/judgingFigMasters"><p id="judgingFigMasters" class="filterbutton big">Masters Figures</p></a>
                 <a href="/judgingVroomMasters"><p id="judgingVroomMasters" class="filterbutton big">Masters Vehicles</p></a>
+                <a href="/judgingStoryStandard"><p id="judgingStoryStandard" class="filterbutton big">Std. Storytell.</p></a>
+                <a href="/judgingStoryMasters"><p id="judgingStoryMasters" class="filterbutton big">Masters Storytell.</p></a>
                 <a href="/judgingOther"><p id="judgingOther" class="filterbutton big">Special Prizes</p></a>
             </div>
             <div class="iHateCSS searchBoxJudging">
@@ -40,6 +42,10 @@
             <%- include('partials/judgingVroomStandard.ejs') %>
         <% } else if (category == "Vehicles Masters") { %> 
             <%- include('partials/judgingVroomMasters.ejs') %>
+        <% } else if (category == "Storytelling Standard") { %> 
+            <%- include('partials/judgingStoryStandard.ejs') %>
+        <% } else if (category == "Storytelling Masters") { %> 
+            <%- include('partials/judgingStoryMasters.ejs') %>
         <% } else if (category == "Other") { %>
             <%- include('partials/judgingOther.ejs') %>
         <% }%>

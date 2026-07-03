@@ -27,6 +27,8 @@ router.get('/judgingFigStandard', judgingController.getFigStandard)
 router.get('/judgingFigMasters', judgingController.getFigMasters)
 router.get('/judgingVroomStandard', judgingController.getVroomStandard) 
 router.get('/judgingVroomMasters', judgingController.getVroomMasters) 
+router.get('/judgingStoryStandard', judgingController.getStoryStandard) 
+router.get('/judgingStoryMasters', judgingController.getStoryMasters) 
 router.get('/judgingOther', judgingController.getOther)
 router.post('/addEntryJudge', judgingController.addEntry)
 
@@ -43,5 +45,5 @@ router.get('/logout', authController.logout)
 
 router.get('/saveStats', ensureAuth, helpersController.saveStats)
 router.get('/seed', ensureAuth, helpersController.seed)
-
-module.exports = router  
+ 
+module.exports = router   

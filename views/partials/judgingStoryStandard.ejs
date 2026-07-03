@@ -1,0 +1,29 @@
+<form action="/addEntryJudge" method="POST" id="inputForm" class="hidden judgeForm">
+    <input type ="hidden" name="entryId" id="secretIdBox">
+    <div id="forID">
+    </div>
+    <div>
+        <span>Name:</span>
+        <span id="name"></span>
+    </div>
+    <div id="competition"></div>
+    <fieldset id="prizes" class="hidden">
+        <div id="warning" class="hidden"></div>
+        <input type ="hidden" name="category" id="category" value="StoryStandard">
+        <%- include('judgingFormShared.ejs') %>
+        <div id="bestOfShowStuff">
+            <div class="checkboxOption">
+                <input type="checkbox" id="junBestOfShow" name="junBestOfShow" class="kidsOnly" onclick="checkIfTaken(this, 'junBestOfShow')">
+                <label for="junBestOfShow" id="forJunBestOfShow" class="kidsOnly"><span class="lgscreen">Junior Best of Show</span><span class="smscreen">Junior BoS</span></label>
+            </div><div class="checkboxOption">
+                <input type="checkbox" id="standardBestOfShow" name="standardBestOfShow" class="adultsOnly" onclick="checkIfTaken(this, 'standardBestOfShow')">
+                <label for="standardBestOfShow" id="forStandardBestOfShow" class="adultsOnly">Standard BoS</label>
+            </div>
+        </div>
+        
+    </fieldset>
+    <div>
+        <input type="submit" value="Submit">
+    </div>
+</form>
+<%- include('judgingShared.ejs') %>

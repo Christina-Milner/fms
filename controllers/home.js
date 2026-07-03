@@ -65,7 +65,7 @@ module.exports = {
                 data = data.filter(entry => entry.prizes.corrr || entry.prizes.sponsors.length || entry.prizes.peoplesChoice || entry.prizes.standardBestOfShow || entry.prizes.mastersBestOfShow )
             } 
             else {
-                const categories = {Juniors: 1, FigStandard: 2, FigMasters: 3, VroomStandard: 4, VroomMasters: 5}
+                const categories = {Juniors: 1, FigStandard: 2, FigMasters: 3, VroomStandard: 4, VroomMasters: 5, StoryStandard: 6, StoryMasters: 7}
                 const num = categories[prize]
                 data = data.filter(entry => (entry.competition == num) && ((entry.prizes.medal) || entry.prizes.junBestOfShow))
             }
@@ -74,5 +74,5 @@ module.exports = {
         catch (err) {
             res.render('errormes.ejs', {error: "Error in filterPrize(): " + err, isAuthenticated: req.isAuthenticated()})
         } 
-    },     
+    },    
 }  
