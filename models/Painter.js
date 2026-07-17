@@ -14,6 +14,7 @@ const PainterSchema = new mongoose.Schema({
         standardBestOfShow: Boolean,
         mastersBestOfShow: Boolean,
         junBestOfShow: Boolean,
+        bestOfCreative: Boolean,
         corrr: Boolean,
         peoplesChoice: Boolean,
         sponsors: Array

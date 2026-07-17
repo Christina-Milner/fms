@@ -120,6 +120,7 @@ module.exports = {
                         ...currentPrizes,
                         corrr: req.body.corrr == "on",
                         peoplesChoice: req.body.peoplesChoice == "on",
+                        bestOfCreative: req.body.bestOfCreative == "on",
                         sponsors: req.body.sponsors ? req.body.sponsors.split(',').map(e => e.trim()).filter(e => e).map(sponsor => titleCasify(sponsor)) : []
                     }
                 })
@@ -130,6 +131,6 @@ module.exports = {
         catch (err) {
             res.render('errormes.ejs', {error: "Error in addEntry in judging.js: " + err, isAuthenticated: req.isAuthenticated()})     
         } 
-    }
+    } 
 
 }   

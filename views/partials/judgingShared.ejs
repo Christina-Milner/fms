@@ -5,13 +5,13 @@
             <div class="biggerBox">
                 <p>Number:</p>
                 <p>Name:</p>
-                <% const competition = {0: "OOC", 1: "Junior", 2: "Fig. Standard", 3: "Fig. Masters", 4: "Veh. Standard", 5: "Veh. Masters"} %>
+                <% const competition = {0: "OOC", 1: "Junior", 2: "Fig. Standard", 3: "Fig. Masters", 4: "Veh. Standard", 5: "Veh. Masters", 6: "Story Std.", 7: "Story Masters"} %>
                 <p><%= competition[cur.competition] %></p>
             </div>
             <div>
                 <p><%= cur.id %></p>
                 <p><%= cur.fullName ? cur.fullName : "Empty entry!" %></p>
-                <% let prettify = {commended: "Commended", bronze: "Bronze", silver: "Silver", gold: "Gold", corrr: "CORRR", junBestOfShow: "Jun. Best of Show", standardBestOfShow: "Std. Best of Show", mastersBestOfShow: "Masters Best of Show", peoplesChoice: "People's Choice"} %>
+                <% let prettify = {commended: "Commended", bronze: "Bronze", silver: "Silver", gold: "Gold", corrr: "CORRR", junBestOfShow: "Jun. Best of Show", standardBestOfShow: "Std. Best of Show", mastersBestOfShow: "Masters Best of Show", peoplesChoice: "People's Choice", bestOfCreative: "Best of Creative"} %>
                 <% let arr = [] %>
                 <% if (cur.prizes.medal) {arr.push(cur.prizes.medal[0].toUpperCase() + cur.prizes.medal.slice(1))} %>
                 <% arr = arr.concat(Object.keys(prettify).filter(e => cur.prizes[e]).map(e => prettify[e])) %>

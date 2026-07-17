@@ -62,7 +62,7 @@ module.exports = {
             console.log(prize)
             let data = await Painter.find().lean()
             if (prize == "Special") {
-                data = data.filter(entry => entry.prizes.corrr || entry.prizes.sponsors.length || entry.prizes.peoplesChoice || entry.prizes.standardBestOfShow || entry.prizes.mastersBestOfShow )
+                data = data.filter(entry => entry.prizes.corrr || entry.prizes.sponsors.length || entry.prizes.peoplesChoice || entry.prizes.standardBestOfShow || entry.prizes.mastersBestOfShow || entry.prizes.bestOfCreative)
             } 
             else {
                 const categories = {Juniors: 1, FigStandard: 2, FigMasters: 3, VroomStandard: 4, VroomMasters: 5, StoryStandard: 6, StoryMasters: 7}
@@ -74,5 +74,5 @@ module.exports = {
         catch (err) {
             res.render('errormes.ejs', {error: "Error in filterPrize(): " + err, isAuthenticated: req.isAuthenticated()})
         } 
-    },    
+    },     
 }  

@@ -145,11 +145,11 @@ async function checkIfTaken(checkbox, prize) {
     const cur = Number(document.querySelector('#secretIdBox').value)
     let curData = await fetch(`ID_${cur}`)
     curData = await curData.json()
-    const prettyfied = {junBestOfShow: "Junior Best of Show", standardBestOfShow: "Standard Best of Show", mastersBestOfShow: "Masters Best of Show", peoplesChoice: "People's Choice"}
+    const prettyfied = {junBestOfShow: "Junior Best of Show", standardBestOfShow: "Standard Best of Show", mastersBestOfShow: "Masters Best of Show", peoplesChoice: "People's Choice", bestOfCreative: "Best of Creative"}
     if (taken.length && taken[0].id !== curData.id) {
         checkbox.checked = false
         document.querySelector('#warning').innerHTML = `${prettyfied[prize]} has already been assigned to Number ${taken[0].id}, ${taken[0].fullName}!`
-        if (taken[0].competition === curData.competition || prize == "peoplesChoice") {
+        if (taken[0].competition === curData.competition || prize == "peoplesChoice" || prize == "bestOfCreative") {
             document.querySelector(`[id="${taken[0].id}"]`).classList.remove('hidden')
                     document.querySelectorAll('.entry').forEach(e => {
             if (e.id !== String(taken[0].id)) {

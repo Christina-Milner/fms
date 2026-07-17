@@ -13,12 +13,13 @@ module.exports = {
             const adults = data.length - juniors
             const bestOfShow = [data.find(e => e.prizes.standardBestOfShow).fullName, data.find(e => e.prizes.mastersBestOfShow).fullName]
             const peoplesChoice = data.find(e => e.prizes.peoplesChoice).fullName
+            const bestOfCreative = data.find(e => e.prizes.bestOfCreative).fullName
             const sponsors = Array.from(new Set(data.reduce((acc, cur) => cur.prizes.sponsors ? acc.concat(cur.prizes.sponsors) : acc, [])))
             const corrr = data.filter(e => e.prizes.corrr).length
 
             const year = 2025
             
-            await Year.create({year: year, totalModels: models, juniors: juniors, adults: adults, bestOfShow: bestOfShow, peoplesChoice: peoplesChoice, sponsors: sponsors, corrr: corrr})
+            await Year.create({year: year, totalModels: models, juniors: juniors, adults: adults, bestOfShow: bestOfShow, bestOfCreative: bestOfCreative, peoplesChoice: peoplesChoice, sponsors: sponsors, corrr: corrr})
             res.render('errormes.ejs',{isAuthenticated: req.isAuthenticated(), error: `Year ${year} added successfully.`}) // Sue me
 
         } catch(err) {
@@ -27,7 +28,7 @@ module.exports = {
         
     },
 
-    seed: async (req, res) => {
+     seed: async (req, res) => {
         const data = [
             {   
                 numOfModels: 3,
@@ -334,7 +335,7 @@ module.exports = {
         } catch(err) {
             res.render('errormes.ejs', {error: err, isAuthenticated: req.isAuthenticated()})
         }
-    }
+    } 
 
 }
 
